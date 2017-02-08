@@ -1,0 +1,123 @@
+fileFormatVersion: 2
+guid: b02e63c7c24117e45acd64f6e5ede314
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: GroundExtents
+    100004: GroundTrack
+    100006: GroundVerges
+    100008: WallExtents
+    100010: GroundRunwayExtents
+    100012: GroundRunwayTrack
+    100014: GroundRunwayVerges
+    100016: GroundRunwayWall
+    100018: GroundRunway
+    100020: GroundRunwayAsphalt
+    100022: GroundRunwayLines
+    400000: //RootNode
+    400002: GroundExtents
+    400004: GroundTrack
+    400006: GroundVerges
+    400008: WallExtents
+    400010: GroundRunwayExtents
+    400012: GroundRunwayTrack
+    400014: GroundRunwayVerges
+    400016: GroundRunwayWall
+    400018: GroundRunway
+    400020: GroundRunwayAsphalt
+    400022: GroundRunwayLines
+    2300000: //RootNode
+    2300002: GroundExtents
+    2300004: GroundTrack
+    2300006: GroundVerges
+    2300008: WallExtents
+    2300010: GroundRunwayExtents
+    2300012: GroundRunwayTrack
+    2300014: GroundRunwayVerges
+    2300016: GroundRunwayWall
+    2300018: GroundRunway
+    2300020: GroundRunwayAsphalt
+    2300022: GroundRunwayLines
+    3300000: //RootNode
+    3300002: GroundExtents
+    3300004: GroundTrack
+    3300006: GroundVerges
+    3300008: WallExtents
+    3300010: GroundRunwayExtents
+    3300012: GroundRunwayTrack
+    3300014: GroundRunwayVerges
+    3300016: GroundRunwayWall
+    3300018: GroundRunway
+    3300020: GroundRunwayAsphalt
+    3300022: GroundRunwayLines
+    4300000: GroundTrack
+    4300002: WallExtents
+    4300004: GroundExtents
+    4300006: GroundVerges
+    4300008: GroundRunwayWall
+    4300010: GroundRunwayExtents
+    4300012: GroundRunwayTrack
+    4300014: GroundRunwayVerges
+    4300016: GroundRunwayAsphalt
+    4300018: GroundRunwayLines
+    4300020: GroundRunway
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    pivotNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 0
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 

@@ -1,0 +1,192 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: WaterBasicNighttime
+  m_Shader: {fileID: 4800000, guid: 9dccc8e8f0da4494991c26ef59019551, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: c2ef94ff9d11915d1100a04b44295342, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: a53cf5449d11a15d1100a04b44295342, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ReflectionTex
+        second:
+          m_Texture: {fileID: 8400000, guid: 21bb33409d118354d000dcabe39e7c39, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _WavesTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ColorControlCube
+        second:
+          m_Texture: {fileID: 8900000, guid: 006a5f739d1105f6a000538a2aef8c59, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ColorControl
+        second:
+          m_Texture: {fileID: 2800000, guid: 8403d3349d112ba4d000be1be39e7c39, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap2
+        second:
+          m_Texture: {fileID: 2800000, guid: 279fb0a19d11d4a6d00051fa8d76c639, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ColorGradient
+        second:
+          m_Texture: {fileID: 2800000, guid: 8403d3349d112ba4d000be1be39e7c39, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: 1
+      data:
+        first:
+          name: _WaveScale
+        second: .0702830181
+      data:
+        first:
+          name: _Highlight
+        second: 33.2075462
+      data:
+        first:
+          name: _bScale
+        second: .0629245341
+      data:
+        first:
+          name: _BumpPeturb
+        second: 82.07547
+      data:
+        first:
+          name: _BumpPeturb2
+        second: .745283008
+      data:
+        first:
+          name: _bTwirl
+        second: .0500000007
+      data:
+        first:
+          name: _distort
+        second: .100000001
+      data:
+        first:
+          name: _BumpStrength
+        second: .100000001
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .700785816, g: .481223762, b: .474296182, a: 1}
+      data:
+        first:
+          name: _MainTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 0, g: 0, b: 0, a: .400000006}
+      data:
+        first:
+          name: _BumpMap_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: WaveSpeed
+        second: {r: 9.68770027, g: 4.81898165, b: -7.91322803, a: 2.87029743}
+      data:
+        first:
+          name: _horizonColor
+        second: {r: .148485541, g: .282429248, b: .379949659, a: 0}
+      data:
+        first:
+          name: _ColorControl_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: _ColorControlCube_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: BumpParm
+        second: {r: 1, g: 1, b: -1, a: -1}
+      data:
+        first:
+          name: _EdgeColor
+        second: {r: 0, g: .100000001, b: 0, a: .100000001}
+      data:
+        first:
+          name: _RefTex_0
+        second: {r: -1517.37024, g: -23.9408531, b: -3154.91675, a: 2715.94165}
+      data:
+        first:
+          name: _RefTex_1
+        second: {r: 356.584351, g: -313.125671, b: -962.84906, a: 2791.50659}
+      data:
+        first:
+          name: _RefTex_2
+        second: {r: 4.95644999, g: -.187056601, b: -13.3834057, a: 20.1233597}
+      data:
+        first:
+          name: _RefTex_3
+        second: {r: 4.95595503, g: -.18703793, b: -13.3820696, a: 20.2213535}
+      data:
+        first:
+          name: horizonColor
+        second: {r: .61500001, g: .796000004, b: .875999987, a: 1}
+      data:
+        first:
+          name: uvParams
+        second: {r: 10, g: .0199999996, b: .0299999993, a: 0}
+      data:
+        first:
+          name: waveDirX
+        second: {r: -2.5, g: 0, b: 7, a: 8}
+      data:
+        first:
+          name: waveDirY
+        second: {r: 0, g: 1.5, b: -7, a: 1}
+      data:
+        first:
+          name: waveHeights
+        second: {r: .800000012, g: 1, b: .100000001, a: .0500000007}
+      data:
+        first:
+          name: _WaveSpeed
+        second: {r: 1, g: -1, b: -1, a: 1}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6
