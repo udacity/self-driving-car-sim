@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 10900ec9ea3fc69459c3f2bb3d09ed70
+timeCreated: 1467286025
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: largecurve
+    100002: largecurveLeft_ramp
+    100004: largecurveRight_ramp
+    100006: //RootNode
+    100008: sbendLeft
+    100010: sbendLeft_ramp
+    100012: sbendRight
+    100014: sbendRight_ramp
+    100016: sharpecurve
+    100018: straight
+    100020: straight_ramp
+    100022: T-intersection
+    100024: Cube
+    100026: largecurveRight
+    100028: deadend
+    400000: largecurve
+    400002: largecurveLeft_ramp
+    400004: largecurveRight_ramp
+    400006: //RootNode
+    400008: sbendLeft
+    400010: sbendLeft_ramp
+    400012: sbendRight
+    400014: sbendRight_ramp
+    400016: sharpecurve
+    400018: straight
+    400020: straight_ramp
+    400022: T-intersection
+    400024: Cube
+    400026: largecurveRight
+    400028: deadend
+    2300000: largecurve
+    2300002: largecurveLeft_ramp
+    2300004: largecurveRight_ramp
+    2300006: sbendLeft
+    2300008: sbendLeft_ramp
+    2300010: sbendRight
+    2300012: sbendRight_ramp
+    2300014: sharpecurve
+    2300016: straight
+    2300018: straight_ramp
+    2300020: T-intersection
+    2300022: Cube
+    2300024: largecurveRight
+    2300026: deadend
+    3300000: largecurve
+    3300002: largecurveLeft_ramp
+    3300004: largecurveRight_ramp
+    3300006: sbendLeft
+    3300008: sbendLeft_ramp
+    3300010: sbendRight
+    3300012: sbendRight_ramp
+    3300014: sharpecurve
+    3300016: straight
+    3300018: straight_ramp
+    3300020: T-intersection
+    3300022: Cube
+    3300024: largecurveRight
+    3300026: deadend
+    4300000: largecurveRight_ramp
+    4300002: T-intersection
+    4300004: sbendLeft_ramp
+    4300006: sbendLeft
+    4300008: largecurve
+    4300010: straight
+    4300012: sharpecurve
+    4300014: sbendRight
+    4300016: sbendRight_ramp
+    4300018: straight_ramp
+    4300020: largecurveLeft_ramp
+    4300022: largecurveRight
+    4300024: Cube
+    4300026: deadend
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
