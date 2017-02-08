@@ -1,16 +1,16 @@
 ## Welcome to Udacity's Self-Driving Car Simulator 
 
-This Simulator was built by Udacity's Self-Driving Car Nanodegree Team for teaching students how to train cars how to navigate road courses using deep learning, [Project Details]( https://github.com/udacity/CarND-Behavioral-Cloning-P3)
+This simulator was built by Udacity's Self-Driving Car Nanodegree Team for teaching students how to train cars how to navigate road courses using deep learning. See more [project details here]( https://github.com/udacity/CarND-Behavioral-Cloning-P3).
 
-All the assets in this repository require Unity, please follow the instructions below for the full setup.
+All the assets in this repository require Unity. Please follow the instructions below for the full setup.
 
 ### User Instructions
 
-1. clone the repository to your local directory, please make sure to use [Git LFS](https://git-lfs.github.com) to properly pull over large texture and model assets. 
+1. Clone the repository to your local directory, please make sure to use [Git LFS](https://git-lfs.github.com) to properly pull over large texture and model assets. 
 
-2. Install the free game making egine [Unity](https://unity3d.com) if you dont already have it. Unity is necessary to load all the assets.
+2. Install the free game making engine [Unity](https://unity3d.com), if you dont already have it. Unity is necessary to load all the assets.
 
-3. Load up the cloned folder self-driving-car-sim inside Unity as a new project.
+3. Load up the cloned folder `self-driving-car-sim` inside Unity as a new project.
 
 4. Load up scenes by going to Project tab in the bottom left, and navigating to the folder Assets/1_SelfDrivingCar/Scenes. To load up one of the scenes, for example the Lake Track, double click the file LakeTrackTraining.unity. Once the scene is loaded up you can fly around it in the scene viewing window by holding mouse right click to turn, and mouse scroll to zoom.
 
