@@ -12,6 +12,7 @@ public class CommandServer : MonoBehaviour
 	public Camera FrontFacingCamera;
 	private SocketIOComponent _socket;
 	private CarController _carController;
+//	private WaypointTracker wpt;
 
 	// Use this for initialization
 	void Start()
@@ -21,6 +22,7 @@ public class CommandServer : MonoBehaviour
 		_socket.On("steer", OnSteer);
 		_socket.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
+//		wpt = new WaypointTracker ();
 	}
 
 	// Update is called once per frame
@@ -43,7 +45,6 @@ public class CommandServer : MonoBehaviour
 	void OnSteer(SocketIOEvent obj)
 	{
 		JSONObject jsonObject = obj.data;
-		//    print(float.Parse(jsonObject.GetField("steering_angle").str));
 		CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").str);
 		CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").str);
 		EmitTelemetry(obj);
@@ -57,10 +58,14 @@ public class CommandServer : MonoBehaviour
 			// send only if it's not being manually driven
 			if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.S))) {
 				_socket.Emit("telemetry", new JSONObject());
-			}
-			else {
+			} else {
 				// Collect Data from the Car
 				Dictionary<string, string> data = new Dictionary<string, string>();
+//				var sensorData = wpt.SensorData (_carController);
+//				Debug.Log (string.Format("{0} {1}", sensorData.position, sensorData.reference));
+//				data["pos"] = sensorData.position.ToString();
+//				data["ref"] = sensorData.reference.ToString();
+//				data["orientation"] = sensorData.orientation.ToString();
 				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
@@ -68,27 +73,6 @@ public class CommandServer : MonoBehaviour
 				_socket.Emit("telemetry", new JSONObject(data));
 			}
 		});
-
-		//    UnityMainThreadDispatcher.Instance().Enqueue(() =>
-		//    {
-		//      	
-		//      
-		//
-		//		// send only if it's not being manually driven
-		//		if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.S))) {
-		//			_socket.Emit("telemetry", new JSONObject());
-		//		}
-		//		else {
-		//			// Collect Data from the Car
-		//			Dictionary<string, string> data = new Dictionary<string, string>();
-		//			data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
-		//			data["throttle"] = _carController.AccelInput.ToString("N4");
-		//			data["speed"] = _carController.CurrentSpeed.ToString("N4");
-		//			data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
-		//			_socket.Emit("telemetry", new JSONObject(data));
-		//		}
-		//      
-		////      
-		//    });
+				
 	}
 }
