@@ -89,22 +89,19 @@ namespace UnityStandardAssets.Vehicles.Car
 			} else {
 				p0 = currentNextWaypoint - 1;
 			}
-
-			Debug.Log (string.Format ("In between waypoints {0} and {1}", p0, p1));
+				
 			// distance between waypoints in meters, pretty sure unity measures in meters but not 100% sure.
-			float dist = Vector3.Distance(waypoints[p0].position, waypoints[p1].position);
-			// convert speed to kilometers/hour
-			float meters_per_second = cc.CurrentSpeed * 1.60934f * 1000 / 60 / 60;
-
-			progress += Time.fixedDeltaTime * meters_per_second * Mathf.Cos(cc.CurrentSteerAngle * Mathf.Deg2Rad);
-//			Debug.Log (string.Format ("progress between waypoints {0} %", progress / dist));
-			Vector3 reference = Vector3.Lerp(waypoints[p0].position, waypoints[p1].position, progress / dist);
+			float waypointDist = Vector3.Distance(waypoints[p0].position, waypoints[p1].position);
+			float distToNextWaypoint = Vector3.Distance(pos, waypoints[p1].position);
+			progress = 1f - distToNextWaypoint / waypointDist;
+//			Debug.Log (string.Format ("progress between waypoints {0} and {1}: {2}%", p0, p1, progress));
+			Vector3 reference = Vector3.Lerp(waypoints[p0].position, waypoints[p1].position, progress);
 
 			reference.y = 0;
 			pos.y = 0;
 			Debug.Log (string.Format("Current Position = {0}, Reference = {1}, Distance = {2}, Angle = {3}", 
 				pos, reference, Vector3.Distance(pos, reference), 
-				Quaternion.Angle(cc.transform.rotation, Quaternion.LookRotation(reference))));
+				Quaternion.FromToRotation(pos, reference)));
 
 			return new Data(pos, reference, cc.transform.rotation);
 		}
