@@ -23,8 +23,7 @@ namespace UnityStandardAssets.Vehicles.Car
             Cruising = false;
 			mouse_hold = false;
         }
-
-        // Update is called once per frame
+			
         public void UpdateValues()
         {
             // Cruise Control

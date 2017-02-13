@@ -72,6 +72,15 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public float BrakeInput { get; private set; }
 
+		public Vector3 Position () {
+				return transform.position;
+		}
+
+		public Quaternion Orientation () {
+			return transform.rotation;
+		}
+				
+
         private bool m_isRecording = false;
         public bool IsRecording {
             get

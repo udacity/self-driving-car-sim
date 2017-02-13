@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityStandardAssets.Utility;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -15,13 +15,13 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Car = GetComponent<CarController>();
             s = new Steering();
             s.Start();
+
         }
 
         private void FixedUpdate()
         {
             s.UpdateValues();
             m_Car.Move(s.H, s.V, s.V, 0f);
-
         }
     }
 }
