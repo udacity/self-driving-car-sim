@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 using SocketIO;
 using UnityStandardAssets.Vehicles.Car;
 using System;
-using System.Security.AccessControl;
 
 public class CommandServer : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class CommandServer : MonoBehaviour
 	public Camera FrontFacingCamera;
 	private SocketIOComponent _socket;
 	private CarController _carController;
-//	private WaypointTracker wpt;
+	private WaypointTracker wpt;
 
 	// Use this for initialization
 	void Start()
@@ -22,7 +20,7 @@ public class CommandServer : MonoBehaviour
 		_socket.On("steer", OnSteer);
 		_socket.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
-//		wpt = new WaypointTracker ();
+		wpt = new WaypointTracker ();
 	}
 
 	// Update is called once per frame
@@ -61,11 +59,15 @@ public class CommandServer : MonoBehaviour
 			} else {
 				// Collect Data from the Car
 				Dictionary<string, string> data = new Dictionary<string, string>();
-//				var sensorData = wpt.SensorData (_carController);
-//				Debug.Log (string.Format("{0} {1}", sensorData.position, sensorData.reference));
-//				data["pos"] = sensorData.position.ToString();
-//				data["ref"] = sensorData.reference.ToString();
-//				data["orientation"] = sensorData.orientation.ToString();
+				var sensorData = wpt.SensorData (_carController);
+				data["pos"] = sensorData.position.ToString();
+                var i = 0;
+				foreach (Vector3 p in sensorData.waypointPositions) {
+					data["waypoint_" + i] = p.ToString();
+					i += 1;
+				}
+				data["our_y"] = sensorData.ourY.ToString();
+				data["ref_y"] = sensorData.refY.ToString();
 				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");

@@ -13,7 +13,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public float SteeringAngle { get; set; }
         public float Acceleration { get; set; }
         private Steering s;
-		private WaypointTracker wpt;
+		// private WaypointTracker wpt;
 
         private void Awake()
         {
@@ -21,12 +21,13 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Car = GetComponent<CarController>();
             s = new Steering();
             s.Start();
-			wpt = new WaypointTracker ();
+			// wpt = new WaypointTracker ();
 		}
 
         private void FixedUpdate()
         {
-			wpt.SensorData (m_Car);
+            // var sensorData = wpt.SensorData (m_Car);
+            // Debug.Log (string.Format("{0} {1} {2}", sensorData.position, sensorData.ourY, sensorData.refY));
             // If holding down W or S control the car manually
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
             {

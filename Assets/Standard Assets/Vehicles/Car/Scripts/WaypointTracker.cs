@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -9,14 +7,16 @@ namespace UnityStandardAssets.Vehicles.Car
 	// Way to around multiple returns
 	public class Data
 	{
+        public List<Vector3> waypointPositions;
 		public Vector3 position;
-		public Vector3 reference;
-		public Quaternion orientation;
+		public float ourY;
+		public float refY;
 
-		public Data (Vector3 p, Vector3 r, Quaternion o) {
-			position = p;
-			reference = r;
-			orientation = o;
+		public Data (Vector3 position, List<Vector3> waypointPositions, float ourY, float refY) {
+			this.position = position;
+			this.waypointPositions = waypointPositions;
+			this.ourY = ourY;
+			this.refY = refY;
 		}
 	}
 
@@ -91,19 +91,27 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 				
 			// distance between waypoints in meters, pretty sure unity measures in meters but not 100% sure.
-			float waypointDist = Vector3.Distance(waypoints[p0].position, waypoints[p1].position);
-			float distToNextWaypoint = Vector3.Distance(pos, waypoints[p1].position);
-			progress = 1f - distToNextWaypoint / waypointDist;
-//			Debug.Log (string.Format ("progress between waypoints {0} and {1}: {2}%", p0, p1, progress));
-			Vector3 reference = Vector3.Lerp(waypoints[p0].position, waypoints[p1].position, progress);
+			// float waypointDist = Vector3.Distance(waypoints[p0].position, waypoints[p1].position);
+			// float distToNextWaypoint = Vector3.Distance(pos, waypoints[p1].position);
+			// progress = 1f - distToNextWaypoint / waypointDist;
+			// Debug.Log (string.Format ("progress between waypoints {0} and {1}: {2}%", p0, p1, progress));
+			// Vector3 reference = Vector3.Lerp(waypoints[p0].position, waypoints[p1].position, progress);
 
-			reference.y = 0;
-			pos.y = 0;
-			Debug.Log (string.Format("Current Position = {0}, Reference = {1}, Distance = {2}, Angle = {3}", 
-				pos, reference, Vector3.Distance(pos, reference), 
-				Quaternion.FromToRotation(pos, reference)));
+			// reference.y = 0;
+			// pos.y = 0;
+			// Debug.Log (string.Format("Current Position = {0}, Reference = {1}, Distance = {2}, Angle = {3}", 
+			// 	pos, reference, Vector3.Distance(pos, reference), 
+			// 	Quaternion.FromToRotation(pos, reference)));
 
-			return new Data(pos, reference, cc.transform.rotation);
+            var waypointPositions = new List<Vector3>();
+			foreach (Transform t in waypoints) {
+                waypointPositions.Add(t.position);
+			}
+
+            var relativePos = waypoints[p1].position - waypoints[p0].position;
+			var refY = Quaternion.LookRotation(relativePos).eulerAngles.y;
+			var ourY = cc.transform.rotation.eulerAngles.y;
+			return new Data(pos, waypointPositions, ourY, refY);
 		}
 			
 	}
