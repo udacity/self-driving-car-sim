@@ -81,7 +81,9 @@ namespace UnityStandardAssets.Vehicles.Car
 
 				// reset
 				mouse_hold = false;
+
 				H = CrossPlatformInputManager.GetAxis ("Horizontal");
+
             }
 				
         }
