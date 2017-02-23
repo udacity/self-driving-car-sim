@@ -60,17 +60,13 @@ public class CommandServer : MonoBehaviour
 				// Collect Data from the Car
 				Dictionary<string, string> data = new Dictionary<string, string>();
 				var sensorData = wpt.SensorData (_carController);
-				data["pos"] = sensorData.position.ToString();
-                var i = 0;
-				foreach (Vector3 p in sensorData.waypointPositions) {
-					data["waypoint_" + i] = p.ToString();
-					i += 1;
-				}
-				data["our_y"] = sensorData.ourY.ToString();
-				data["ref_y"] = sensorData.refY.ToString();
 				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
+				data["cte"] = sensorData.cte.ToString("N4");
+				data["yaw"] = sensorData.yaw.ToString("N4");
+				data["our_angle"] = sensorData.our_angle.ToString("N4");
+				data["ref_angle"] = sensorData.ref_angle.ToString("N4");
 				data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
 				_socket.Emit("telemetry", new JSONObject(data));
 			}
