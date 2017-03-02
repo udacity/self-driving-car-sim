@@ -13,7 +13,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		public float ref_angle;
 
 		public Data (float cte, float yaw, float our_angle, float ref_angle) {
-            this.cte = cte;
+			this.cte = cte;
 			this.yaw = yaw;
 			this.our_angle = our_angle;
 			this.ref_angle = ref_angle;
@@ -24,8 +24,9 @@ namespace UnityStandardAssets.Vehicles.Car
 	{
 
 		private List<Vector3> waypoints;
+		private List<float> angles;
 		// TODO: Find a way to automatically detect this
-		private int numWaypoints = 28;
+		private int numWaypoints = 30;
 		// Progress of distance travelled between two waypoints
 		private float progress = 0f;
 		// Waypoint id
@@ -35,18 +36,32 @@ namespace UnityStandardAssets.Vehicles.Car
 		public WaypointTracker()
 		{
 			waypoints = new List<Vector3> ();
+			angles = new List<float>();
 
 			for (int i = 0; i < numWaypoints; i++) {
 				Transform t = GameObject.Find("Waypoint " + (i).ToString("000")).transform;
 				waypoints.Add(t.position);
 			}
 
-			waypoints = DensifyPath(waypoints, 5);
-			waypoints = SmoothPath(waypoints, 0.1f, 0.2f, 0.000001f);
+			Debug.Log(numWaypoints);
+
+			// waypoints = DensifyPath(waypoints, 50);
+			// waypoints = SmoothPath(waypoints, 0.1f, 0.05f, 0.000001f);
 
 			// Debug.Log(string.Format("Waypoints count after densify = {0}", waypoints.Count));
 			// for (int i = 1; i < waypoints.Count; i++) {
 			// 	Debug.Log( string.Format("{0}-{1} {2}", i-1, i, waypoints[i]) );
+			// }
+			for (int i = 0; i < waypoints.Count; i++) {
+                var j = (i + 1) % waypoints.Count;
+				var heading = waypoints[j] - waypoints[i];
+				float angle = Quaternion.LookRotation (heading).eulerAngles.y;
+				angles.Add(angle);
+			}
+			// for (int i = 1; i < waypoints.Count; i++) {
+			// 	var heading = waypoints[i] - waypoints[i-1];
+			// 	float angle = Quaternion.LookRotation (heading).eulerAngles.y;
+			// 	angles.Add(angle);
 			// }
 		}
 
@@ -108,7 +123,6 @@ namespace UnityStandardAssets.Vehicles.Car
 			// and the waypoint should be actually be the next one.
 			float angle = Quaternion.Angle (cc.transform.rotation, Quaternion.LookRotation (heading));
 			// We now have the correct waypoint
-			// 120 is kind of arbitrary
 			if (angle > 90) {
 				return (closestWaypoint + 1) % waypoints.Count;
 			}
@@ -122,7 +136,6 @@ namespace UnityStandardAssets.Vehicles.Car
 			if (p1 != currentNextWaypoint) {
 				progress = 0f;
 				currentNextWaypoint = p1;
-
 			}
 
 			// previous waypoint
@@ -132,28 +145,43 @@ namespace UnityStandardAssets.Vehicles.Car
 			} else {
 				p0 = currentNextWaypoint - 1;
 			}
-				
+
+			// next, next waypoint
+			var p2 = (currentNextWaypoint + 1) % waypoints.Count;
+
 			// distance between waypoints in meters, pretty sure unity measures in meters but not 100% sure.
 			float distToNextWaypoint = Vector3.Distance(pos, waypoints[p1]);
 			float waypointDist = Vector3.Distance(waypoints[p0], waypoints[p1]);
-			progress = 1f - distToNextWaypoint / waypointDist;
+			progress = 1f - Mathf.Clamp(distToNextWaypoint / waypointDist, 0, 1);
 			// Debug.Log (string.Format ("progress between waypoints {0} and {1}: {2} {3}", p0, p1, distToNextWaypoint, waypointDist));
-			// Debug.Log (string.Format ("progress between waypoints {0} and {1}: {2}%", p0, p1, progress));
+			// Vector3 b01 = Vector3.Lerp(waypoints[p0], waypoints[p1], progress);
+			// Vector3 b12 = Vector3.Lerp(waypoints[p1], waypoints[p2], progress);
+			// Vector3 reference = (1f - progress) * b01 + progress * b12;
 			Vector3 reference = Vector3.Lerp(waypoints[p0], waypoints[p1], progress);
 
-            var heading = reference - waypoints[p0];
-			// var ref_angle = Quaternion.Angle(cc.transform.rotation, Quaternion.LookRotation(heading));
-			var ref_angle = Quaternion.LookRotation(heading).eulerAngles.y;
+
+			var ref_angle = (1f - progress) * angles[p0] + progress * angles[p1];
+			// var ref_angle = angles[p0];
 			var our_angle = cc.transform.eulerAngles.y;
+			// Debug.Log(string.Format("PA {0}, NA {1}, CA {2}, RA {3}", angles[p0], angles[p1], ref_angle2, ref_angle));
 
-			var yaw = Mathf.Abs(ref_angle - our_angle);
-
+			Debug.Log(string.Format("Reference Angle = {0}", ref_angle));
+			if (ref_angle == 0) {
+				ref_angle = 360;
+			}
+			if (ref_angle >= 270 && our_angle <= 90) {
+				our_angle += 360;
+			}
+			else if (our_angle >= 270 && ref_angle <= 90) {
+				ref_angle += 360;
+			}
+			var yaw = ref_angle - our_angle;
 
 			reference.y = 0;
 			pos.y = 0;
 
-			Debug.Log(string.Format("Ref Orientation = {0} Our Orientation = {1}", ref_angle, cc.transform.eulerAngles.y));
-			Debug.Log (string.Format("Current Position = {0}, Reference = {1}, CTE = {2}",	pos, reference, Vector3.Distance(pos, reference)));
+			// Debug.Log(string.Format("Initial Ref = {0} Ref Orientation = {1} Our Orientation = {2}", ref_angle, ref_angle2, cc.transform.eulerAngles.y));
+			// Debug.Log (string.Format("Current Position = {0}, Reference = {1}, CTE = {2}",	pos, reference, Vector3.Distance(pos, reference)));
 			var cte = Vector3.Distance(pos, reference);
             // Determine the sign of the CTE
 			var centerPoint = new Vector3(-14.4f, 0f, 76.9f);
@@ -164,7 +192,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 			return new Data(cte, yaw, our_angle, ref_angle);
 		}
-			
+
 	}
 
 }
