@@ -22,3 +22,7 @@ IMG
 driving_log.csv
 Archive.zip
 sdc.app
+
+# Code editors
+.vscode
+tags

@@ -37,14 +37,18 @@ public class CommandServer : MonoBehaviour
 	// 
 	void onManual(SocketIOEvent obj)
 	{
+        Debug.Log("Manual driving event ...");
 		EmitTelemetry (obj);
 	}
 
 	void OnSteer(SocketIOEvent obj)
 	{
+        Debug.Log("Steering data event ...");
 		JSONObject jsonObject = obj.data;
-		CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").str);
-		CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").str);
+		CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").ToString());
+		CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").ToString());
+		// CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").str);
+		// CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").str);
 		EmitTelemetry(obj);
 	}
 
@@ -59,14 +63,11 @@ public class CommandServer : MonoBehaviour
 			} else {
 				// Collect Data from the Car
 				Dictionary<string, string> data = new Dictionary<string, string>();
-				var sensorData = wpt.SensorData (_carController);
+				var cte = wpt.CrossTrackError (_carController);
 				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
-				data["cte"] = sensorData.cte.ToString("N4");
-				data["yaw"] = sensorData.yaw.ToString("N4");
-				data["our_angle"] = sensorData.our_angle.ToString("N4");
-				data["ref_angle"] = sensorData.ref_angle.ToString("N4");
+				data["cte"] = cte.ToString("N4");
 				data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
 				_socket.Emit("telemetry", new JSONObject(data));
 			}
