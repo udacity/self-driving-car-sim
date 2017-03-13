@@ -10,18 +10,17 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		private List<Vector3> waypoints;
 		// TODO: Find a way to automatically detect this
-		private int numWaypoints = 30;
+		private int numWaypoints = 0;
 
 		// Use this for initialization
 		public WaypointTracker()
 		{
 			waypoints = new List<Vector3> ();
-
-			for (int i = 0; i < numWaypoints; i++) {
-				Transform t = GameObject.Find("Waypoint " + (i).ToString("000")).transform;
+			var wps = GameObject.Find("Waypoints").transform;
+			foreach (Transform t in wps) {
 				waypoints.Add(t.position);
+				numWaypoints += 1;
 			}
-
 			Debug.Log(numWaypoints);
 		}
 
@@ -86,7 +85,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			var t = Mathf.Clamp(proj.magnitude / n.magnitude, 0, 1);
 			// Debug.Log(string.Format("Progress between waypoints {0} and {1} = {2}", prev_wp, next_wp, t));
 			// Cross track error
-            var threshold = 0.1f;
+            var threshold = 0.05f;
 			if (t >= (1 - threshold)) {
                 var p0 = prev_wp;
 				var p1 = next_wp;
