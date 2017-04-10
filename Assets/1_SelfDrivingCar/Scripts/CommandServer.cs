@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SocketIO;
 using UnityStandardAssets.Vehicles.Car;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CommandServer : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class CommandServer : MonoBehaviour
 	{
 		_socket = GameObject.Find("SocketIO").GetComponent<SocketIOComponent>();
 		_socket.On("open", OnOpen);
+		_socket.On ("reset", OnReset);
 		_socket.On("steer", OnSteer);
 		_socket.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
@@ -38,6 +40,12 @@ public class CommandServer : MonoBehaviour
 	void onManual(SocketIOEvent obj)
 	{
         Debug.Log("Manual driving event ...");
+		EmitTelemetry (obj);
+	}
+
+	void OnReset(SocketIOEvent obj)
+	{
+		SceneManager.LoadScene("LakeTrackAutonomous");
 		EmitTelemetry (obj);
 	}
 
