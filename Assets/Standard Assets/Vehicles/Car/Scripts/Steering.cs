@@ -77,7 +77,6 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             else
             { 
-
 				// reset
 				mouse_hold = false;
                 H = 0;

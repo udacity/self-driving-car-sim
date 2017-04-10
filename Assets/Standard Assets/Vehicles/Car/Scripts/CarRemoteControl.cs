@@ -10,7 +10,9 @@ namespace UnityStandardAssets.Vehicles.Car
         public float SteeringAngle { get; set; }
         public float Acceleration { get; set; }
         private Steering s;
-        // private WaypointTracker wpt;
+
+        public float maxz = 0;
+        public float maxx = 0;
 
         private void Awake()
         {
@@ -18,12 +20,21 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Car = GetComponent<CarController>();
             s = new Steering();
             s.Start();
-            // wpt = new WaypointTracker();
 		}
 
         private void FixedUpdate()
         {
-            // wpt.SensorData(m_Car);
+            // For finding the radius of curvature
+            // var x = m_Car.Position().x;
+            // var z = m_Car.Position().z;
+            // if (Mathf.Abs(x) > maxx) {
+            //     maxx = x;
+            // }
+            // if (Mathf.Abs(z) > maxz) {
+            //     maxz = z;
+            // }
+            // Debug.Log(string.Format("Maxiumum X = {0}, Z = {1}", maxx, maxz));
+
             // If holding down W or S control the car manually
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
             {
@@ -32,6 +43,7 @@ namespace UnityStandardAssets.Vehicles.Car
             } else
             {
 				m_Car.Move(SteeringAngle, Acceleration, Acceleration, 0f);
+				// m_Car.Move(5f / 25f, 1f, 1f, 0f);
             }
         }
     }

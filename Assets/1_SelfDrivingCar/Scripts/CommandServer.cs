@@ -62,10 +62,37 @@ public class CommandServer : MonoBehaviour
 				// Collect Data from the Car
 				Dictionary<string, string> data = new Dictionary<string, string>();
 				var cte = wpt.CrossTrackError (_carController);
-				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
-				data["throttle"] = _carController.AccelInput.ToString("N4");
-				data["speed"] = _carController.CurrentSpeed.ToString("N4");
-				data["cte"] = cte.ToString("N4");
+				Debug.Log(string.Format("In between waypoint {0} and {1}", wpt.prev_wp, wpt.next_wp));
+				var pos = _carController.Position();
+                var heading = wpt.waypoints[wpt.next_wp] - wpt.waypoints[wpt.prev_wp];
+				var psi_ref = Quaternion.LookRotation(heading).eulerAngles.y;
+				var psi = _carController.Orientation().eulerAngles.y;
+				Debug.Log(string.Format("Psi ref = {0}", psi_ref));
+
+				if (psi == 0) {
+					psi = 360;
+				}
+				if (psi_ref == 0) {
+					psi_ref = 360;
+				}
+				if (psi_ref >= 270 && psi <= 90) {
+					psi += 360;
+				} else if (psi >= 270 && psi_ref <= 90) {
+					psi_ref += 360;
+				}
+				var epsi = (psi - psi_ref) * Mathf.Deg2Rad;
+
+                data["wp1"] = string.Format("{0}", wpt.prev_wp);
+                data["wp2"] = string.Format("{0}", wpt.next_wp);
+                data["x"] = string.Format("{0}", pos.x);
+                data["y"] = string.Format("{0}", pos.z);
+                data["psi"] = string.Format("{0}", psi);
+                data["psi_ref"] = string.Format("{0}", psi_ref);
+                data["epsi"] = string.Format("{0}", epsi);
+				data["steering_angle"] = string.Format("{0}", _carController.CurrentSteerAngle * Mathf.Deg2Rad);
+				data["throttle"] = string.Format("{0}", _carController.AccelInput);
+				data["speed"] = string.Format("{0}", _carController.CurrentSpeed);
+				data["cte"] = string.Format("{0}", cte);
 				data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
 				_socket.Emit("telemetry", new JSONObject(data));
 			}
