@@ -10,7 +10,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		private List<Vector3> waypoints;
 		// TODO: Find a way to automatically detect this
-		private int numWaypoints = 0;
 
 		// Use this for initialization
 		public WaypointTracker()
@@ -19,9 +18,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			var wps = GameObject.Find("Waypoints").transform;
 			foreach (Transform t in wps) {
 				waypoints.Add(t.position);
-				numWaypoints += 1;
 			}
-			Debug.Log(numWaypoints);
 		}
 
 		private Vector2 BezierPoint(Vector2 p0, Vector2 p1, Vector2 p2, float t) {
@@ -129,7 +126,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			var centerPoint2D = new Vector2(centerPoint.x, centerPoint.z);
 			var centerToPos = Vector2.Distance(centerPoint2D, x0);
 			var centerToRef = Vector2.Distance(centerPoint2D, proj);
-			if (centerToPos >= centerToRef) {
+			if (centerToPos <= centerToRef) {
 				cte *= -1f;
 			}
 			return cte;
