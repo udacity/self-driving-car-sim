@@ -10,7 +10,6 @@ namespace UnityStandardAssets.Vehicles.Car
     {
 
         public List<Vector3> waypoints;
-        private int numWaypoints = 0;
         public int next_wp;
         public int prev_wp;
         // Use this for initialization
@@ -21,26 +20,6 @@ namespace UnityStandardAssets.Vehicles.Car
             foreach (Transform t in wps)
             {
                 waypoints.Add(t.position);
-                numWaypoints += 1;
-            }
-            Debug.Log(numWaypoints);
-            // TODO: remove this or make it general
-            var file = Path.Combine("/Users/dom/github/controls-stuff", "lakewaypoints.csv");
-            if (!File.Exists(file))
-            {
-                Debug.Log("Writing waypoints to CSV");
-                var header = "x,y\n";
-                File.AppendAllText(file, header);
-                foreach (var w in waypoints)
-                {
-                    // the forward direction
-                    float x = (float)w.x;
-                    // the lane direction
-                    float z = (float)w.z;
-                    var row = string.Format("{0},{1}\n", x, z);
-                    // Debug.Log(string.Format("x: {0}, y: {1}", x, z));
-                    File.AppendAllText(file, row);
-                }
             }
         }
 

@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/1_SelfDrivingCar/Scenes/MenuScene.unity
   - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/JungleTrackAutonomous.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/JungleTrackTraining.unity
