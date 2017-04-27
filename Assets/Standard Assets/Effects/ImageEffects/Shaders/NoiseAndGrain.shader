@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/NoiseAndGrain" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
@@ -47,7 +49,7 @@ Shader "Hidden/NoiseAndGrain" {
 		{
 			v2f o;
 			
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);	
+			o.pos = UnityObjectToClipPos (v.vertex);	
 			
 		#if UNITY_UV_STARTS_AT_TOP
 			o.uv_screen = v.vertex.xyxy;
