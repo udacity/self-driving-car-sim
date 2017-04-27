@@ -28,12 +28,11 @@ namespace UnityStandardAssets.Vehicles.Car
             // var x = m_Car.Position().x;
             // var z = m_Car.Position().z;
             // if (Mathf.Abs(x) > maxx) {
-            //     maxx = x;
+            //     maxx = Mathf.Abs(x);
             // }
             // if (Mathf.Abs(z) > maxz) {
-            //     maxz = z;
+            //     maxz = Mathf.Abs(z);
             // }
-            // Debug.Log(string.Format("Maxiumum X = {0}, Z = {1}", maxx, maxz));
 
             // If holding down W or S control the car manually
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
@@ -43,7 +42,7 @@ namespace UnityStandardAssets.Vehicles.Car
             } else
             {
 				m_Car.Move(SteeringAngle, Acceleration, Acceleration, 0f);
-				// m_Car.Move(5f / 25f, 1f, 1f, 0f);
+				// m_Car.Move((15 * Mathf.Deg2Rad) / (25 * Mathf.Deg2Rad), 1f, 1f, 0f);
             }
         }
     }

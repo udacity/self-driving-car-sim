@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/Twist Effect" {
 Properties {
 	_MainTex ("Base (RGB)", 2D) = "white" {}
@@ -32,7 +34,7 @@ struct v2f {
 v2f vert (appdata_img v)
 {
 	v2f o;
-	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+	o.pos = UnityObjectToClipPos(v.vertex);
 	float2 uv = v.texcoord.xy - _CenterRadius.xy;
 	o.uv = TRANSFORM_TEX(uv, _MainTex); //MultiplyUV (UNITY_MATRIX_TEXTURE0, uv);
 	o.uvOrig = uv;

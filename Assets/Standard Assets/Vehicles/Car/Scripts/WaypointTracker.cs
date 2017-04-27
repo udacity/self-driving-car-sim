@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.IO;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -8,7 +7,6 @@ namespace UnityStandardAssets.Vehicles.Car
     // Way to around multiple returns
     public class WaypointTracker
     {
-
         public List<Vector3> waypoints;
         public int next_wp;
         public int prev_wp;
@@ -20,6 +18,7 @@ namespace UnityStandardAssets.Vehicles.Car
             foreach (Transform t in wps)
             {
                 waypoints.Add(t.position);
+                // Debug.Log(t.position);
             }
         }
 

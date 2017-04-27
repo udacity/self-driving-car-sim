@@ -51,6 +51,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private Camera CenterCamera;
         [SerializeField] private Camera LeftCamera;
         [SerializeField] private Camera RightCamera;
+        [SerializeField] private GameObject MPCLine;
 
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
@@ -79,7 +80,16 @@ namespace UnityStandardAssets.Vehicles.Car
 		public Quaternion Orientation () {
 			return transform.rotation;
 		}
-				
+
+        public void ToggleMPCLine() {
+            var val = MPCLine.GetComponent<LineRenderer>().enabled;
+            MPCLine.GetComponent<LineRenderer>().enabled = !val;
+        }
+
+        public void DrawMPCLine(List<Vector3> points) {
+            var lr = MPCLine.GetComponent<LineRenderer>();
+            lr.SetPositions(points.ToArray());
+        }
 
         private bool m_isRecording = false;
         public bool IsRecording {
