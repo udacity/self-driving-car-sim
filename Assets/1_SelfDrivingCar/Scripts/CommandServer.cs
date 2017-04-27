@@ -22,7 +22,7 @@ public class CommandServer : MonoBehaviour
 		_socket.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
 		wpt = new WaypointTracker ();
-		polyOrder = 3;
+		polyOrder = 4;
 	}
 
 	// Update is called once per frame
