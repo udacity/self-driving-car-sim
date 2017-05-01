@@ -6,6 +6,9 @@ EditorSettings:
   serializedVersion: 3
   m_ExternalVersionControlSupport: Visible Meta Files
   m_SerializationMode: 2
-  m_WebSecurityEmulationEnabled: 0
-  m_WebSecurityEmulationHostUrl: http://www.mydomain.com/mygame.unity3d
-  m_DefaultBehaviorMode: 1702065251
+  m_DefaultBehaviorMode: 1
+  m_SpritePackerMode: 2
+  m_SpritePackerPaddingPower: 1
+  m_ProjectGenerationIncludedExtensions: txt;xml;fnt;cd
+  m_ProjectGenerationRootNamespace: 
+  m_UserGeneratedProjectSuffix: 

@@ -162,12 +162,4 @@ QualitySettings:
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality:
-    Android: 1
-    BlackBerry: 1
-    Standalone: 5
-    WP8: 1
-    Web: 4
-    WebGL: 1
-    Windows Store Apps: 1
-    iPhone: 1
+  m_PerPlatformDefaultQuality: {}

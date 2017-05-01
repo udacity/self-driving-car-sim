@@ -5,17 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MenuOptions : MonoBehaviour
 {
-    private int track = 0;
+    private int project;
     private Outline[] outlines;
+	public Text project_name;
+	public Image project_image;
+	public Sprite project_1;
+	public Sprite project_2;
+	public Sprite project_3;
+	public Sprite project_4;
 
     public void Start ()
     {
-        outlines = GetComponentsInChildren<Outline>();
-		Debug.Log ("in menu script "+outlines.Length);
-		if (outlines.Length > 0) 
-		{
-			outlines [0].effectColor = new Color (0, 0, 0);
-		}
+		project = 0;
+		project_name.text = "Project 1: Bicycle Tracker with EKF";
+		project_image.sprite = project_1;
     }
 
 	public void ControlMenu()
@@ -29,37 +32,81 @@ public class MenuOptions : MonoBehaviour
 		SceneManager.LoadScene ("MenuScene");
 	}
 
-    public void StartDrivingMode()
+    public void SelectMode()
     {
-        if (track == 0) {
-            SceneManager.LoadScene("LakeTrackTraining");
-        } else {
-            SceneManager.LoadScene("JungleTrackTraining");
-        }
+		if (project == 0) {
+			SceneManager.LoadScene("EKF_project");
+		}
+		else if (project == 1) {
+			SceneManager.LoadScene("UKF_project");
+		} 
+		else if (project == 2) {
+			SceneManager.LoadScene("particle_filter_v2");
+		} 
+        else if (project == 3) {
+			SceneManager.LoadScene("LakeTrackAutonomous");
+        } 
 
     }
 
-    public void StartAutonomousMode()
-    {
-        if (track == 0) {
-            SceneManager.LoadScene("LakeTrackAutonomous");
-        } else {
-            SceneManager.LoadScene("JungleTrackAutonomous");
-        }
-    }
+	public void Next()
+	{
+		project = (project + 1) % 4;
 
-    public void SetLakeTrack()
-    {
-        outlines [0].effectColor = new Color (0, 0, 0);
-        outlines [1].effectColor = new Color (255, 255, 255);
-        track = 0;
-    }
+		if(project == 0)
+		{
+			project_name.text = "Project 1: Bicycle Tracker with EKF";
+			project_image.sprite = project_1;
+		}
+		else if(project == 1)
+		{
+			project_name.text = "Project 2: Run Away Robot with UKF";
+			project_image.sprite = project_2;
+		}
+		else if(project == 2)
+		{
+			project_name.text = "Project 3: Kidnapped Vehicle";
+			project_image.sprite = project_3;
+		}
+		else if(project == 3)
+		{
+			project_name.text = "Project 4: PID Controller";
+			project_image.sprite = project_4;
+		}
+	}
 
-    public void SetMountainTrack()
-    {
-        track = 1;
-        outlines [1].effectColor = new Color (0, 0, 0);
-        outlines [0].effectColor = new Color (255, 255, 255);
-    }
+	public void Previous()
+	{
+		if (project == 0)
+		{
+			project = 3;
+		} 
+		else 
+		{
+			project = (project - 1) % 4;
+		}
+
+		if(project == 0)
+		{
+			project_name.text = "Project 1: Bicycle Tracker with EKF";
+			project_image.sprite = project_1;
+		}
+		else if(project == 1)
+		{
+			project_name.text = "Project 2: Run Away Robot with UKF";
+			project_image.sprite = project_2;
+		}
+		else if(project == 2)
+		{
+			project_name.text = "Project 3: Kidnapped Vehicle";
+			project_image.sprite = project_3;
+		}
+		else if(project == 3)
+		{
+			project_name.text = "Project 4: PID Controller";
+			project_image.sprite = project_4;
+		}
+	}
+		
 
 }
