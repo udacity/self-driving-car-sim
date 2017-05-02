@@ -17,11 +17,32 @@ public class hunter : MonoBehaviour {
 	public float y;
 	private double delta_t_s; // delta t in seconds
 
+	private float velocity;
+	private float yawrate;
+
 	// Use this for initialization
 	void Start () {
 
-		delta_t_s = .05;
+		delta_t_s = Time.deltaTime;
+		velocity = 0;
+		yawrate = 0;
 
+	}
+	void FixedUpdate()
+	{
+		Move (yawrate, velocity);
+	}
+	public void setVel(float vel)
+	{
+		velocity = vel;
+	}
+	public void setYawRate(float yr)
+	{
+		yawrate = yr;
+	}
+	public bool isRunning()
+	{
+		return (velocity > 0);
 	}
 
 	public void Restart()
@@ -33,6 +54,9 @@ public class hunter : MonoBehaviour {
 		x = transform.position.x;
 		y = transform.position.y;
 
+		velocity = 0;
+		yawrate = 0;
+
 	}
 		
 	// turning in radians
@@ -40,9 +64,9 @@ public class hunter : MonoBehaviour {
 	{
 
 		//set distance to its min and max limits
-		if (distance > (1.5*delta_t_s)) 
+		if (distance > 5.0*delta_t_s) 
 		{
-			distance = (float)(1.5*delta_t_s);
+			distance = (float)(5.0*delta_t_s);
 		} else if (distance < 0) 
 		{
 			distance = 0f;

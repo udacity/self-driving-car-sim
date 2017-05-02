@@ -37,6 +37,9 @@ public class ekf_generator : MonoBehaviour {
 	public Text rmse_vx;
 	public Text rmse_vy;
 
+	public TextAsset data1;
+	public TextAsset data2;
+
 	// Use this for initialization
 	void Start () {
 
@@ -75,16 +78,13 @@ public class ekf_generator : MonoBehaviour {
 		y_positions = new List<float> ();
 		t_positions = new List<float> ();
 
-		string data1_path = "Assets/1_SelfDrivingCar/resources/sample-laser-radar-measurement-data-1.txt";
-		string data2_path = "Assets/1_SelfDrivingCar/resources/sample-laser-radar-measurement-data-2.txt";
-
 
 		if (dataset == 1) {
-			Load (data1_path);
+			Load (data1);
 		} 
 		else
 		{
-			Load (data2_path);
+			Load (data2);
 		}
 			
 
@@ -116,8 +116,8 @@ public class ekf_generator : MonoBehaviour {
 		rmse_vy.text = "VY: " + vy.ToString("N4");
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// Update is called once per delta time
+	void FixedUpdate () {
 
 		if (running && time_step < x_positions.Count-1) 
 		{
@@ -172,51 +172,13 @@ public class ekf_generator : MonoBehaviour {
 	{
 		return running;
 	}
-		
-	private bool Load(string fileName)
+	private void Load(TextAsset data)
 	{
-		
-		// Handle any problems that might arise when reading the text
-		try
+		var arrayString = data.text.Split ('\n');
+		foreach (var line in arrayString) 
 		{
-			string line;
-			// Create a new StreamReader, tell it which file to read and what encoding the file
-			// was saved as
-			StreamReader theReader = new StreamReader(fileName, Encoding.Default);
-			// Immediately clean up the reader after this block of code is done.
-			// You generally use the "using" statement for potentially memory-intensive objects
-			// instead of relying on garbage collection.
-			// (Do not confuse this with the using directive for namespace at the 
-			// beginning of a class!)
-			using (theReader)
-			{
-				// While there's lines left in the text file, do this:
-				do
-				{
-					line = theReader.ReadLine();
-					//Debug.Log (line);
-
-					if (line != null)
-					{
-						CreateAttributes(line);
-					}
-				}
-				while (line != null);
-				// Done reading, close the reader and return true to broadcast success    
-
-				theReader.Close();
-				return true;
-			}
+			CreateAttributes(line);
 		}
-		// If anything broke in the try block, we throw an exception with information
-		// on what didn't work
-		catch (Exception e)
-		{
-			Console.WriteLine("{0}\n", e.Message);
-			return false;
-		}
-
-
 	}
 
 	private void CreateAttributes(string line)
@@ -252,8 +214,7 @@ public class ekf_generator : MonoBehaviour {
 
 				sensor_markers.Add (get_radar_marker);
 
-				//string radar_packet = line.Replace("\\n","");
-				string radar_packet = entries[0]+"\\t"+entries[1]+"\\t"+entries[2]+"\\t"+entries[3]+"\\t"+entries[4]+"\\t"+entries[5]+"\\t"+entries[6]+"\\t"+entries[7]+"\\t"+entries[8];
+				string radar_packet = entries[0]+" "+entries[1]+" "+entries[2]+" "+entries[3]+" "+entries[4]+" "+entries[5]+" "+entries[6]+" "+entries[7]+" "+(entries [8].Remove (entries [8].Length-1, 1)).ToString();
 
 				sensors.Add (radar_packet);
 			} 
@@ -281,7 +242,7 @@ public class ekf_generator : MonoBehaviour {
 
 				sensor_markers.Add (get_lidar_marker);
 
-				string lidar_packet = entries[0]+"\\t"+entries[1]+"\\t"+entries[2]+"\\t"+entries[3]+"\\t"+entries[4]+"\\t"+entries[5]+"\\t"+entries[6]+"\\t"+entries[7];
+				string lidar_packet = entries[0]+" "+entries[1]+" "+entries[2]+" "+entries[3]+" "+entries[4]+" "+entries[5]+" "+entries[6]+" "+(entries [7].Remove (entries [7].Length-1, 1)).ToString();
 
 				sensors.Add (lidar_packet);
 			} 

@@ -987,8 +987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb27d04f44b6de54292a306f16025574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
-  angle_rate: 12
+  speed: 5
+  angle_rate: 40
   lidar_marker: {fileID: 863682188}
   radar_marker: {fileID: 595149906}
   lidar_std_laspx: 0.15

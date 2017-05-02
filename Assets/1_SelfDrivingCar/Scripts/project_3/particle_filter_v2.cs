@@ -33,8 +33,6 @@ public class particle_filter_v2 : MonoBehaviour {
 
 	private List<float> x_obs;
 	private List<float> y_obs;
-	private List<float> x_obs_next;
-	private List<float> y_obs_next;
 
 	private double scale = .1;
 	private int time_step;
@@ -56,8 +54,14 @@ public class particle_filter_v2 : MonoBehaviour {
 	public Text average_error;
 	private bool status_check;
 
+	//if there is new data to process
 	private bool process_data;
 	private bool script_running = false;
+
+	public TextAsset map_data;
+	public TextAsset gt_data;
+	public TextAsset control_data;
+	[SerializeField] private List<TextAsset> observation_data;
 
 	// Use this for initialization
 	void Start () {
@@ -102,16 +106,14 @@ public class particle_filter_v2 : MonoBehaviour {
 
 		x_obs = new List<float> ();
 		y_obs = new List<float> ();
-		x_obs_next = new List<float> ();
-		y_obs_next = new List<float> ();
 
 		x_obs.Clear ();
 		y_obs.Clear ();
 
-		Load ("Assets/1_SelfDrivingCar/resources/map_data.txt", 0);
-		Load ("Assets/1_SelfDrivingCar/resources/gt_data.txt", 1);
-		Load ("Assets/1_SelfDrivingCar/resources/observation/observations_" + (time_step + 1).ToString ("000000") + ".txt", 2);
-		Load ("Assets/1_SelfDrivingCar/resources/control_data.txt", 3);
+		Load (map_data, 0);
+		Load (gt_data, 1);
+		Load (observation_data[time_step], 2);
+		Load (control_data, 3);
 			
 		transform.position = new Vector3 (x_positions [time_step], y_positions [time_step], 0);
 		transform.rotation = Quaternion.AngleAxis (t_positions [time_step] * Mathf.Rad2Deg, Vector3.forward);
@@ -128,16 +130,18 @@ public class particle_filter_v2 : MonoBehaviour {
 
 		ResetParticleSensors ();
 
+		//flag new data is ready to process
 		process_data = true;
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+
+		//dont run past time interval and dont run until last data was processed
 		if (running && time_step < x_positions.Count-1 && (!process_data||!script_running)) 
 		{
-				process_data = true;
+				
 
 				time_step++;
 				time.text = "Time Step: "+time_step.ToString ();
@@ -147,14 +151,15 @@ public class particle_filter_v2 : MonoBehaviour {
 
 				x_obs.Clear ();
 				y_obs.Clear ();
-				x_obs_next.Clear ();
-				y_obs_next.Clear ();
-				Load ("Assets/1_SelfDrivingCar/resources/observation/observations_" + (time_step+1).ToString ("000000") + ".txt", 2);
-				Load ("Assets/1_SelfDrivingCar/resources/observation/observations_" + (time_step+2).ToString ("000000") + ".txt", 4);
+				
+				Load (observation_data[time_step], 2);
 				
 				// Car Sense
 				ResetSensors ();
 				SenseDistance ();
+
+				//flag new data is ready to process
+				process_data = true;
 				
 
 		}
@@ -194,6 +199,14 @@ public class particle_filter_v2 : MonoBehaviour {
 	{
 		return running;
 	}
+	public bool isReadyProcess()
+	{
+		return process_data;
+	}
+	public void Processed()
+	{
+		process_data = false;
+	}
 
 	public float normrand(float mean, float stdDev)
 	{
@@ -225,8 +238,6 @@ public class particle_filter_v2 : MonoBehaviour {
 
 			SetError (time_step, x_positions.Count, x_cum, y_cum, yaw_cum);
 		}
-		process_data = false;
-		Debug.Log ("estimate at "+time_step);
 
 	}
 	public float Sense_x()
@@ -254,7 +265,7 @@ public class particle_filter_v2 : MonoBehaviour {
 		}
 		else
 		{
-			return control_velocity[time_step];
+			return control_velocity[time_step-1];
 		}
 
 	}
@@ -267,24 +278,24 @@ public class particle_filter_v2 : MonoBehaviour {
 		}
 		else
 		{
-			return control_yawrate[time_step];
+			return control_yawrate[time_step-1];
 		}
 	}
 	public string Sense_Obsx()
 	{
 		string obs_x_sense = "";
-		for (int i = 0; i < x_obs_next.Count; i++) 
+		for (int i = 0; i < x_obs.Count; i++) 
 		{
-			obs_x_sense += (normrand((float)(x_obs_next[i]*(1/scale)), sigma_landmark_x)).ToString ("N4") + " ";
+			obs_x_sense += (normrand((float)(x_obs[i]*(1/scale)), sigma_landmark_x)).ToString ("N4") + " ";
 		}
 		return obs_x_sense;
 	}
 	public string Sense_Obsy()
 	{
 		string obs_y_sense = "";
-		for (int i = 0; i < y_obs_next.Count; i++) 
+		for (int i = 0; i < y_obs.Count; i++) 
 		{
-			obs_y_sense += (normrand((float)(y_obs_next[i]*(1/scale)), sigma_landmark_y)).ToString ("N4") + " ";
+			obs_y_sense += (normrand((float)(y_obs[i]*(1/scale)), sigma_landmark_y)).ToString ("N4") + " ";
 		}
 		return obs_y_sense;
 	}
@@ -325,75 +336,30 @@ public class particle_filter_v2 : MonoBehaviour {
 			lineRenderer.SetWidth ((float).03, (float).03);
 		}
 	}
-
-	private bool Load(string fileName, int function)
+	private void Load(TextAsset data, int function)
 	{
-		
-		// Handle any problems that might arise when reading the text
-		try
+		var arrayString = data.text.Split ('\n');
+		foreach (var line in arrayString) 
 		{
-			string line;
-			// Create a new StreamReader, tell it which file to read and what encoding the file
-			// was saved as
-			StreamReader theReader = new StreamReader(fileName, Encoding.Default);
-			// Immediately clean up the reader after this block of code is done.
-			// You generally use the "using" statement for potentially memory-intensive objects
-			// instead of relying on garbage collection.
-			// (Do not confuse this with the using directive for namespace at the 
-			// beginning of a class!)
-			using (theReader)
+
+			if (!String.IsNullOrEmpty (line)) 
 			{
-				// While there's lines left in the text file, do this:
-				do
-				{
-					line = theReader.ReadLine();
-					//Debug.Log (line);
-
-					if (line != null)
-					{
-						
-						//Call the apporpriate Function
-
-						if(function == 0)
-						{
-							CreateLandmark(line);
-						}
-						if(function == 1)
-						{
-							CreateGT(line);
-						}
-						if(function == 2)
-						{
-							CreateObs(line);
-						}
-						if(function == 3)
-						{
-							CreateControl(line);
-						}
-						if(function == 4)
-						{
-							CreateObs_next(line);
-						}
-
-
-					}
+				if (function == 0) {
+					CreateLandmark (line);
 				}
-				while (line != null);
-				// Done reading, close the reader and return true to broadcast success    
+				if (function == 1) {
+					CreateGT (line);
+				}
+				if (function == 2) {
+					CreateObs (line);
+				}
+				if (function == 3) {
+					CreateControl (line);
+				}
 
-				theReader.Close();
-				return true;
 			}
-		}
-		// If anything broke in the try block, we throw an exception with information
-		// on what didn't work
-		catch (Exception e)
-		{
-			Console.WriteLine("{0}\n", e.Message);
-			return false;
-		}
 
-
+		}
 	}
 	private void CreateLandmark(string line)
 	{
@@ -445,23 +411,6 @@ public class particle_filter_v2 : MonoBehaviour {
 
 			x_obs.Add (pos_x);
 			y_obs.Add (pos_y);
-
-
-		}
-
-	}
-	private void CreateObs_next(string line)
-	{
-		string[] entries = line.Split(' ');
-		if (entries.Length > 0)
-		{
-
-
-			float pos_x = (float)(float.Parse(entries[0])*scale);
-			float pos_y = (float)(float.Parse(entries[1])*scale);
-
-			x_obs_next.Add (pos_x);
-			y_obs_next.Add (pos_y);
 
 
 		}

@@ -69,7 +69,7 @@ public class robot : MonoBehaviour {
 
 		frame_counter = 0;
 
-		delta_t_us = .5e5;
+		delta_t_us = Time.deltaTime*1e6;
 		timestamp = base_timestamp;
 		previous_timestamp = timestamp;
 
@@ -84,7 +84,7 @@ public class robot : MonoBehaviour {
 
 		//UI
 		status.text = "";
-		time_step.text = "Time Step: "+frame_counter.ToString ("N0");
+		time_step.text = "Time: "+(frame_counter*Time.deltaTime).ToString ("N2");
 		dist_best_value = Distance_Target();
 		dist_target.text = "Distance to Target: "+dist_best_value.ToString ("N4");
 		dist_best.text = "Best Distance: "+dist_best_value.ToString ("N4");
@@ -175,7 +175,7 @@ public class robot : MonoBehaviour {
 
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (init) {
 			Rotate ();
 			Move ();
@@ -209,7 +209,7 @@ public class robot : MonoBehaviour {
 
 
 		//UI
-		time_step.text = "Time Step: "+frame_counter.ToString ("N0");
+		time_step.text = "Time: "+(frame_counter*Time.deltaTime).ToString ("N2");
 		double dist_value = Distance_Target();
 		dist_target.text = "Distance to Target: "+dist_value.ToString ("N4");
 		if (dist_value < dist_best_value) 
@@ -267,7 +267,7 @@ public class robot : MonoBehaviour {
 
 		//UI
 		status.text = "";
-		time_step.text = "Time Step: "+frame_counter.ToString ("N0");
+		time_step.text = "Time: "+(frame_counter*Time.deltaTime).ToString ("N2");
 		dist_best_value = Distance_Target();
 		dist_target.text = "Distance to Target: "+dist_best_value.ToString ("N4");
 		dist_best.text = "Best Distance: "+dist_best_value.ToString ("N4");
@@ -278,25 +278,25 @@ public class robot : MonoBehaviour {
 	// dont let marker list get too large
 	public void cleanMarkers()
 	{
-		if(lidar_markers.Count > 50)
+		if(lidar_markers.Count > 500)
 		{
-			for( int i = 0; i < (lidar_markers.Count - 50); i++)
+			for( int i = 0; i < (lidar_markers.Count - 500); i++)
 			{
 				GameObject get_lidar_marker = lidar_markers[i];
 				Destroy (get_lidar_marker);
 			}
 
-			lidar_markers.RemoveRange (0, (lidar_markers.Count - 50));
+			lidar_markers.RemoveRange (0, (lidar_markers.Count - 500));
 		}
-		if(radar_markers.Count > 50)
+		if(radar_markers.Count > 500)
 		{
-			for( int i = 0; i < (radar_markers.Count - 50); i++)
+			for( int i = 0; i < (radar_markers.Count - 500); i++)
 			{
 				GameObject get_radar_marker = radar_markers[i];
 				Destroy (get_radar_marker);
 			}
 
-			radar_markers.RemoveRange (0, (radar_markers.Count - 50));
+			radar_markers.RemoveRange (0, (radar_markers.Count - 500));
 		}
 	}
 
@@ -324,17 +324,19 @@ public class robot : MonoBehaviour {
 	public void checkStatus()
 	{
 		
-		if ( Distance_Target() < 0.03 * 1.5) 
+		if ( Distance_Target() < 0.02 * 5.0) 
 		{
 			hunter_respawn = false;
 			status.text = "Success! You caught the robot!"; 
 			init = false;
+
 		} 
-		else if (frame_counter > 5000) 
+		else if (frame_counter > 1500) 
 		{
 			hunter_respawn = false;
 			status.text = "You Ran out of time"; 
 			init = false;
+
 		}
 	}
 

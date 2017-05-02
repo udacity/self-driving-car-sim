@@ -59,7 +59,8 @@ public class CommandServer_rar : MonoBehaviour
 		float turn = float.Parse(jsonObject.GetField("turn").ToString());
 		float  dist = float.Parse(jsonObject.GetField("dist").ToString());
 
-		player_controller.Move (turn, dist);
+		player_controller.setVel (dist);
+		player_controller.setYawRate (turn);
 
 		EmitTelemetry(obj);
 	}

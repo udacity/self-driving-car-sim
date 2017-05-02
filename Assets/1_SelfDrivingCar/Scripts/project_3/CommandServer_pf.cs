@@ -65,9 +65,9 @@ public class CommandServer_pf : MonoBehaviour
 			string sense_y = jsonObject.GetField ("best_particle_sense_y").ToString ();
 
 			particle_filter.Estimate (estimate_x, estimate_y, estimate_theta);
-			Debug.Log ("finish estimate");
+
 			particle_filter.SenseParticleDistance (associations, sense_x, sense_y);
-			Debug.Log ("finish sense");
+
 		}
 
 		EmitTelemetry(obj);
@@ -82,11 +82,13 @@ public class CommandServer_pf : MonoBehaviour
 			
 				//print("Attempting to Send...");
 				// send only if robot is moving
-				if (!particle_filter.isRunning()) {
+				if (!particle_filter.isRunning() || !particle_filter.isReadyProcess()) {
 					
 					_socket.Emit("telemetry", new JSONObject());
 				}
 				else {
+
+					particle_filter.Processed();
 					
 					// Collect Data from the robot's sensors
 					Dictionary<string, string> data = new Dictionary<string, string>();
