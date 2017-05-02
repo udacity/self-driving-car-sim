@@ -28,7 +28,6 @@ public class robot : MonoBehaviour {
 	private long timestamp;
 	private long previous_timestamp;
 
-	private double delta_t_us; // delta t in microseconds
 	public float lidar_std_laspx;
 	public float lidar_std_laspy;
 	public float radar_std_radr;
@@ -68,8 +67,6 @@ public class robot : MonoBehaviour {
 	void Start () {
 
 		frame_counter = 0;
-
-		delta_t_us = Time.deltaTime*1e6;
 		timestamp = base_timestamp;
 		previous_timestamp = timestamp;
 
@@ -100,20 +97,20 @@ public class robot : MonoBehaviour {
 	public void Rotate()
 	{
 
-		double delta_t_s = (timestamp - previous_timestamp)/1e6;
-			
-		transform.Rotate(0, 0, (float)(delta_t_s*angle_rate));
-		angle_tracker += (float)(delta_t_s*angle_rate);
+		transform.Rotate(0, 0, (float)(Time.deltaTime*angle_rate));
+		angle_tracker += (float)(Time.deltaTime*angle_rate);
 
 	}
 	public void Move()
 	{
 
-		double delta_t_s = (timestamp - previous_timestamp)/1e6;
-
 		//Vector3 movement = new Vector3 (speed/60 * Mathf.Cos (angle), speed/60 * Mathf.Sin (angle), 0);
-		Vector3 movement = transform.right*((float)(speed*delta_t_s));
+		Vector3 movement = transform.right*((float)(speed*Time.deltaTime));
 		transform.position = transform.position + movement;
+
+		Debug.Log ("moved " + (float)(speed * Time.deltaTime));
+		Debug.Log (Time.deltaTime);
+		Debug.Log (speed);
 	}
 
 	public string Lidar_Measure()
@@ -180,7 +177,7 @@ public class robot : MonoBehaviour {
 			Rotate ();
 			Move ();
 			previous_timestamp = timestamp;
-			timestamp += (int)delta_t_us;
+			timestamp += (int)(Time.deltaTime*1e6);
 			frame_counter++;
 			checkStatus ();
 		} 

@@ -23,7 +23,6 @@ public class hunter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		delta_t_s = Time.deltaTime;
 		velocity = 0;
 		yawrate = 0;
 
@@ -64,9 +63,9 @@ public class hunter : MonoBehaviour {
 	{
 
 		//set distance to its min and max limits
-		if (distance > 5.0*delta_t_s) 
+		if (distance > 5.0*Time.deltaTime) 
 		{
-			distance = (float)(5.0*delta_t_s);
+			distance = (float)(5.0*Time.deltaTime);
 		} else if (distance < 0) 
 		{
 			distance = 0f;
