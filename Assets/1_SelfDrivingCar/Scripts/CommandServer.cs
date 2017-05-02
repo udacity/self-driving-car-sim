@@ -22,7 +22,28 @@ public class CommandServer : MonoBehaviour
 		_socket.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
 		wpt = new WaypointTracker ();
-		polyOrder = 4;
+		polyOrder = 5;
+	}
+
+	// Convert angle (degrees) from Unity orientation to 
+	//            90
+	//
+	//  180                   0/360
+	//
+	//            270
+	//
+	// This is the standard format used in mathematical functions.
+	float convertAngle(float psi) {
+		if (psi >= 0 && psi <= 90) {
+			return 90 - psi;
+		}
+		else if (psi > 90 && psi <= 180) {
+			return 90 + 270 - (psi - 90);
+		}
+		else if (psi > 180 && psi <= 270) {
+			return 180 + 90 - (psi - 180);
+		}
+		return 270 - 90 - (psi - 270);
 	}
 
 	// Update is called once per frame
@@ -66,13 +87,9 @@ public class CommandServer : MonoBehaviour
 				var cte = wpt.CrossTrackError (_carController);
 				Debug.Log(string.Format("In between waypoint {0} and {1}", wpt.prev_wp, wpt.next_wp));
 				var pos = _carController.Position();
-                var heading = wpt.waypoints[wpt.next_wp] - wpt.waypoints[wpt.prev_wp];
-				var psi_ref = Quaternion.LookRotation(heading).eulerAngles.y;
 				var psi = _carController.Orientation().eulerAngles.y;
-				Debug.Log(string.Format("Psi ref = {0}, Psi = {1}", psi_ref, psi));
-				Debug.Log(string.Format("Cross track error = {0}", cte));
 				
-				// waypoints data
+				// Waypoints data
 				var ptsx = new List<JSONObject>();
 				var ptsy = new List<JSONObject>();
 				for (int i = wpt.prev_wp; i < wpt.prev_wp+polyOrder+1; i++) {
@@ -82,31 +99,19 @@ public class CommandServer : MonoBehaviour
 				data["ptsx"] = new JSONObject(ptsx.ToArray());
 				data["ptsy"] = new JSONObject(ptsy.ToArray());
 
-                data["psi"] = new JSONObject(psi * Mathf.Deg2Rad);
-                data["psi_ref"] = new JSONObject(psi_ref * Mathf.Deg2Rad);
+                // Orientations
+                data["psi_unity"] = new JSONObject(psi * Mathf.Deg2Rad);
+				data["psi"] = new JSONObject(convertAngle(psi) * Mathf.Deg2Rad);
 
-                // Angle sanity
-				if (psi == 0) {
-					psi = 360;
-				}
-				if (psi_ref == 0) {
-					psi_ref = 360;
-				}
-				if (psi_ref >= 270 && psi <= 90) {
-					psi += 360;
-				} else if (psi >= 270 && psi_ref <= 90) {
-					psi_ref += 360;
-				}
-				var epsi = (psi - psi_ref) * Mathf.Deg2Rad;
-				// Debug.Log(string.Format("EPsi = {0}", epsi * Mathf.Rad2Deg));
-
+                // Global position.
                 data["x"] = new JSONObject(pos.x);
                 data["y"] = new JSONObject(pos.z);
-                data["epsi"] = new JSONObject(epsi);
+                // Steering angle
 				data["steering_angle"] = new JSONObject(_carController.CurrentSteerAngle * Mathf.Deg2Rad);
+                // Throttle
 				data["throttle"] = new JSONObject(_carController.AccelInput);
+                // Velocity
 				data["speed"] = new JSONObject(_carController.CurrentSpeed);
-				data["cte"] = new JSONObject(cte);
 				_socket.Emit("telemetry", new JSONObject(data));
 			}
 		});
