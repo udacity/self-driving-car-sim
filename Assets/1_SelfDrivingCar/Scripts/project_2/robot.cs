@@ -180,6 +180,7 @@ public class robot : MonoBehaviour {
 			timestamp += (int)(Time.deltaTime*1e6);
 			frame_counter++;
 			checkStatus ();
+
 		} 
 		else 
 		{

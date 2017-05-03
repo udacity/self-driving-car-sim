@@ -33,12 +33,14 @@ public class CommandServer_ekf : MonoBehaviour
 	void OnOpen(SocketIOEvent obj)
 	{
 		Debug.Log("Connection Open");
+		kalman_filter.OpenScript ();
 		EmitTelemetry(obj);
 	}
 
 	void OnClose(SocketIOEvent obj)
 	{
 		Debug.Log("Connection Closed");
+		kalman_filter.CloseScript ();
 	}
 
 	void onManual(SocketIOEvent obj)
@@ -77,11 +79,13 @@ public class CommandServer_ekf : MonoBehaviour
 			
 				//print("Attempting to Send...");
 				// send only if robot is moving
-				if (!kalman_filter.isRunning()) {
+				if (!kalman_filter.isRunning() || !kalman_filter.isReadyProcess()) {
 					
 					_socket.Emit("telemetry", new JSONObject());
 				}
 				else {
+
+					kalman_filter.Processed();
 					
 					// Collect Data from the robot's sensors
 					Dictionary<string, string> data = new Dictionary<string, string>();

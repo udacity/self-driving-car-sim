@@ -40,6 +40,10 @@ public class ekf_generator : MonoBehaviour {
 	public TextAsset data1;
 	public TextAsset data2;
 
+	//if there is new data to process
+	private bool process_data;
+	private bool script_running = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -93,6 +97,9 @@ public class ekf_generator : MonoBehaviour {
 
 		sensor_markers[time_step].GetComponent<SpriteRenderer>().enabled = true;
 
+		//flag new data is ready to process
+		process_data = true;
+
 	}
 
 	public string sensor_Measure()
@@ -102,6 +109,7 @@ public class ekf_generator : MonoBehaviour {
 
 	public void Estimate(float est_x, float est_y)
 	{
+		Debug.Log("estimate "+est_x+" "+est_y);
 		GameObject get_estimate_marker = (GameObject)Instantiate (estimate_marker);
 		get_estimate_marker.GetComponent<SpriteRenderer>().enabled = true;
 		get_estimate_marker.transform.position = new Vector3 ((float)(est_x*scale), (float)(est_y*scale), 0);
@@ -119,7 +127,7 @@ public class ekf_generator : MonoBehaviour {
 	// Update is called once per delta time
 	void FixedUpdate () {
 
-		if (running && time_step < x_positions.Count-1) 
+		if (running && time_step < x_positions.Count-1 && (!process_data||!script_running)) 
 		{
 
 				time_step++;
@@ -129,6 +137,9 @@ public class ekf_generator : MonoBehaviour {
 				transform.rotation = Quaternion.AngleAxis (t_positions [time_step] * Mathf.Rad2Deg, Vector3.forward);
 
 				sensor_markers[time_step].GetComponent<SpriteRenderer>().enabled = true;
+
+				//flag new data is ready to process
+				process_data = true;
 
 		}
 		if (running && time_step >= sensors.Count - 1) {
@@ -177,7 +188,10 @@ public class ekf_generator : MonoBehaviour {
 		var arrayString = data.text.Split ('\n');
 		foreach (var line in arrayString) 
 		{
-			CreateAttributes(line);
+			if (!String.IsNullOrEmpty (line))
+			{
+				CreateAttributes (line);
+			}
 		}
 	}
 
@@ -214,7 +228,20 @@ public class ekf_generator : MonoBehaviour {
 
 				sensor_markers.Add (get_radar_marker);
 
-				string radar_packet = entries[0]+" "+entries[1]+" "+entries[2]+" "+entries[3]+" "+entries[4]+" "+entries[5]+" "+entries[6]+" "+entries[7]+" "+(entries [8].Remove (entries [8].Length-1, 1)).ToString();
+				string radar_packet = "";
+				for (int i = 0; i < entries.Length; i++) 
+				{
+					if (i != entries.Length - 1) 
+					{
+						radar_packet += entries[i]+" ";
+					} 
+					else 
+					{
+						radar_packet += (entries [i].Remove (entries [i].Length - 1, 1)).ToString ();
+					}
+				}
+
+				//string radar_packet = entries[0]+" "+entries[1]+" "+entries[2]+" "+entries[3]+" "+entries[4]+" "+entries[5]+" "+entries[6]+" "+entries[7]+" "+(entries [8].Remove (entries [8].Length-1, 1)).ToString();
 
 				sensors.Add (radar_packet);
 			} 
@@ -242,18 +269,48 @@ public class ekf_generator : MonoBehaviour {
 
 				sensor_markers.Add (get_lidar_marker);
 
-				string lidar_packet = entries[0]+" "+entries[1]+" "+entries[2]+" "+entries[3]+" "+entries[4]+" "+entries[5]+" "+entries[6]+" "+(entries [7].Remove (entries [7].Length-1, 1)).ToString();
+				string lidar_packet = "";
+				for (int i = 0; i < entries.Length; i++) 
+				{
+					if (i != entries.Length - 1) 
+					{
+						lidar_packet += entries[i]+" ";
+					} 
+					else 
+					{
+						lidar_packet += (entries [i].Remove (entries [i].Length - 1, 1)).ToString ();
+					}
+				}
+
+				//string lidar_packet = entries[0]+" "+entries[1]+" "+entries[2]+" "+entries[3]+" "+entries[4]+" "+entries[5]+" "+entries[6]+" "+(entries [7].Remove (entries [7].Length-1, 1)).ToString();
 
 				sensors.Add (lidar_packet);
 			} 
 			else 
 			{
 				Debug.Log ("recived an unexpected data line");
+				Debug.Log (line);
 			}
 				
 
 		}
 
+	}
+	public bool isReadyProcess()
+	{
+		return process_data;
+	}
+	public void Processed()
+	{
+		process_data = false;
+	}
+	public void OpenScript()
+	{
+		script_running = true;
+	}
+	public void CloseScript()
+	{
+		script_running = false;
 	}
 
 		

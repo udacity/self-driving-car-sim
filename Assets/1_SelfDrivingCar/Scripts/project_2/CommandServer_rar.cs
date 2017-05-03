@@ -74,7 +74,7 @@ public class CommandServer_rar : MonoBehaviour
 			
 				//print("Attempting to Send...");
 				// send only if robot is moving
-				if (!sensor.Status()) {
+				if (!sensor.Status() ) {
 					
 					_socket.Emit("telemetry", new JSONObject());
 				}
