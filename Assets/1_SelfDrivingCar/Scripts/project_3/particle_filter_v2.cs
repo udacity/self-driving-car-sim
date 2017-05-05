@@ -164,7 +164,7 @@ public class particle_filter_v2 : MonoBehaviour {
 
 		}
 		if (running && time_step >= x_positions.Count-1) {
-			if (!status_check) 
+			if (!status_check && script_running) 
 			{
 				status.text = "Success! Your particle filter passed!"; 
 				status_check = true;
