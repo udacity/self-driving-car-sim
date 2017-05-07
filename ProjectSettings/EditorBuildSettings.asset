@@ -21,3 +21,7 @@ EditorBuildSettings:
     path: Assets/1_SelfDrivingCar/Scenes/MenuScene.unity
   - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
+  - enabled: 1
+    path: Assets/1_SelfDrivingCar/Scenes/project_4/LakeTrackAutonomous_pid.unity
+  - enabled: 1
+    path: Assets/1_SelfDrivingCar/Scenes/project_5/LakeTrackAutonomous_mpc.unity
