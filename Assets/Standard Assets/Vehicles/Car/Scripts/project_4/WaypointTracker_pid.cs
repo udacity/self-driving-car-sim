@@ -5,14 +5,14 @@ namespace UnityStandardAssets.Vehicles.Car
 {
 
 	// Way to around multiple returns
-	public class WaypointTracker
+	public class WaypointTracker_pid
 	{
 
 		private List<Vector3> waypoints;
 		// TODO: Find a way to automatically detect this
 
 		// Use this for initialization
-		public WaypointTracker()
+		public WaypointTracker_pid()
 		{
 			waypoints = new List<Vector3> ();
 			var wps = GameObject.Find("Waypoints").transform;

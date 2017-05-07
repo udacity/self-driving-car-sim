@@ -5,13 +5,13 @@ using UnityStandardAssets.Vehicles.Car;
 using System;
 using UnityEngine.SceneManagement;
 
-public class CommandServer : MonoBehaviour
+public class CommandServer_pid : MonoBehaviour
 {
 	public CarRemoteControl CarRemoteControl;
 	public Camera FrontFacingCamera;
 	private SocketIOComponent _socket;
 	private CarController _carController;
-	private WaypointTracker wpt;
+	private WaypointTracker_pid wpt;
 
 	// Use this for initialization
 	void Start()
@@ -22,7 +22,7 @@ public class CommandServer : MonoBehaviour
 		_socket.On("steer", OnSteer);
 		_socket.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
-		wpt = new WaypointTracker ();
+		wpt = new WaypointTracker_pid ();
 	}
 
 	// Update is called once per frame

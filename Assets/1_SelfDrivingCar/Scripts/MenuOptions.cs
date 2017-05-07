@@ -44,14 +44,17 @@ public class MenuOptions : MonoBehaviour
 			SceneManager.LoadScene("particle_filter_v2");
 		} 
         else if (project == 3) {
-			SceneManager.LoadScene("LakeTrackAutonomous");
+			SceneManager.LoadScene("LakeTrackAutonomous_pid");
         } 
+		else if (project == 4) {
+			SceneManager.LoadScene("LakeTrackAutonomous_mpc");
+		} 
 
     }
 
 	public void Next()
 	{
-		project = (project + 1) % 4;
+		project = (project + 1) % 5;
 
 		if(project == 0)
 		{
@@ -73,17 +76,22 @@ public class MenuOptions : MonoBehaviour
 			project_name.text = "Project 4: PID Controller";
 			project_image.sprite = project_4;
 		}
+		else if(project == 4)
+		{
+			project_name.text = "Project 5: MPC Controller";
+			project_image.sprite = project_4;
+		}
 	}
 
 	public void Previous()
 	{
 		if (project == 0)
 		{
-			project = 3;
+			project = 4;
 		} 
 		else 
 		{
-			project = (project - 1) % 4;
+			project = (project - 1) % 5;
 		}
 
 		if(project == 0)
@@ -104,6 +112,11 @@ public class MenuOptions : MonoBehaviour
 		else if(project == 3)
 		{
 			project_name.text = "Project 4: PID Controller";
+			project_image.sprite = project_4;
+		}
+		else if(project == 4)
+		{
+			project_name.text = "Project 5: MPC Controller";
 			project_image.sprite = project_4;
 		}
 	}
