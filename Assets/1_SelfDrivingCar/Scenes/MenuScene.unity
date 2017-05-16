@@ -1498,6 +1498,7 @@ MonoBehaviour:
   project_2: {fileID: 21300000, guid: 4da7d6a2080ea68489d7dafa4cf53c43, type: 3}
   project_3: {fileID: 21300000, guid: b59bfc7ce2ce7924d9ec565e6cb85a97, type: 3}
   project_4: {fileID: 21300000, guid: 78277ff2bd9b445239e836956d236a25, type: 3}
+  project_5: {fileID: 21300000, guid: b7b0e7d6e08c3724d8811dca91939c8c, type: 3}
 --- !u!4 &1789031429
 Transform:
   m_ObjectHideFlags: 0

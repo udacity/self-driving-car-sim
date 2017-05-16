@@ -13,6 +13,7 @@ public class MenuOptions : MonoBehaviour
 	public Sprite project_2;
 	public Sprite project_3;
 	public Sprite project_4;
+	public Sprite project_5;
 
     public void Start ()
     {
@@ -79,7 +80,7 @@ public class MenuOptions : MonoBehaviour
 		else if(project == 4)
 		{
 			project_name.text = "Project 5: MPC Controller";
-			project_image.sprite = project_4;
+			project_image.sprite = project_5;
 		}
 	}
 
@@ -117,7 +118,7 @@ public class MenuOptions : MonoBehaviour
 		else if(project == 4)
 		{
 			project_name.text = "Project 5: MPC Controller";
-			project_image.sprite = project_4;
+			project_image.sprite = project_5;
 		}
 	}
 		

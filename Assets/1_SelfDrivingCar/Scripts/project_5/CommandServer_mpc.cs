@@ -10,6 +10,7 @@ public class CommandServer_mpc : MonoBehaviour
 	public Camera FrontFacingCamera;
 	private SocketIOComponent _socket;
 	private CarController _carController;
+	private PointTracker point_path;
 	private WaypointTracker_mpc wpt;
 	private int polyOrder;
 
@@ -21,6 +22,7 @@ public class CommandServer_mpc : MonoBehaviour
 		_socket.On("steer", OnSteer);
 		_socket.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
+		point_path = CarRemoteControl.GetComponent<PointTracker>();
 		wpt = new WaypointTracker_mpc ();
 		polyOrder = 5;
 	}
@@ -70,6 +72,35 @@ public class CommandServer_mpc : MonoBehaviour
 		JSONObject jsonObject = obj.data;
 		CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").ToString());
 		CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").ToString());
+
+		//string next_x = jsonObject.GetField ("next_x").ToString ();
+		//string next_y = jsonObject.GetField ("next_y").ToString ();
+
+		var next_x = jsonObject.GetField ("next_x");
+		var next_y = jsonObject.GetField ("next_y");
+		List<float> my_next_x = new List<float> ();
+		List<float> my_next_y = new List<float> ();
+
+		for (int i = 0; i < next_x.Count; i++) 
+		{
+			my_next_x.Add (float.Parse((next_x [i]).ToString()));
+			my_next_y.Add (float.Parse((next_y [i]).ToString()));
+		}
+		point_path.setNextPoint( my_next_x, my_next_y ); 
+
+		var mpc_x = jsonObject.GetField ("mpc_x");
+		var mpc_y = jsonObject.GetField ("mpc_y");
+		List<float> my_mpc_x = new List<float> ();
+		List<float> my_mpc_y = new List<float> ();
+
+		for (int i = 0; i < mpc_x.Count; i++) 
+		{
+			my_mpc_x.Add (float.Parse((mpc_x [i]).ToString()));
+			my_mpc_y.Add (float.Parse((mpc_y [i]).ToString()));
+		}
+
+		point_path.setMpcPoint( my_mpc_x, my_mpc_y ); 
+
 		EmitTelemetry(obj);
 	}
 
