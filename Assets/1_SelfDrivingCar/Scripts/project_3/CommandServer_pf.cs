@@ -25,11 +25,7 @@ public class CommandServer_pf : MonoBehaviour
 
 		particle_filter = car.GetComponent<particle_filter_v2> ();
 	}
-
-	// Update is called once per frame
-	void Update()
-	{
-	}
+		
 
 	void OnOpen(SocketIOEvent obj)
 	{
@@ -68,6 +64,8 @@ public class CommandServer_pf : MonoBehaviour
 
 			particle_filter.SenseParticleDistance (associations, sense_x, sense_y);
 
+			particle_filter.setSimulatorProcess();
+
 		}
 
 		EmitTelemetry(obj);
@@ -82,14 +80,14 @@ public class CommandServer_pf : MonoBehaviour
 			
 				//print("Attempting to Send...");
 				// send only if robot is moving
-				if (!particle_filter.isRunning() || !particle_filter.isReadyProcess()) {
+				if (!particle_filter.isRunning() || !particle_filter.isServerProcess()) {
 					
 					_socket.Emit("telemetry", new JSONObject());
 				}
 				else {
 
-					particle_filter.Processed();
-					
+					particle_filter.ServerPause();
+
 					// Collect Data from the robot's sensors
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data["sense_x"] = particle_filter.Sense_x().ToString("N4");
@@ -103,6 +101,7 @@ public class CommandServer_pf : MonoBehaviour
 					data["sense_observations_y"] = particle_filter.Sense_Obsy();
 
 					_socket.Emit("telemetry", new JSONObject(data));
+
 				}
 		});
 	}

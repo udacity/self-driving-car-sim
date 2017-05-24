@@ -36,6 +36,8 @@ public class particle_filter_v2 : MonoBehaviour {
 
 	private double scale = .1;
 	private int time_step;
+	private int time_system;
+	private double current_time;
 
 	private float x_cum;
 	private float y_cum;
@@ -50,12 +52,13 @@ public class particle_filter_v2 : MonoBehaviour {
 	// UI
 	public Text run_button;
 	public Text time;
+	public Text system_time;
 	public Text status;
 	public Text average_error;
 	private bool status_check;
 
-	//if there is new data to process
-	private bool process_data;
+	private bool simulator_process;
+	private bool server_process;
 	private bool script_running = false;
 
 	public TextAsset map_data;
@@ -81,8 +84,12 @@ public class particle_filter_v2 : MonoBehaviour {
 		status.text = "";
 		status_check = false;
 
+		current_time = 0;
+
 		time_step = 0;
+		time_system = 0;
 		time.text = "Time Step: "+time_step.ToString ();
+		system_time.text = "System Time: "+time_step.ToString ();
 
 		//Clear landmarks if restarting
 		if (map != null) 
@@ -131,7 +138,8 @@ public class particle_filter_v2 : MonoBehaviour {
 		ResetParticleSensors ();
 
 		//flag new data is ready to process
-		process_data = true;
+		simulator_process = false;
+		server_process = true;
 
 	}
 	
@@ -139,13 +147,15 @@ public class particle_filter_v2 : MonoBehaviour {
 	void FixedUpdate () {
 
 		//dont run past time interval and dont run until last data was processed
-		if (running && time_step < x_positions.Count-1 && (!process_data||!script_running)) 
+		if (running && time_step < x_positions.Count-1 && (simulator_process||!script_running)) 
 		{
+
+				simulator_process = false;
 				
-
+				
 				time_step++;
-				time.text = "Time Step: "+time_step.ToString ();
-
+				time.text = "Time Step: " + (time_step).ToString ("N2");
+				
 				transform.position = new Vector3 (x_positions [time_step], y_positions [time_step], 0);
 				transform.rotation = Quaternion.AngleAxis (t_positions [time_step] * Mathf.Rad2Deg, Vector3.forward);
 
@@ -158,16 +168,26 @@ public class particle_filter_v2 : MonoBehaviour {
 				ResetSensors ();
 				SenseDistance ();
 
-				//flag new data is ready to process
-				process_data = true;
-				
+				server_process = true;
 
 		}
+
+
+		if (running) 
+		{
+			time_system++;
+			current_time = (time_system * Time.deltaTime);
+			system_time.text = "System Time: " + (current_time).ToString ("N2");
+		}
+
+
 		if (running && time_step >= x_positions.Count-1) {
+			
 			if (!status_check && script_running) 
 			{
 				status.text = "Success! Your particle filter passed!"; 
 				status_check = true;
+
 			}
 			ToggleRunning();
 		}
@@ -199,14 +219,22 @@ public class particle_filter_v2 : MonoBehaviour {
 	{
 		return running;
 	}
-	public bool isReadyProcess()
+
+
+	public bool isServerProcess()
 	{
-		return process_data;
+		return server_process;
 	}
-	public void Processed()
+	public void ServerPause()
 	{
-		process_data = false;
+		server_process = false;
 	}
+	public void setSimulatorProcess()
+	{
+		simulator_process = true;
+	}
+
+
 
 	public float normrand(float mean, float stdDev)
 	{
@@ -219,6 +247,7 @@ public class particle_filter_v2 : MonoBehaviour {
 
 	public void Estimate(float estimate_x, float estimate_y, float estimate_theta)
 	{
+		
 		particle.transform.position = new Vector3 ((float)(estimate_x*scale), (float)(estimate_y*scale), 0);
 		particle.transform.rotation = Quaternion.AngleAxis (estimate_theta * Mathf.Rad2Deg, Vector3.forward);
 
@@ -512,7 +541,12 @@ public class particle_filter_v2 : MonoBehaviour {
 
 		if (time_step > 100 & !status_check) 
 		{
-			if (x > 1) 
+			if ((current_time) > 100.0) 
+			{
+				status.text = "You ran out of time "; 
+				status_check = true;
+			}
+			else if (x > 1) 
 			{
 				status.text = "Your x error is larger than the max"; 
 				status_check = true;

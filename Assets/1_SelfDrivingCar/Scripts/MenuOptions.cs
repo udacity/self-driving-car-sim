@@ -18,7 +18,7 @@ public class MenuOptions : MonoBehaviour
     public void Start ()
     {
 		project = 0;
-		project_name.text = "Project 1: Bicycle Tracker with EKF";
+		project_name.text = "Project 1/2: EKF and UKF";
 		project_image.sprite = project_1;
     }
 
@@ -59,12 +59,12 @@ public class MenuOptions : MonoBehaviour
 
 		if(project == 0)
 		{
-			project_name.text = "Project 1: Bicycle Tracker with EKF";
+			project_name.text = "Project 1/2: EKF and UKF";
 			project_image.sprite = project_1;
 		}
 		else if(project == 1)
 		{
-			project_name.text = "Project 2: Run Away Robot with UKF";
+			project_name.text = "Bonus Challenge: Catch the Run Away Car";
 			project_image.sprite = project_2;
 		}
 		else if(project == 2)
@@ -97,12 +97,12 @@ public class MenuOptions : MonoBehaviour
 
 		if(project == 0)
 		{
-			project_name.text = "Project 1: Bicycle Tracker with EKF";
+			project_name.text = "Project 1/2: EKF and UKF";
 			project_image.sprite = project_1;
 		}
 		else if(project == 1)
 		{
-			project_name.text = "Project 2: Run Away Robot with UKF";
+			project_name.text = "Bonus Challenge: Catch the Run Away Car";
 			project_image.sprite = project_2;
 		}
 		else if(project == 2)
