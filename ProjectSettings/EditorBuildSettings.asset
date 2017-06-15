@@ -8,15 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/LauncherScene.unity
   - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LakeTrackAutonomous.unity
-  - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/project_1/EKF_project.unity
   - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/project_2/UKF_project.unity
   - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/project_3/particle_filter_v2.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LakeTrackTraining.unity
   - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/MenuScene.unity
   - enabled: 1
