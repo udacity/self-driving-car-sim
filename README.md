@@ -6,7 +6,7 @@ All the assets in this repository require Unity. Please follow the instructions 
 
 ### Avaliable Game Builds (Precompiled builds of the simulator)
 
-Instructions: Download the zip file, extract it and run the exectution file.
+Instructions: Download the zip file, extract it and run the executable file.
 
 Version 2, 2/07/17
 
