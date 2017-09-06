@@ -17,11 +17,14 @@ namespace UnityStandardAssets.Vehicles.Car
             s.Start();
         }
 
+
+
         private void FixedUpdate()
         {
-            s.UpdateValues();
-            m_Car.Move(s.H, s.V, s.V, 0f);
+			s.UpdateValues ();
+			m_Car.Move (s.H, s.V, s.V, 0f);
 
         }
+        
     }
 }
