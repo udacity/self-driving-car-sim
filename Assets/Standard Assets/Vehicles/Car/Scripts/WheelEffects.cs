@@ -22,6 +22,7 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             skidParticles = transform.root.GetComponentInChildren<ParticleSystem>();
 
+			/*
             if (skidParticles == null)
             {
                 Debug.LogWarning(" no particle system found on car to generate smoke particles");
@@ -30,6 +31,7 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 skidParticles.Stop();
             }
+			*/
 
             m_WheelCollider = GetComponent<WheelCollider>();
             m_AudioSource = GetComponent<AudioSource>();

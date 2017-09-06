@@ -27,6 +27,7 @@ namespace UnityStandardAssets.Vehicles.Car
         // Update is called once per frame
         public void UpdateValues()
         {
+
             // Cruise Control
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -81,8 +82,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 				// reset
 				mouse_hold = false;
-
-				H = CrossPlatformInputManager.GetAxis ("Horizontal");
+				H = CrossPlatformInputManager.GetAxis("Horizontal");
 
             }
 				

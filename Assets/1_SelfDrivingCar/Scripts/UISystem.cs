@@ -7,44 +7,51 @@ using UnityEngine.SceneManagement;
 public class UISystem : MonoSingleton<UISystem> {
 
     public CarController carController;
+	public Camera mainCamera;
     public string GoodCarStatusMessage;
     public string BadSCartatusMessage;
     public Text MPH_Text;
     public Image MPH_Animation;
-    public Text Angle_Text;
-    public Text RecordStatus_Text;
-	public Text DriveStatus_Text;
-	public Text SaveStatus_Text;
-    public GameObject RecordingPause; 
-	public GameObject RecordDisabled;
-	public bool isTraining = false;
+	public Text AccT_Text;
+	public Text AccN_Text;
+	public Text Acc_Text;
+	public Text Jerk_Text;
+	public Text Collision_Text;
+	public Text Speeding_Text;
+	public Text Lane_Text;
+
+	//Distance Evaluation
+	public Text Best_Distance_Text;
+	public Text Curr_Distance_Text;
+	public Text Curr_Time_Text;
+	private float best_dist_eval = 0;
+	private bool check_incidents;
+
+	public Text AccStatus_Text;
+	public Text JerkStatus_Text;
 
     private bool recording;
     private float topSpeed;
 	private bool saveRecording;
 
+	private bool auto_drive;
+
+	private CarAIControl carAI;
 
     // Use this for initialization
     void Start() {
-		Debug.Log (isTraining);
+		
         topSpeed = carController.MaxSpeed;
-        recording = false;
-        RecordingPause.SetActive(false);
-		RecordStatus_Text.text = "RECORD";
-		DriveStatus_Text.text = "";
-		SaveStatus_Text.text = "";
-		SetAngleValue(0);
-        SetMPHValue(0);
-		if (!isTraining) {
-			DriveStatus_Text.text = "Mode: Autonomous";
-			RecordDisabled.SetActive (true);
-			RecordStatus_Text.text = "";
-		} 
-    }
+        
+		AccStatus_Text.text = "";
+		JerkStatus_Text.text = "";
 
-    public void SetAngleValue(float value)
-    {
-        Angle_Text.text = value.ToString("N2") + "°";
+        SetMPHValue(0);
+
+		carAI = (CarAIControl) carController.GetComponent(typeof(CarAIControl));
+
+		auto_drive = true;
+		 
     }
 
     public void SetMPHValue(float value)
@@ -53,74 +60,134 @@ public class UISystem : MonoSingleton<UISystem> {
         //Do something with value for fill amounts
         MPH_Animation.fillAmount = value/topSpeed;
     }
-
-    public void ToggleRecording()
-    {
-		// Don't record in autonomous mode
-		if (!isTraining) {
-			return;
+	public void SetAccTValue(float value)
+	{
+		AccT_Text.text = "AccT: "+value.ToString ("N0")+" m/s^2";
+	}
+	public void SetAccNValue(float value)
+	{
+		AccN_Text.text = "AccN: "+value.ToString ("N0")+" m/s^2";
+	}
+	public void SetAccValue(float value)
+	{
+		Acc_Text.text = "AccTotal: "+value.ToString ("N0")+" m/s^2";
+		if (value >= 10) 
+		{
+			Acc_Text.color = Color.red;
+			AccStatus_Text.text = "Max Acceleration Exceeded!";
+			check_incidents = true;
+		} 
+		else
+		{
+			Acc_Text.color = Color.white;
+			AccStatus_Text.text = "";
 		}
 
-        if (!recording)
-        {
-			if (carController.checkSaveLocation()) 
-			{
-				recording = true;
-				RecordingPause.SetActive (true);
-				RecordStatus_Text.text = "RECORDING";
-				carController.IsRecording = true;
-			}
-        }
-        else
-        {
-			saveRecording = true;
-			carController.IsRecording = false;
-        }
-    }
+	}
+	public void SetJerkValue(float value)
+	{
+		Jerk_Text.text = "Jerk: "+value.ToString ("N0")+" m/s^3";
+		if (Mathf.Abs(value) >= 10) 
+		{
+			Jerk_Text.color = Color.red;
+			JerkStatus_Text.text = "Max Jerk Exceeded!";
+			check_incidents = true;
+		} 
+		else
+		{
+			Jerk_Text.color = Color.white;
+			JerkStatus_Text.text = "";
+		}
+	}
+	public void SetCollisionValue(bool collision)
+	{
+		if (collision) 
+		{
+			Collision_Text.color = Color.red;
+			Collision_Text.text = "Collision!";
+			check_incidents = true;
+		} 
+		else 
+		{
+			Collision_Text.color = Color.white;
+			Collision_Text.text = "";
+		}
+	}
+
+	public void SetSpeedingValue(bool speeding)
+	{
+		if (speeding) 
+		{
+			Speeding_Text.color = Color.red;
+			Speeding_Text.text = "Violated Speed Limit!";
+			check_incidents = true;
+		} 
+		else 
+		{
+			Speeding_Text.color = Color.white;
+			Speeding_Text.text = "";
+		}
+	}
+
+	public void SetLaneValue(bool outside_lane)
+	{
+		if (outside_lane) 
+		{
+			Lane_Text.color = Color.red;
+			Lane_Text.text = "Outside of Lane!";
+			check_incidents = true;
+		} 
+		else 
+		{
+			Lane_Text.color = Color.white;
+			Lane_Text.text = "";
+		}
+	}
+
+	public void SetDistanceValue(float dist_eval)
+	{
+		if (auto_drive && (dist_eval > best_dist_eval) )
+		{
+			best_dist_eval = dist_eval;
+			Best_Distance_Text.text = "Best: "+dist_eval.ToString("N2")+" Miles";
+		} 
+
+		Curr_Distance_Text.text = "Curr: "+dist_eval.ToString("N2")+" Miles";
+
+	}
+	public void SetTimerValue(int seconds)
+	{
+		int hours = (seconds / 3600);
+		seconds -= hours * 3600;
+		int minutes = seconds / 60;
+		seconds -= minutes * 60;
+
+		Curr_Time_Text.text = "Timer: " + (hours).ToString ("0") + ":" + (minutes).ToString ("00") + ":" + (seconds).ToString ("00");
+
+	}
 	
     void UpdateCarValues()
     {
+		check_incidents = false; // are there any incidents?
         SetMPHValue(carController.CurrentSpeed);
-        SetAngleValue(carController.CurrentSteerAngle);
+		SetAccTValue(carController.SenseAccT());
+		SetAccNValue(carController.SenseAccN());
+		SetAccValue(carController.SenseAcc());
+		SetJerkValue(carController.SenseJerk());
+		SetCollisionValue(carAI.CheckCollision());
+		SetSpeedingValue(carAI.CheckSpeeding());
+		SetLaneValue(carAI.CheckLanePos());
+		if (check_incidents) 
+		{
+			carAI.ResetDistance ();
+		}
+		SetDistanceValue(carAI.DistanceEval());
+		SetTimerValue(carAI.TimerEval());
+			
     }
 
 	// Update is called once per frame
 	void Update () {
-
-        // Easier than pressing the actual button :-)
-        // Should make recording training data more pleasant.
-
-		if (carController.getSaveStatus ()) {
-			SaveStatus_Text.text = "Capturing Data: " + (int)(100 * carController.getSavePercent ()) + "%";
-			//Debug.Log ("save percent is: " + carController.getSavePercent ());
-		} 
-		else if(saveRecording) 
-		{
-			SaveStatus_Text.text = "";
-			recording = false;
-			RecordingPause.SetActive(false);
-			RecordStatus_Text.text = "RECORD";
-			saveRecording = false;
-		}
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ToggleRecording();
-        }
-
-		if (!isTraining) 
-		{
-			if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.S))) 
-			{
-				DriveStatus_Text.color = Color.red;
-				DriveStatus_Text.text = "Mode: Manual";
-			} 
-			else 
-			{
-				DriveStatus_Text.color = Color.white;
-				DriveStatus_Text.text = "Mode: Autonomous";
-			}
-		}
 
 	    if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -128,11 +195,31 @@ public class UISystem : MonoSingleton<UISystem> {
             SceneManager.LoadScene("MenuScene");
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            //Do Console Here
-        }
-
         UpdateCarValues();
     }
+
+	public void ToggleDriveMode()
+	{
+		auto_drive = !auto_drive;
+
+		if (!auto_drive) 
+		{
+			carController.GetComponent<Rigidbody> ().isKinematic = false;
+			carController.GetComponent<CarUserControl> ().enabled = true;
+			mainCamera.GetComponent<MouseOrbitImproved> ().enabled = false;
+
+
+			mainCamera.transform.position = carController.transform.TransformPoint( new Vector3 (0f, 3.2f, -8.2f));
+			mainCamera.transform.localEulerAngles = new Vector3 (15f, 0f, 0f);
+		} 
+		else 
+		{
+			carController.GetComponent<Rigidbody> ().isKinematic = true;
+			carController.GetComponent<CarUserControl> ().enabled = false;
+			mainCamera.GetComponent<MouseOrbitImproved> ().enabled = true;
+		}
+
+		carAI.ResetDistance ();
+	}
+			
 }

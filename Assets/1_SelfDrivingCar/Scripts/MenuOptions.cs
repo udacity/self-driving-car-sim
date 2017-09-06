@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuOptions : MonoBehaviour
 {
-    private int track = 0;
     private Outline[] outlines;
 
     public void Start ()
@@ -28,38 +27,10 @@ public class MenuOptions : MonoBehaviour
 		Debug.Log ("go to main menu");
 		SceneManager.LoadScene ("MenuScene");
 	}
-
-    public void StartDrivingMode()
+		
+    public void StartPathPlanning()
     {
-        if (track == 0) {
-            SceneManager.LoadScene("LakeTrackTraining");
-        } else {
-            SceneManager.LoadScene("JungleTrackTraining");
-        }
-
-    }
-
-    public void StartAutonomousMode()
-    {
-        if (track == 0) {
-            SceneManager.LoadScene("LakeTrackAutonomous");
-        } else {
-            SceneManager.LoadScene("JungleTrackAutonomous");
-        }
-    }
-
-    public void SetLakeTrack()
-    {
-        outlines [0].effectColor = new Color (0, 0, 0);
-        outlines [1].effectColor = new Color (255, 255, 255);
-        track = 0;
-    }
-
-    public void SetMountainTrack()
-    {
-        track = 1;
-        outlines [1].effectColor = new Color (0, 0, 0);
-        outlines [0].effectColor = new Color (255, 255, 255);
+		SceneManager.LoadScene("PathPlanning");
     }
 
 }

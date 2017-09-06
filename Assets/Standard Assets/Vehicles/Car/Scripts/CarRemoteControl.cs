@@ -21,6 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
             s.Start();
         }
 
+
         private void FixedUpdate()
         {
             // If holding down W or S control the car manually
@@ -33,5 +34,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				m_Car.Move(SteeringAngle, Acceleration, Acceleration, 0f);
             }
         }
+        
     }
 }
