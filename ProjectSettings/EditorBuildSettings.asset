@@ -6,16 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LauncherScene.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LakeTrackAutonomous.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LakeTrackTraining.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/MenuScene.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/JungleTrackAutonomous.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/JungleTrackTraining.unity
+    path: Assets/1_SelfDrivingCar/Scenes/slam_webgl.unity
+    guid: 4f5bad5ac86cb6249b0f2659304210aa

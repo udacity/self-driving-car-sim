@@ -18,10 +18,14 @@ public class perfect_controller : MonoBehaviour {
 	private List<GameObject> way_points;
 
 
-	private bool simulator_process;
-	private bool background_process;
-	private bool server_process;
+	//private bool simulator_process;
+	//private bool background_process;
+	//private bool server_process;
 	private bool script_running = false;
+
+	//velocity value
+	private Vector3 trackVelocity;
+	private Vector3 lastPos;
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +41,9 @@ public class perfect_controller : MonoBehaviour {
 		createPoints (50);
 
 		//flag new data is ready to process
-		simulator_process = false;
-		server_process = true;
+
+
+		lastPos = rb.position;
 
 		Time.fixedDeltaTime = 0.02f;
 	}
@@ -108,15 +113,18 @@ public class perfect_controller : MonoBehaviour {
 
 		}
 	}
-		
+
+	/*
 	public void FixedUpdate()
 	{
 		ControllerUpdate ();
-		if (simulator_process) 
-		{
-			server_process = true;
-		}
 
+	}
+	*/
+
+	public float getCurrentSpeed()
+	{
+		return trackVelocity.magnitude * 2.23693629f;;
 	}
 		
 	public void ControllerUpdate()
@@ -152,28 +160,7 @@ public class perfect_controller : MonoBehaviour {
 		return y_points;
 	}
 		
-	public bool isServerProcess()
-	{
-		return server_process;
-	}
-	public void ServerPause()
-	{
-		server_process = false;
-	}
-	public void SimulatorPause()
-	{
-		simulator_process = false;
-		//Time.timeScale = 0.0f;
-		//Time.fixedDeltaTime = 0.02f;
 
-
-	}
-	public void setSimulatorProcess()
-	{
-		simulator_process = true;
-		//Time.timeScale = 1.0f;
-
-	}
 
 	public void setNextPoint(List<float> point_x, List<float> point_y)
 	{

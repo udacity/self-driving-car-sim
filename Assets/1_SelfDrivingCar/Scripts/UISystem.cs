@@ -16,16 +16,6 @@ public class UISystem : MonoSingleton<UISystem> {
 	public Text AccN_Text;
 	public Text Acc_Text;
 	public Text Jerk_Text;
-	public Text Collision_Text;
-	public Text Speeding_Text;
-	public Text Lane_Text;
-
-	//Distance Evaluation
-	public Text Best_Distance_Text;
-	public Text Curr_Distance_Text;
-	public Text Curr_Time_Text;
-	private float best_dist_eval = 0;
-	private bool check_incidents;
 
 	public Text AccStatus_Text;
 	public Text JerkStatus_Text;
@@ -36,7 +26,10 @@ public class UISystem : MonoSingleton<UISystem> {
 
 	private bool auto_drive;
 
-	private CarAIControl carAI;
+	public Slider slider_x;
+	public Slider slider_y;
+	public Slider slider_lx;
+	public Slider slider_ly;
 
     // Use this for initialization
     void Start() {
@@ -47,8 +40,6 @@ public class UISystem : MonoSingleton<UISystem> {
 		JerkStatus_Text.text = "";
 
         SetMPHValue(0);
-
-		carAI = (CarAIControl) carController.GetComponent(typeof(CarAIControl));
 
 		auto_drive = true;
 		 
@@ -75,7 +66,6 @@ public class UISystem : MonoSingleton<UISystem> {
 		{
 			Acc_Text.color = Color.red;
 			AccStatus_Text.text = "Max Acceleration Exceeded!";
-			check_incidents = true;
 		} 
 		else
 		{
@@ -91,7 +81,6 @@ public class UISystem : MonoSingleton<UISystem> {
 		{
 			Jerk_Text.color = Color.red;
 			JerkStatus_Text.text = "Max Jerk Exceeded!";
-			check_incidents = true;
 		} 
 		else
 		{
@@ -99,91 +88,14 @@ public class UISystem : MonoSingleton<UISystem> {
 			JerkStatus_Text.text = "";
 		}
 	}
-	public void SetCollisionValue(bool collision)
-	{
-		if (collision) 
-		{
-			Collision_Text.color = Color.red;
-			Collision_Text.text = "Collision!";
-			check_incidents = true;
-		} 
-		else 
-		{
-			Collision_Text.color = Color.white;
-			Collision_Text.text = "";
-		}
-	}
-
-	public void SetSpeedingValue(bool speeding)
-	{
-		if (speeding) 
-		{
-			Speeding_Text.color = Color.red;
-			Speeding_Text.text = "Violated Speed Limit!";
-			check_incidents = true;
-		} 
-		else 
-		{
-			Speeding_Text.color = Color.white;
-			Speeding_Text.text = "";
-		}
-	}
-
-	public void SetLaneValue(bool outside_lane)
-	{
-		if (outside_lane) 
-		{
-			Lane_Text.color = Color.red;
-			Lane_Text.text = "Outside of Lane!";
-			check_incidents = true;
-		} 
-		else 
-		{
-			Lane_Text.color = Color.white;
-			Lane_Text.text = "";
-		}
-	}
-
-	public void SetDistanceValue(float dist_eval)
-	{
-		if (auto_drive && (dist_eval > best_dist_eval) )
-		{
-			best_dist_eval = dist_eval;
-			Best_Distance_Text.text = "Best: "+dist_eval.ToString("N2")+" Miles";
-		} 
-
-		Curr_Distance_Text.text = "Curr: "+dist_eval.ToString("N2")+" Miles";
-
-	}
-	public void SetTimerValue(int seconds)
-	{
-		int hours = (seconds / 3600);
-		seconds -= hours * 3600;
-		int minutes = seconds / 60;
-		seconds -= minutes * 60;
-
-		Curr_Time_Text.text = "Timer: " + (hours).ToString ("0") + ":" + (minutes).ToString ("00") + ":" + (seconds).ToString ("00");
-
-	}
 	
     void UpdateCarValues()
     {
-		check_incidents = false; // are there any incidents?
         SetMPHValue(carController.CurrentSpeed);
 		SetAccTValue(carController.SenseAccT());
 		SetAccNValue(carController.SenseAccN());
 		SetAccValue(carController.SenseAcc());
 		SetJerkValue(carController.SenseJerk());
-		SetCollisionValue(carAI.CheckCollision());
-		SetSpeedingValue(carAI.CheckSpeeding());
-		SetLaneValue(carAI.CheckLanePos());
-		if (check_incidents) 
-		{
-			carAI.ResetDistance ();
-		}
-		SetDistanceValue(carAI.DistanceEval());
-		SetTimerValue(carAI.TimerEval());
-			
     }
 
 	// Update is called once per frame
@@ -218,8 +130,6 @@ public class UISystem : MonoSingleton<UISystem> {
 			carController.GetComponent<CarUserControl> ().enabled = false;
 			mainCamera.GetComponent<MouseOrbitImproved> ().enabled = true;
 		}
-
-		carAI.ResetDistance ();
 	}
 			
 }

@@ -99,35 +99,15 @@ namespace UnityStandardAssets.Vehicles.Car
 		public bool forward;
 
 		//use if your the main car
-		private bool autodrive;
+		public bool autodrive;
 		public bool maincar;
 
 		//frenet coordinates
 		public float frenet_s = -1;
 		public float frenet_d = -1;
 
-		//check for collision on main car
-		private bool main_collison = false;
-		private int collision_display = 0; //the amount of time to display that a collsion happened
-
-		//check for going over speed limit on main car
-		private bool main_spdlmt = false;
-		private int spdlmt_display = 0; //the amount of time to display incident
-
-		//check if on right hand side of the road
-		private bool main_lanekeep = false;
-		private int lanekeep_display = 0; //the amount of time to display incident
-		private int timer_lanekeep = 0; // time before action is an offense
-
-		//track distance in miles without incident
-		private float dist_eval = 0;
-		private float time_eval = 0;
 
 		private bool simulator_process;
-
-		private int lane0_clear = 0;
-		private int lane1_clear = 0;
-		private int lane2_clear = 0;
 
         private void Awake ()
         {
@@ -157,13 +137,32 @@ namespace UnityStandardAssets.Vehicles.Car
 
 			MaxDistance = 200;
 
-			autodrive = false;
+			//autodrive = false;
+			if (autodrive) {
+				current_waypoint = ListIndex (ClosestWaypoint (follow_car) + 1);
+				lane = 1;
+				//m_CarController.setMaxSpeed (50);
+			} 
 
 			//flag new data is ready to process
 			simulator_process = false;
 
         }
-
+		/*
+		public void AutoStart()
+		{
+			autodrive = !autodrive;
+			if (autodrive) {
+				current_waypoint = ListIndex (ClosestWaypoint (follow_car) + 1);
+				lane = 2;
+				//m_CarController.setMaxSpeed (65);
+			} 
+			else {
+				//set back to the normal max speed during maunual control
+				m_CarController.setMaxSpeed (120);
+			}
+		}
+		*/
 		public void Spawn(List<GameObject> cars)
 		{
 			int direction = 1;
@@ -202,8 +201,8 @@ namespace UnityStandardAssets.Vehicles.Car
 					waypoint_offset = Random.Range (3, 7);
 					m_CarController.setMaxSpeed (50 + 10 * Random.Range (-1.0f, 1.0f));
 				}
-				Vector3 follow_car_pos = follow_car.transform.position;	
-				compare_start = ListIndex(ClosestWaypoint (follow_car_pos)+waypoint_offset);
+					
+				compare_start = ListIndex(ClosestWaypoint (follow_car)+waypoint_offset);
 				Vector3 start_pos = waypoints[compare_start].position;
 
 				Vector3 start_offset = waypoints [compare_start].right * 2*direction;
@@ -229,25 +228,21 @@ namespace UnityStandardAssets.Vehicles.Car
 			
 				escape_cnt++;
 			}
+			
+			staged = false;
 
-			if (escape_cnt < 500) 
-			{
-				staged = false;
+			m_CarController.transform.position = spawn_pos;
 
-				m_CarController.transform.position = spawn_pos;
-
-				m_CarController.transform.rotation = waypoints [compare_start].transform.rotation;
-				if (!forward) {
-					Vector3 rot = m_CarController.transform.rotation.eulerAngles;
-					rot = new Vector3 (rot.x, rot.y + 180, rot.z);
-					m_CarController.transform.rotation = Quaternion.Euler (rot);
-				}
-				m_Rigidbody.velocity = waypoints [compare_start].transform.forward * direction * m_CarController.MaxSpeed;
-				current_waypoint = ListIndex (compare_start);
+			m_CarController.transform.rotation = waypoints [compare_start].transform.rotation;
+			if (!forward) {
+				Vector3 rot = m_CarController.transform.rotation.eulerAngles;
+				rot = new Vector3 (rot.x, rot.y + 180, rot.z);
+				m_CarController.transform.rotation = Quaternion.Euler(rot);
 			}
+			m_Rigidbody.velocity = waypoints [compare_start].transform.forward * direction * m_CarController.MaxSpeed;
+			current_waypoint = ListIndex(compare_start);
 
-			else
-			{
+			if (!(escape_cnt < 500)) {
 				Debug.Log ("BAD SPAWN");
 			}
 
@@ -283,9 +278,9 @@ namespace UnityStandardAssets.Vehicles.Car
 
 
 		}
-
-		private int ClosestWaypoint(Vector3 p) {
-			//Vector3 p = car.Position ();
+			
+		private int ClosestWaypoint(CarController car) {
+			Vector3 p = car.Position ();
 			//Quaternion o = m_Car.Orientation ();
 			float closestLen = 100000; // large number
 			int closestWaypoint = 0;
@@ -302,7 +297,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				
 			return closestWaypoint;
 		}
-
 
 		private int MyClosestWaypoint() {
 			Vector3 p = transform.position;
@@ -324,75 +318,43 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		// Compute the next waypoint we should go to
-		private int NextWaypoint(float pos_x, float pos_y) {
+		private int NextWaypoint() {
 
-			Vector3 p = new Vector3(pos_x,0,pos_y);
+			Vector3 p = transform.position;
 			
 			int closestWaypoint = MyClosestWaypoint();
 
 			Vector3 heading = waypoints[closestWaypoint].transform.position - p;
-			float hx = heading.x;
-			float hy = heading.z;
-
-			//Normal vector:
-			float nx =  waypoints[closestWaypoint].transform.right.x;
-			float ny =  waypoints[closestWaypoint].transform.right.z;
-
-			//Vector into the direction of the road (perpendicular to the normal vector)
-			float vx = -ny;
-			float vy = nx;
-
-			//If the inner product of v and h is positive then we are behind the waypoint so we do not need to
-			//increment closestWaypoint, otherwise we are beyond the waypoint and we need to increment closestWaypoint.
-
-			float inner = hx * vx + hy * vy;
-			if (inner < 0) 
-			{
+			heading.y = 0;
+			// This is the angle we have to turn to get to the next waypoint.
+			// It should be a small value, if it's large then it means we have to turn around
+			// and the waypoint should be actually be the next one.
+			float angle = Quaternion.Angle (transform.rotation, Quaternion.LookRotation (heading));
+			// We now have the correct waypoint
+			if (angle > 45) {
 				return (closestWaypoint + 1) % waypoints.Count;
-			} 
-			else 
-			{
-				return closestWaypoint;
 			}
-				
-		}
-
-		public float NextWaypointDistance()
-		{
-			int nextwp = NextWaypoint(transform.position.x,transform.position.z);
-			return Vector3.Distance (transform.position, waypoints [nextwp].transform.position);
-		}
-
-		public float getS()
-		{
-			return frenet_s;
-		}
-
-		public float getD()
-		{
-			return frenet_d;
+			return closestWaypoint;
 		}
 
 		public List<float> getThisFrenetFrame()
 		{
 
-			List<float> frenet_values2 = getFrenetFrame (transform.position.x, transform.position.z);
+			List<float> frenet_values = getFrenetFrame (transform.position.x, transform.position.z);
 
-			frenet_s = frenet_values2[0];
-			frenet_d = frenet_values2[1];
+			frenet_s = frenet_values[0];
+			frenet_d = frenet_values[1];
 
-			return frenet_values2;
+			return frenet_values;
 
 		}
 
 		public List<float> getFrenetFrame(float pos_x, float pos_y)
 		{
-			
 			// between 0-4 is lane 0, between 4-8 is lane 1, between 8-12 is lane 2
+			var next_wp = NextWaypoint ();
 
-			int next_wp = NextWaypoint (pos_x,pos_y);
-
-			var pos = new Vector2 (pos_x, pos_y);
+			var pos = new Vector2(pos_x,pos_y);
 
 			// Previous waypoint
 			int prev_wp;
@@ -403,17 +365,17 @@ namespace UnityStandardAssets.Vehicles.Car
 
 			// This projects the vehicle position onto the line
 			// from the previous waypoint to the next waypoint.
-			var n_x = waypoints [next_wp].transform.position.x - waypoints [prev_wp].transform.position.x;
-			var n_y = waypoints [next_wp].transform.position.z - waypoints [prev_wp].transform.position.z;
-			var x_x = pos.x - waypoints [prev_wp].transform.position.x;
-			var x_y = pos.y - waypoints [prev_wp].transform.position.z;
-			var v = new Vector2 (n_x, n_y);
+			var n_x = waypoints[next_wp].transform.position.x - waypoints[prev_wp].transform.position.x;
+			var n_y = waypoints[next_wp].transform.position.z - waypoints[prev_wp].transform.position.z;
+			var x_x = pos.x - waypoints[prev_wp].transform.position.x;
+			var x_y = pos.y - waypoints[prev_wp].transform.position.z;
+			var v = new Vector2(n_x, n_y);
 
 			// current vehicle position
-			var x0 = new Vector2 (x_x, x_y);
+			var x0 = new Vector2(x_x, x_y);
 
 			// find the projection of x onto v
-			var proj = (Vector2.Dot (x0, v) / Mathf.Abs (v.x * v.x + v.y * v.y)) * v;
+			var proj = (Vector2.Dot(x0, v) / Mathf.Abs(v.x*v.x + v.y*v.y)) * v;
 
 			var cte = (x0 - proj).magnitude;
 
@@ -423,26 +385,27 @@ namespace UnityStandardAssets.Vehicles.Car
 			// hence the CTE will be positive.
 			// If the vehicle position is closer is means the vehicle is to the left of the line
 			// hence the CTE will be negative.
-			var centerPoint = new Vector3 (1000f, 50f, 2000f) - waypoints [prev_wp].transform.position;
-			var centerPoint2D = new Vector2 (centerPoint.x, centerPoint.z);
-			var centerToPos = Vector2.Distance (centerPoint2D, x0);
-			var centerToRef = Vector2.Distance (centerPoint2D, proj);
+			var centerPoint = new Vector3(1000f, 50f, 2000f) - waypoints[prev_wp].transform.position;
+			var centerPoint2D = new Vector2(centerPoint.x, centerPoint.z);
+			var centerToPos = Vector2.Distance(centerPoint2D, x0);
+			var centerToRef = Vector2.Distance(centerPoint2D, proj);
 			if (centerToPos <= centerToRef) {
 				cte *= -1f;
 			}
 
 			//caculate s value
 			var s = 0.0;
-			for (int i = 0; i < prev_wp; i++) {
-				s += (waypoints [i + 1].transform.position - waypoints [i].transform.position).magnitude;
+			for (int i = 0; i < prev_wp; i++) 
+			{
+				s += (waypoints[i+1].transform.position - waypoints[i].transform.position).magnitude;
 			}
 			s += proj.magnitude;
 
-			List<float> frenet_values1 = new List<float> ();
-			frenet_values1.Add ((float)s);
-			frenet_values1.Add ((float)cte);
+			List<float> frenet_values = new List<float> ();
+			frenet_values.Add ((float)s);
+			frenet_values.Add ((float)cte);
 
-			return frenet_values1;
+			return frenet_values;
 
 		}
 			
@@ -466,12 +429,12 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		//check if lane is clear and safe for lane change
-		private bool lane_clear(int this_lane)
+		private bool lane_clear(int lane)
 		{
 
 			CarTraffic car_traffic = follow_car.GetComponent<CarTraffic> ();
 
-			return car_traffic.lane_clear(mycar,forward,this_lane);
+			return car_traffic.lane_clear(mycar,forward,lane);
 			//return false;
 		}
 			
@@ -490,21 +453,23 @@ namespace UnityStandardAssets.Vehicles.Car
 			return index;
 		}
 
-		public bool BlinkerLight()
-		{
-			return (lane_change_time < 100);
-		}
-
 
         public void FixedUpdate ()
         {
+			//if (maincar) {
+			//	Debug.Log ("current speed " + m_Rigidbody.velocity.magnitude);
+			//}
+			//getFrenetFrame ();
+			//Debug.Log ("S "+frenet_s);
+			//Debug.Log ("D "+frenet_d);
 
-			if (!maincar) {
+			if (!maincar || autodrive) {
 
 				int direction = 1;
 				if (!forward) {
 					direction = -1;
 				}
+					
 
 				//Debug.Log (current_waypoint);
 					
@@ -567,103 +532,40 @@ namespace UnityStandardAssets.Vehicles.Car
 						}
 				
 
-						if (m_CarController.CurrentSpeed > 15 && (lane_change_time >= 100) && NextWaypointDistance() < 15 ) 
-						{
+						if ((lane_change_time >= 100)) {
 
+							desiredSpeed = 30;
 
 
 							//try to merge right
-							if (lane == 0)
-							{
-								if (lane_clear (lane + 1)) 
-								{
-									lane1_clear++;
-								}
-
-								else 
-								{
-									lane0_clear = 0;
-									lane1_clear = 0;
-									lane2_clear = 0;
-								}
-
-								if (lane1_clear>50) 
-								{
+							if (lane == 0) {
+								if (lane_clear (lane+1)) {
 									lane++;
-									lane1_clear = 0;
 									lane_change_time = 0;
 								}
 								//try to merge left
-							} 
-							else if (lane == 1) 
-							{
-								if (lane_clear (lane - 1)) 
-								{
-									lane0_clear++;
-								}
-
-								else 
-								{
-									lane0_clear = 0;
-									lane1_clear = 0;
-									lane2_clear = 0;
-								}
-
-								if (lane0_clear>50) 
-								{
+							} else if (lane == 1) {
+								if (lane_clear (lane-1)) {
 									lane--;
-									lane0_clear = 0;
 									lane_change_time = 0;
-								} 
-								else 
-								{
-									if (lane_clear (lane + 1)) 
-									{
-										lane2_clear++;
-									}
-
-									else 
-									{
-										lane0_clear = 0;
-										lane1_clear = 0;
-										lane2_clear = 0;
-									}
-
-									if (lane2_clear>50) {
+								} else {
+									if (lane_clear (lane+1)) {
 										lane++;
-										lane2_clear = 0;
 										lane_change_time = 0;
 									}
 								}
-							} 
-							else 
-							{
-								if (lane_clear (lane - 1)) 
-								{
-									lane1_clear++;
-								}
-
-								else 
-								{
-									lane0_clear = 0;
-									lane1_clear = 0;
-									lane2_clear = 0;
-								}
-
-								if (lane1_clear>50) {
+							} else {
+								if (lane_clear (lane-1)) {
 									lane--;
-									lane1_clear = 0;
 									lane_change_time = 0;
 								}
 							}
 						}
 					} 
 
-					if (lane_change_time < 100) 
-					{
+					if (lane_change_time < 100) {
 						lane_change_time++;
-					} 
-
+					}
                 
 
 					// now it's time to decide if we should be slowing down...
@@ -763,40 +665,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				}
 				m_Target.position = reference_pos;
 			}
-			else if(maincar)
-			{
-
-				//Add on to the distance travled
-				float get_speed = m_CarController.CurrentSpeed;
-				dist_eval += (Time.deltaTime * get_speed/2.23693629f)/1609.34f;
-				time_eval += Time.deltaTime;
-
-
-				if(get_speed > 50.0)
-				{
-					main_spdlmt = true;
-				}
-
-				List<float> frenet_values = getThisFrenetFrame();
-				if (frenet_d < .8 || frenet_d > 11.2) 
-				{
-					main_lanekeep = true;
-				} 
-				else if ((frenet_d > 3.2 && frenet_d < 4.8) || (frenet_d > 7.2 && frenet_d < 8.8)) 
-				{
-					timer_lanekeep++;
-				} 
-				else
-				{
-					timer_lanekeep = 0;
-				}
-
-				if (timer_lanekeep > 150) 
-				{
-					main_lanekeep = true;
-				}
-
-			}
         }
 
 		public void SetState(float x, float y, float theta)
@@ -823,74 +691,8 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		}
 
-		public void ResetDistance()
-		{
-			dist_eval = 0;
-			time_eval = 0;
-		}
-		public float DistanceEval()
-		{
-			return dist_eval;
-		}
-		public int TimerEval()
-		{
-			return (int)time_eval;
-		}
-
-		public bool CheckCollision()
-		{
-			if(main_collison)
-			{
-				if (collision_display > 50) 
-				{
-					collision_display = 0;
-					main_collison = false;
-				}
-				collision_display += 1;
-				return true;
-			}
-			return false;
-		}
-
-		public bool CheckSpeeding()
-		{
-			if(main_spdlmt)
-			{
-				if (spdlmt_display > 50) 
-				{
-					spdlmt_display = 0;
-					main_spdlmt = false;
-				}
-				spdlmt_display += 1;
-				return true;
-			}
-			return false;
-		}
-
-		public bool CheckLanePos()
-		{
-			if(main_lanekeep)
-			{
-				if (lanekeep_display > 50) 
-				{
-					lanekeep_display = 0;
-					main_lanekeep = false;
-				}
-				lanekeep_display += 1;
-				return true;
-			}
-			return false;
-		}
-
-		
-
-
         private void OnCollisionStay (Collision col)
 		{
-			if (maincar) {
-				main_collison = true;
-			}
-
 			// detect collision against other cars, so that we can take evasive action
 			if (col.rigidbody != null) {
 				var otherAI = col.rigidbody.GetComponent<CarAIControl> ();

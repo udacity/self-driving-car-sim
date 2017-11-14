@@ -50,15 +50,6 @@ namespace UnityStandardAssets.Vehicles.Car
 			counter++;
 		}
 	}
-	void FixedUpdate()
-	{
-			foreach (GameObject car in cars) {
-				CarAIControl carAI = (CarAIControl)car.GetComponent (typeof(CarAIControl));
-				List<float> frenet_values = carAI.getThisFrenetFrame ();
-			}
-	}
-
-	
 	public void UpdateForward(){
 		//add any inactive car to inactive car list
 		foreach (GameObject car in cars) 
@@ -116,56 +107,37 @@ namespace UnityStandardAssets.Vehicles.Car
 	public bool lane_clear(GameObject mycar,bool forward,int lane)
 	{
 			List<float> s_values = new List<float> ();
-			List<int> index_values = new List<int> ();
 			int s_index = -1;
 
-			int index = 1;
-
-			List<float> d_array = new List<float> ();
 
 			if (forward) 
 			{
 				
 				foreach(GameObject car in cars) 
 				{
-					CarAIControl carAI = (CarAIControl)car.GetComponent (typeof(CarAIControl));
-
-					//List<float> frenet_values = carAI.getThisFrenetFrame ();
-
-					d_array.Add (carAI.getD ());
-
-					if (mycar.GetInstanceID () == car.GetInstanceID ()) 
+					
+					if (mycar.GetInstanceID() == car.GetInstanceID()) 
 					{
 						s_index = s_values.Count;
-						s_values.Add (carAI.getS());
-						index_values.Add (index);
 					}
+					CarAIControl carAI = (CarAIControl)car.GetComponent (typeof(CarAIControl));
 
-					else 
-					{
-						float d_value = carAI.getD ();//frenet_values [1];
-						if( ((d_value < (2+lane*4+2)) && (d_value > (2+lane*4-2) )) )// || carAI.BlinkerLight())
-						{
-							s_values.Add (carAI.getS());
-							index_values.Add (index);
-						}
+					List<float> frenet_values = carAI.getThisFrenetFrame ();
+					s_values.Add (frenet_values[0]);
 
-					}
-
-					index++;
-						
 
 				}
 
 				CarAIControl carAImain = (CarAIControl)maincar.GetComponent (typeof(CarAIControl));
 
-				//List<float> frenet_values_main = carAImain.getThisFrenetFrame ();
-				float d_value_main = carAImain.getD();//frenet_values_main[1];
+				List<float> frenet_values_main = carAImain.getThisFrenetFrame ();
+				float d_value = frenet_values_main[1];
 				//check if main car is in lane
-				if((d_value_main < (2+lane*4+3)) && (d_value_main > (2+lane*4-3)))
+				if(d_value < (2+lane*4+2) && d_value > (2+lane*4-2))
 				{
-					s_values.Add (carAImain.getS());
-					index_values.Add (-1);
+					
+					s_values.Add (frenet_values_main[0]);
+
 				}
 
 			} 
@@ -174,70 +146,53 @@ namespace UnityStandardAssets.Vehicles.Car
 				
 				foreach (GameObject car in carsR) 
 				{
+					if (mycar.GetInstanceID() == car.GetInstanceID()) 
+					{
+						s_index = s_values.Count;
+					}
 					CarAIControl carAI = (CarAIControl)car.GetComponent (typeof(CarAIControl));
 
 					List<float> frenet_values = carAI.getThisFrenetFrame ();
+					s_values.Add (frenet_values[0]);
 
-					if (mycar.GetInstanceID () == car.GetInstanceID ()) 
-					{
-						s_index = s_values.Count;
-						s_values.Add (frenet_values [0]);
-					} 
-					else 
-					{
-						float d_value = frenet_values [1];
-						if( ((d_value < (2+lane*4+2)) && (d_value > (2+lane*4-2))) || carAI.BlinkerLight())
-						{
-							s_values.Add (frenet_values[0]);
-						}
-					}
-						
 				}
 					
+			}
+
+			if (s_index == -1) 
+			{
+				CarAIControl carAImain = (CarAIControl)maincar.GetComponent (typeof(CarAIControl));
+				List<float> frenet_values_main = carAImain.getThisFrenetFrame ();
+				s_index = s_values.Count;
+				s_values.Add (frenet_values_main[0]);
+
 			}
 
 			bool clear = true;
-			//if (forward) 
-			//{
-			//	Debug.Log ("I am car " + index_values [s_index] + " change into lane "+lane);
-			//}
-				
-
+			float safe_dist = 20.0f;
 			for (int i = 0; i < s_values.Count; i++) 
 			{
-				
 				if (i != s_index) 
 				{
 					
-					clear = clear && (((s_values [i] - s_values [s_index]) > 20) || ((s_values [s_index] - s_values [i]) > 20));
-					//if (forward) 
-					//{
-					//	Debug.Log ("car " + index_values [i] + " is this far " + (s_values [i] - s_values [s_index]));
-					//}
+					clear = clear && (Mathf.Abs (s_values [i] - s_values [s_index]) > safe_dist);
 				}
 			}
-
-			/*
-			if (forward) 
-			{
-				if (clear) 
-				{
-					Debug.Log ("Its safe");
-				} 
-				else
-				{
-					Debug.Log ("Not safe");
-				}
-				for (int i = 0; i < d_array.Count; i++) 
-				{
-					int d_elem = i + 1;
-					Debug.Log ("d" + d_elem + " " + d_array [i]);
-				}
-			}
-			*/
-				
 			return clear;
 
+	}
+
+	float convertAngle(float psi) {
+		if (psi >= 0 && psi <= 90) {
+			return 90 - psi;
+		}
+		else if (psi > 90 && psi <= 180) {
+			return 90 + 270 - (psi - 90);
+		}
+		else if (psi > 180 && psi <= 270) {
+			return 180 + 90 - (psi - 180);
+		}
+		return 270 - 90 - (psi - 270);
 	}
 
 	public string example_sensor_fusion()
@@ -248,10 +203,6 @@ namespace UnityStandardAssets.Vehicles.Car
 			{
 				CarAIControl carAI = (CarAIControl) car.GetComponent(typeof(CarAIControl));
 
-				//List<float> test_values = carAI.getFrenetFrame (1682.316f,2968.043f);
-
-				//Debug.Log ("test values "+test_values [0] + "," + test_values [1]);
-
 				if(car_id > 0)
 				{
 					result += ",";
@@ -259,20 +210,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 				List<float> frenet_values = carAI.getThisFrenetFrame ();
 
-				if(System.Single.IsNaN(frenet_values[0]))
-				{
-					frenet_values[0] = 0;
-				}
-				if(System.Single.IsNaN(frenet_values[1]))
-				{
-					frenet_values[1] = 0;
-				}
-
-
-				//Debug.Log (car.transform.position.x+","+car.transform.position.z+","+frenet_values[0]+","+frenet_values[1]);
-
-				result += "[" + car_id + "," + car.transform.position.x + "," + car.transform.position.z +","+ car.GetComponent<Rigidbody> ().velocity.x 
-					+","+ car.GetComponent<Rigidbody>().velocity.z+","+frenet_values[0]+","+frenet_values[1]+"]";
+				result += "[" + car.transform.position.x + "," + car.transform.position.z +","+ car.transform.position.y+"]";
 
 				car_id++;
 			}
