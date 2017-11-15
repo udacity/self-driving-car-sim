@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using UnityEditor;
 
 namespace PointCloudExporter
 {
@@ -11,7 +12,7 @@ namespace PointCloudExporter
 	public class PointCloudGenerator : MonoBehaviour
 	{
 		[Header("Point Cloud")]
-		public TextAsset map_data;
+		private string map_data;
 		private bool heatmap;
 		private float heatmap_min = 0;
 		private float heatmap_max = 4;
@@ -28,6 +29,7 @@ namespace PointCloudExporter
 		public InputField car_y;
 		public InputField car_z;
 		public InputField car_angle;
+		public InputField radius;
 		private bool gen_init = false;
 
 		[Header("Renderer")]
@@ -62,7 +64,7 @@ namespace PointCloudExporter
 		void Start ()
 		{
 			heatmap = Heatmap.isOn;
-			
+
 			current_file.text = m_saveLocation;
 			//arrayString = map_data.text.Split ('\n');
 			//Generate();
@@ -77,19 +79,22 @@ namespace PointCloudExporter
 		{
 			heatmap = Heatmap.isOn;
 
-			arrayString = map_data.text.Split ('\n');
+			arrayString = map_data.Split ('\n');
 			Generate();
 
 			gen_init = true;
-		
+
 		}
 
 		private void OpenFolder(string location)
 		{
 
 			m_saveLocation = location;
-			StreamWriter writer = new StreamWriter(m_saveLocation, true);
-			writer.Close();
+
+			StreamReader reader = new StreamReader(m_saveLocation); 
+			string text = reader.ReadToEnd ();
+
+
 			string[] path_parse_name = m_saveLocation.Split ('\\');
 			if (path_parse_name.Length == 1) {
 				path_parse_name = m_saveLocation.Split ('/');
@@ -98,14 +103,25 @@ namespace PointCloudExporter
 			string[] file_parse_name = file_name.Split ('.');
 			m_saveLocation = file_parse_name [0];
 			current_file.text = m_saveLocation;
-			map_data = (TextAsset)Resources.Load (m_saveLocation);
+
+
+			map_data = text;
+
 		}
 
 		public void setHeatmap()
 		{
 			try{
-			heatmap_min = float.Parse(Min_z.text.ToString());
-			heatmap_max = float.Parse(Max_z.text.ToString());
+				heatmap_min = float.Parse(Min_z.text.ToString());
+				heatmap_max = float.Parse(Max_z.text.ToString());
+			}
+			catch (System.FormatException e) {
+			}
+		}
+		public void setRadius()
+		{
+			try{
+				size = float.Parse(radius.text.ToString());
 			}
 			catch (System.FormatException e) {
 			}
@@ -199,7 +215,7 @@ namespace PointCloudExporter
 				string[] entries = line.Split(' ');
 
 				if (entries.Length> 6) {
-					
+
 					float norm_x = float.Parse (entries [4]);
 					float norm_y = float.Parse (entries [5]);
 					float norm_z = float.Parse (entries [6]);
@@ -228,6 +244,7 @@ namespace PointCloudExporter
 
 				string line = pcd_map[i];
 				string[] entries = line.Split(' ');
+
 				float this_z = float.Parse(entries [2]);
 
 				float min_z = heatmap_min;
@@ -286,7 +303,7 @@ namespace PointCloudExporter
 
 				Color get_color = new Color (r_id, g_id, b_id, 1.0f);
 
-					
+
 
 				collect_colors [vertex_index] = get_color;
 				vertex_index++;
@@ -309,7 +326,7 @@ namespace PointCloudExporter
 			Vector2[] uvs = new Vector2[mesh_size];
 
 			for (int i = 0; i < subVertices.Length; i++) {
-				
+
 				Vector3 center = subVertices [i];
 				Vector3 normal = subNormals [i];
 				Vector3 tangent = Vector3.Normalize (Vector3.Cross (Vector3.up, normal));
@@ -370,7 +387,7 @@ namespace PointCloudExporter
 				} else if (vertexCount > verticesMax && meshCount == meshIndex + 1) {
 					count = vertexCount % verticesMax;
 				}
-				
+
 				Vector3[] subVertices = LoadVertices (meshIndex * verticesMax, count, arrayString);//meshInfos.vertices.Skip(meshIndex * verticesMax).Take(count).ToArray();
 				Vector3 norm = new Vector3 (0f, 0f, 1f);
 				Vector3[] subNormals =   LoadNormals(meshIndex * verticesMax, count, norm, arrayString);//meshInfos.normals.Skip(meshIndex * verticesMax).Take(count).ToArray();
@@ -520,7 +537,7 @@ namespace PointCloudExporter
 				meshGameObject.GetComponent<Renderer> ().sharedMaterial = materialToApply;
 
 			}
-				
+
 			return meshGameObject;
 		}
 
