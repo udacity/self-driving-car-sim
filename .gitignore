@@ -5,11 +5,10 @@ Library/
 obj/
 
 # Visual Studio / MonoDevelop generated
-*.csproj
 *.unityproj
-*.sln
 *.suo
 *.userprefs
+*.user
 
 # OS generated
 .DS_Store
