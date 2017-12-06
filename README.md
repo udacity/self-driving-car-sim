@@ -1,40 +1,36 @@
-## Welcome to Udacity's Self-Driving Car Simulator 
+## Customize Udacity Environment in Unity
 
-This simulator was built for [Udacity's Self-Driving Car Nanodegree](https://udacity.com/drive), to teach students how to train cars how to navigate road courses using deep learning. See more [project details here](https://github.com/udacity/CarND-Behavioral-Cloning-P3).
+	For the Udacity Autonomous Car Simulator Unity Engine was choosen as base Platform.
+That means that the whole project and architecture of the simulation is open and free to be changed in any way.
+The simulator itself can be found using the links below and we can choose between using it as it is with pretrained data, or choose to pull down the whole project and open it with Unity Engine to look at it closely and build a new simulation model based on our changes and customisations.
+Important thing is to install an appropriate Git manager to be able to pull the the Project without any errors and to avoid models and assets missing.
 
-All the assets in this repository require Unity. Please follow the instructions below for the full setup.
+The simulation project uses the version of unity (5.01f), that can be easily found on unitys website under „download older version“.
+The project was tested and opened in Unity 2017.03 beta aswell, and no error or missing files were found. Before opening the project in a new version of Unity, we should make a copy of it just in case, as unity does not support retrocompatibility.
 
-### Avaliable Game Builds (Precompiled builds of the simulator)
+Opening the simulation in unity for the first time will create some errors and warnings.
+Warnings can be ignored, because for the majority they just suggest small changes to the script code or texture or model data and are not going to stop us from building a new exe build or entering and playing a scene. Errors on the other hand will stop us from building or entering the scene and must be solved before proceding to do anything.
+…
+After every error is solved we can look at the folder and project hiearchy and understand the structure of the whole simulation project. 
 
-Instructions: Download the zip file, extract it and run the exectution file.
 
-Version 2, 2/07/17
+………………. (will continue)
 
-[Linux](https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58983558_beta-simulator-linux/beta-simulator-linux.zip)
-[Mac](https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58983385_beta-simulator-mac/beta-simulator-mac.zip)
-[Windows](https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58983318_beta-simulator-windows/beta-simulator-windows.zip)
 
-Version 1, 12/09/16
 
-[Linux](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
-[Mac](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f290_simulator-macos/simulator-macos.zip)
-[Windows 32](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f4b6_simulator-windows-32/simulator-windows-32.zip)
-[Windows 64](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f3a4_simulator-windows-64/simulator-windows-64.zip)
 
-### Unity Simulator User Instructions
 
-1. Clone the repository to your local directory, please make sure to use [Git LFS](https://git-lfs.github.com) to properly pull over large texture and model assets. 
 
-2. Install the free game making engine [Unity](https://unity3d.com), if you dont already have it. Unity is necessary to load all the assets.
 
-3. Load Unity, Pick load exiting project and choice the `self-driving-car-sim` folder.
 
-4. Load up scenes by going to Project tab in the bottom left, and navigating to the folder Assets/1_SelfDrivingCar/Scenes. To load up one of the scenes, for example the Lake Track, double click the file LakeTrackTraining.unity. Once the scene is loaded up you can fly around it in the scene viewing window by holding mouse right click to turn, and mouse scroll to zoom.
+Resources:
 
-5. Play a scene. Jump into game mode anytime by simply clicking the top play button arrow right above the viewing window.
+	https://unity3d.com/de/
+	https://github.com/llSourcell/How_to_simulate_a_self_driving_car
+	https://www.youtube.com/watch?v=EaY5QiZwSP4
+	https://github.com/udacity/self-driving-car-sim
 
-6. View Scripts. Scripts are what make all the different mechanics of the simulator work and they are located in two different directories, the first is Assets/1_SelfDrivingCar/Scripts which mostly relate to the UI and socket connections. The second directory for scripts is Assets/Standard Assets/Vehicle/Car/Scripts and they control all the different interactions with the car.
 
-7. Building a new track. You can easily build a new track by using the prebuilt road prefabs located in Assets/RoadKit/Prefabs click and drag the road prefab pieces onto the editor, you can snap road pieces together easily by using vertex snapping by holding down "v" and dragging a road piece close to another piece.
 
-![Self-Driving Car Simulator](./sim_image.png)
+
+
