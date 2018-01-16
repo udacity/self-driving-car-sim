@@ -1,133 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!126 &1
-NavMeshLayers:
+NavMeshProjectSettings:
   m_ObjectHideFlags: 0
-  Built-in Layer 0:
-    name: Default
+  serializedVersion: 2
+  areas:
+  - name: Walkable
     cost: 1
-    editType: 2
-  Built-in Layer 1:
-    name: Not Walkable
+  - name: Not Walkable
     cost: 1
-    editType: 0
-  Built-in Layer 2:
-    name: Jump
+  - name: Jump
     cost: 2
-    editType: 2
-  User Layer 0:
-    name: Terrain
-    cost: 50
-    editType: 3
-  User Layer 1:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 2:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 3:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 4:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 5:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 6:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 7:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 8:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 9:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 10:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 11:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 12:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 13:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 14:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 15:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 16:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 17:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 18:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 19:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 20:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 21:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 22:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 23:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 24:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 25:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 26:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 27:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
-  User Layer 28:
-    name: 
+  - name: 
     cost: 1
-    editType: 3
+  - name: 
+    cost: 1
+  m_LastAgentTypeID: -887442657
+  m_Settings:
+  - serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.75
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+  m_SettingNames:
+  - Humanoid

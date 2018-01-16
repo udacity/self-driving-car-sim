@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>MacBuild_10_01_2018_01</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Unity Player version 2017.1.1f1 (5d30cf096e79). (c) 2017 Unity Technologies ApS. All rights reserved.</string>
+	<key>CFBundleIconFile</key>
+	<string>PlayerIcon.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.Company.ProductName</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleSupportedPlatforms</key>
+		<array>
+			<string>MacOSX</string>
+		</array>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.games</string>
+	<key>CFBundleName</key>
+	<string>MowerSimulator</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>0</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>PlayerApplication</string>
+	<key>UnityBuildNumber</key>
+	<string>5d30cf096e79</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.9.0</string>
+</dict>
+</plist>

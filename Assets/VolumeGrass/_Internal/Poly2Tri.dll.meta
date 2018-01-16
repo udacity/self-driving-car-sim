@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d692655bd0c521344acda465bec4dd70
+timeCreated: 18446744011573954816
+PluginImporter:
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  isOverridable: 0
+  platformData:
+    data:
+      first:
+        Any: 
+      second:
+        enabled: 1
+        settings: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

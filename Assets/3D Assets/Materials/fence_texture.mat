@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: fence_texture
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _ALPHATEST_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AuxTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BladesBackTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BladesTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: ab2c808d6bec048ed96f25de15e2c9fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTexHash:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - GRASSDEPTH: 0.125
+    - GRASS_SLICE_NUM: 8
+    - GRASS_SLICE_NUM_INV: 0.125
+    - PLANE_NUM: 8
+    - PLANE_NUM_INV: 0.125
+    - PREMULT: 1
+    - UV_RATIO: 1
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.2
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _MIP_distance_limit: 2
+    - _Metallic: 0
+    - _Mode: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shininess: 0.078125
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _UseUIAlphaClip: 0
+    - _ZWrite: 1
+    - _auxtex_modulator_value: 0.15
+    - _blur_distance: 2
+    - _blur_distance_transition: 1
+    - _border_fray_strength: 0.5
+    - _border_fray_tiling: 1
+    - _bottom_coloring_border_damp: 0.5
+    - _bottom_coloring_distance_fade: 25
+    - _bottom_coloring_far: 0.5
+    - _far_distance: 10
+    - _far_distance_transition: 4
+    - _fardistancetiling: 3
+    - _glowing_value: 0.1
+    - _hgt: 0
+    - _hgt_len: 0
+    - _mblur_distance: 3
+    - _mblur_transition: 2
+    - _mblur_val: 0
+    - _mod: 0
+    - _tiling_factor: 1
+    - _view_angle_damper: 0.85
+    - _wind_amp: 0.02
+    - _wind_freq: 1
+    - _wind_speed: 0.1
+    m_Colors:
+    - _BladesBackColor: {r: 0.32156, g: 0.513725, b: 0.0941176, a: 1}
+    - _BladesColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _auxtex_tiling: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _bottom_coloring_noise_tiling: {r: 0.2, g: 0.2, b: 0, a: 0}
+    - _bottom_coloring_value: {r: 0, g: 0, b: 0, a: 0.5}
+    - _coloring_noise_tiling: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _coloring_value: {r: 0, g: 0, b: 0, a: 1}
+    - _hgt_color: {r: 0, g: 0, b: 0, a: 1}
+    - _mblur_dir: {r: 0, g: -1, b: 0.05, a: 0}
+    - mow_depth: {r: 1, g: 1, b: 1, a: 1}

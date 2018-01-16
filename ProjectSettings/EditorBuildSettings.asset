@@ -6,16 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LauncherScene.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LakeTrackAutonomous.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/LakeTrackTraining.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/MenuScene.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/JungleTrackAutonomous.unity
-  - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/JungleTrackTraining.unity
+    path: Assets/Scene/LaynMower_New(TestScene).unity
+    guid: 6ad607ee815c8443dad46ad51a1b1d76
+  - enabled: 0
+    path: Assets/VolumeGrass/lawnmower.unity
+    guid: 6f57c9fb328470b4bbdb22ad4ad933d4
