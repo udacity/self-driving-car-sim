@@ -1,0 +1,6 @@
+Important note:
+
+If you DO intend to blend Unity terrain with VolumeGrass (with right detail intersection):
+Look at comments added in terrain shaders in Splats folder. You can modify RenderType from Opaque to anything else for GrassDepthShader to not render surface of terrain (but its details only). This will reduce rendering cost of depth buffer.
+
+If you DON't intend to blend Unity terrain details with VolumeGrass you may delete whole TerrainShaders folder from your project.

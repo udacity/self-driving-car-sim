@@ -1,0 +1,17 @@
+1. Create empty game object and add VolumeGrass script.
+   a. Adding nodes - shift click, adding bezier handles - alt click
+   b. Shift click on edge will insert node between
+   c. Alt+shift click to define arbitral tesselation points on mesh
+   d. Adjust settings and click "Build"
+   
+   Note: choose Hand Tool from Transform Tools palette to disable multiselection when adding nodes.
+   
+2. Add SetupForGrassRendering script to the camera and choose layers with objects that intersect the grass, keep in mind:
+	
+   a. make it simple (don't render whole scene into temporary depth buffer, but objects you need to properly intersect grass only)
+   b. don't choose layers with grass (which would cause grass to be "self-occluded" and disappear during rendering)
+
+3. If you intend to use LODs (up to 4 Level Of Detail meshes) for different distances, add VolumeGrassLODAdjuster script to your grass object.
+      
+For further info read the docs supplied in pdf format.
+   

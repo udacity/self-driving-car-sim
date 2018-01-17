@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ZTest Projector Material
+  m_Shader: {fileID: 4800000, guid: ae772902166a2ef438d335c0750713c6, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CombineTex:
+        m_Texture: {fileID: 2800000, guid: 92b0a732ad112a541100162a44295342, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FalloffTex:
+        m_Texture: {fileID: 2800000, guid: cc90a732ad112a541100162a44295342, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HiliteTex:
+        m_Texture: {fileID: 2800000, guid: f7a0a732ad112a541100162a44295342, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 32774c1f5d8aad9459c57e6a003fbc7a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowTex:
+        m_Texture: {fileID: 2800000, guid: c2afa55c69b0b1147a326cf4e72252dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.6492537
+    - _dist_treshold: 0.24677612
+    - _mod_hgt: 0.25
+    m_Colors:
+    - BumpMapScale: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ProjectorClip_0: {r: -0.015438232, g: -0.025866693, b: 0.14460614, a: 0.29360974}
+    - _ProjectorClip_1: {r: 0.0047582523, g: 0.14523815, b: 0.026487738, a: 0.0030641258}
+    - _ProjectorClip_2: {r: -0.015438232, g: -0.025866693, b: 0.14460614, a: 0.29360974}
+    - _ProjectorClip_3: {r: 0, g: 0, b: 0, a: 1}
+    - _ProjectorDistance_0: {r: -0.015213515, g: -0.02549018, b: 0.14250126, a: 0.30389196}
+    - _ProjectorDistance_1: {r: 0.0046889912, g: 0.14312407, b: 0.026102185, a: 0.017575443}
+    - _ProjectorDistance_2: {r: -0.015213515, g: -0.02549018, b: 0.14250126, a: 0.30389196}
+    - _ProjectorDistance_3: {r: 0, g: 0, b: 0, a: 1}
+    - _Projector_0: {r: 1.6710045, g: -0.17472492, b: 0.6578766, a: 1.0662117}
+    - _Projector_1: {r: -0.0014375485, g: 1.4636691, b: 0.77239656, a: 1.2343576}
+    - _Projector_2: {r: -0.107604526, g: -0.18029094, b: 1.0079052, a: 1.9464619}
+    - _Projector_3: {r: -0.10451689, g: -0.17511761, b: 0.9789842, a: 2.0877385}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6

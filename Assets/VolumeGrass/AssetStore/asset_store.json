@@ -1,0 +1,12 @@
+{
+	"publisher_id": 0,
+	"publisher_package_id": 639,
+	"title": "VolumeGrass",
+	"description": "<br>Complete system for building nice looking grass.<br>Consists of grass mesh editor and special shader that gives<br>an illusion of grass being rendered \"inside\" the mesh volume.<br>Grass look is highly configurable, it handles wind, faked motion blur, proper intersections with other objects and mowing expansion. For live demos look at Unity's forum thread <a href=\"http://forum.unity3d.com/threads/80987\">here</a>.<br><br>Requires Unity 3.1, works on GPUs with SM3.0, requires Pro for right objects vs grass intersections.",
+	"changes": "1.1b\nMowing expansion with demo scene.\nDocumentation changes.\nNew, better pricing :)\n1.1c\nMac fix for mowing",
+	"version_name": "1.1c",
+	"category": 3,
+	"price": "75",
+	"recommended_features": [],
+	"required_features": []
+}
