@@ -1,0 +1,18 @@
+<linker>
+    <assembly fullname="System">
+        <namespace fullname="System.Net" preserve="all"/>
+        <namespace fullname="System.Net.Configuration" preserve="all"/>
+        <namespace fullname="System.ComponentModel" preserve="all"/>
+        <namespace fullname="System.Runtime.ConstrainedExecution" preserve="all"/>
+        <namespace fullname="System.Runtime.InteropServices" preserve="all"/>
+        <namespace fullname="System.Runtime.Serialization" preserve="all"/>
+        <namespace fullname="System.Configuration" preserve="all"/>
+    </assembly>
+    <assembly fullname="mscorlib">
+        <namespace fullname="System.Security.Cryptography" preserve="all"/>
+    </assembly>
+    <assembly fullname="Mono.Security">
+        <namespace fullname="Mono.Security.Protocol.Tls" preserve="all"/>
+        <namespace fullname="Mono.Security.X509" preserve="all"/>
+    </assembly>
+</linker>

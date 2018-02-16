@@ -5,6 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/1_SelfDrivingCar/Scenes/slam_webgl_icp.unity
+    guid: c16f6556eb5371a4c9bb9b13566194f3
   - enabled: 1
-    path: Assets/1_SelfDrivingCar/Scenes/slam_webgl.unity
-    guid: 4f5bad5ac86cb6249b0f2659304210aa
+    path: Assets/1_SelfDrivingCar/Scenes/slam_webgl_icp_hallway.unity
+    guid: 083aa7b04b1f9f148b641b9cca739724
+  - enabled: 1
+    path: Assets/1_SelfDrivingCar/Scenes/Mapping_AuthenticationScene.unity
+    guid: ec1c10def362be947bb3dd0212a43bbb
+  - enabled: 1
+    path: Assets/1_SelfDrivingCar/Scenes/Mapping_RegistrationScene.unity
+    guid: d515cff158fe78f44a63eaf72d75f7f5

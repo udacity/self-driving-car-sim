@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameSparks</name>
+    </assembly>
+    <members>
+        <member name="T:GameSparks.Core.GameSparksTimer">
+            <summary>
+            Windows Store Apps implementation of <see cref="T:GameSparks.IGameSparksTimer"/>. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.IGameSparksTimer">
+            <summary>
+            Interface for timer with a callback. 
+            It should start automatically when initialized. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksTimer.Initialize(System.Int32,System.Action)">
+            <summary>
+            Initialize this timer. Once initialized timers automatically start. 
+            </summary>
+            <param name="interval">in milliseconds</param>
+            <param name="callback">the function which is called, when the interval is over. </param>
+        </member>
+        <member name="M:GameSparks.IGameSparksTimer.Trigger">
+            <summary>
+            Instantly trigger the registered callback. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksTimer.Stop">
+            <summary>
+            Stop this timer. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksTimer.Initialize(System.Int32,System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="interval">in milliseconds</param>
+            <param name="callback">the function which is called, when the interval is over. </param>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksTimer.Trigger">
+            <summary>
+            Instantly trigger the registered callback. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksTimer.Stop">
+            <summary>
+            Stop this timer. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.GameSparksUtil">
+            <summary>
+            Static utility class. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksUtil.MakeHmac(System.String,System.String)">
+            <summary>
+            Standard implementation of SHA-256 HMac in C# for Windows Store Apps. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksUtil.CompleteStream(System.IO.Stream)">
+            <summary>
+            Given Stream will be closed. This is framework specific code. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.Core.GameSparksUtil.LogMessageHandler">
+            <summary>
+            This can be used to register for internal SDK logging. 
+            </summary>
+        </member>
+        <member name="P:GameSparks.Core.GameSparksUtil.ShouldConnect">
+            <summary>
+            Returns true if the SDK can try to connect to the service. This is framework specific code. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.GameSparksWebSocket">
+            <summary>
+            Windows Store Apps compatible WebSocket implementation used in the sdk. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.IGameSparksWebSocket">
+            <summary>
+            Interface for all WebSocket implementations used with the sdk. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Initialize(System.String,System.Action{System.String},System.Action,System.Action,System.Action{System.String})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Open">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Terminate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Send(System.String)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:GameSparks.IGameSparksWebSocket.State">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Initialize(System.String,System.Action{System.String},System.Action,System.Action,System.Action{System.String})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Send(System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Open">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GameSparks.GameSparksWebSocket.State">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GameSparks.GameSparksWebSocketState">
+            <summary>
+            Describes the current state of a WebSocket. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.None">
+            <summary>
+            WebSocket is not initialized. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Connecting">
+            <summary>
+            WebSocket is currently connecting.
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Open">
+            <summary>
+            WebSocket connection is established and waiting for io.
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Closing">
+            <summary>
+            WebSocket was requested to be closed. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Closed">
+            <summary>
+            WebSocket connection was successfully closed. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.IQueueReader">
+            
+             Interface for multiplatform file io (read)
+            
+        </member>
+        <member name="M:GameSparks.Core.IQueueReader.ReadFully">
+            <summary>
+            Reads the queue completely and syncronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GameSparks.Core.IQueueReader.Initialize(System.String)">
+            <summary>
+            Initialize the reader for the given filename. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.IQueueWriter">
+            <summary>
+            Interface for multiplatform file io (write)
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.IQueueWriter.WriteLine(System.String)">
+            <summary>
+            Write a single line of content to the file. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.IQueueWriter.Initialize(System.String)">
+            <summary>
+            Initialize write access to the given file
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.QueueReader">
+            <summary>
+            Windows Store Apps compatible implementation of <see cref="T:GameSparks.Core.IQueueReader"/> for file io (read). 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueReader.Initialize(System.String)">
+            
+             Initialize the reader for the given filename. 
+            
+        </member>
+        <member name="M:GameSparks.Core.QueueReader.Dispose">
+            <summary>
+            Dispose this instance.
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueReader.ReadFully">
+            <summary>
+            Reads the queue completely and syncronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GameSparks.Core.QueueWriter">
+            <summary>
+            Windows Store Apps compatible implementation of <see cref="T:GameSparks.Core.IQueueWriter"/> for file io (write). 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueWriter.WriteLine(System.String)">
+            <summary>
+            Write a single line of content to the file. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueWriter.Initialize(System.String)">
+            <summary>
+            Initialize write access to the given file
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueWriter.Dispose">
+            <summary>
+            Dispose this instance. 
+            </summary>
+        </member>
+    </members>
+</doc>

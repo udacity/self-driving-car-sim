@@ -18,7 +18,7 @@ public class SocketClient : MonoBehaviour {
 		_socket = new WebSocket(new Uri("ws://127.0.0.1:4567/"));
 		// Declaration for WebGL classroom workspace for dynamic IP
 		//_socket = new WebSocket(new Uri(myurl));
-		Debug.Log("startingy");
+		Debug.Log("starting SocketClient");
 		yield return StartCoroutine(_socket.Connect ());
 
 		ready = true;

@@ -1,0 +1,130 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Italic;
+}
+{\colortbl;\red255\green255\blue255;\red0\green150\blue149;\red68\green68\blue68;\red51\green100\blue164;
+\red245\green125\blue0;\red153\green153\blue136;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww38200\viewh20720\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\b\fs32 \cf0 GameSparks Unity SDK V3 - Release Notes
+\f1\b0\fs24 \
+\
+
+\f0\b\fs28 Introduction
+\f1\b0\fs24 \
+\
+The V3 Unity SDK introduces some key changes in the way the SDK works within Unity, these have mainly been driven by customer requests, but there are also some improvements we have included to make the SDK simpler to use for all.\
+\
+The Key goals of the project were to:\
+\
+
+\f2\i 	Remove the use of IDictionary, and move to a strongly types API for all requests
+\f1\i0 \
+		You don\'92t need to know the JSON structure anymore, now you can create a request object directly, configure it and then send it.\
+
+\f2\i \
+	Allow the SDK to be more resilient to network connects and disconnects\
+		Previous SDK\'92s would bind to a single server after the first load balancer request, this could lead to clients pointing to non existent servers until restart
+\f1\i0 \
+		When the SDK is reconnecting, requests are queued until the SDK is ready, this allows you to send via the SDK without receiving \'93NOT_CONECTED\'94 messages.\
+		Queue is in memory only, cleared when the app exit. Future updates will introduce a persistent queue.\
+		User defined timeouts on call send methods, with a global default\
+
+\f2\i 	\
+	Provide auto updates of the SDK from within Unity\
+		Previous SDK\'92s would get out of date quickly when the platform added request types & attributes.\
+		Core Api code is now auto-generated from the server, and a new version deployed with each release.
+\f1\i0 \
+		The Update buttons within unity are not functional yet, they will be implemented when released.\
+
+\f2\i 	\
+	Provide a \'93MyGameSparks\'94 API that reflects the Events and leaderboard you have configured within the portal.
+\f1\i0 \
+		Please raise a support ticket and we\'92ll create your custom SDK while in the beta program. And example of an auto generated API is included.\
+	\
+	
+\f2\i Provide a mechanism to handle different message types differently\
+		Previous SDK had a single event for async messages, required developer to look at the IDictionary to work out it\'92s type to decide how to use it.
+\f1\i0 \
+		GSMessageHandler allows you to register a single action for each message type. \
+		You can still register an action for all messages using _Allmessages for previous behaviour.\
+\
+	Unity 5 Support: this SDK will be certified with Unity 5.\
+\
+
+\f0\b\fs28 Using the SDK
+\f1\b0\fs24 \
+\
+As before, you need to configure your key & secret using the GameSparks -> Edit Settings menu item\
+\
+Once configured you can validate the configuration using \'93Test Configuration\'94, you\'92ll see messages being passed if it\'92s working.\
+\
+To add to your own game, you need to add the GameSparksUnity class to one of your own components, we recommend doing this as soon as possible.\
+\
+\pard\pardeftab720
+
+\f0\b \cf0 Sending requests\
+\
+
+\f1\b0 You\'92ll need the following using directives:\
+\
+\pard\pardeftab720
+\cf2 using\cf3  GameSparks.Api.Requests;\uc0\u8232 \cf2 using\cf3  GameSparks.Api.Responses;\uc0\u8232 \cf0 \
+Each request type in the platform now has it\'92s own class, to send an authentication request you can use the following\
+\
+\pard\pardeftab720
+\cf4 AuthenticationResponse\cf3  authResponse = \cf2 new\cf3  \cf4 AuthenticationRequest\cf3  ().SetUserName (\cf5 "gabriel"\cf3 ).SetPassword (\cf5 "password"\cf3 ).Send ();\uc0\u8232 \u8232 \cf2 if\cf3  (authResponse.HasErrors) \{\uc0\u8232 	
+\f2\i \cf6 //It didn't work\uc0\u8232 
+\f1\i0 \cf3 \}  \cf2 else\cf3  \{\uc0\u8232 	
+\f2\i \cf6 //It worked!!\uc0\u8232 
+\f1\i0 \cf3 \}\uc0\u8232 \cf0 \
+There are 3 variants of the Send method, where \'93OUT\'94 is the specific response type the request will return\
+\
+\pard\pardeftab720
+\cf2 public\cf3  \cf4 OUT\cf3  Send () - \cf0 Blocking send method, the thread will wait for a response\
+\
+\cf2 public\cf3  \cf2 void\cf3  Send (\cf4 Action\cf3 <\cf4 OUT\cf3 > callback) - \cf0 Async send method, the provided action will be invoked when the response is received, the action should check for errors in the response using response.HasErrors\
+\
+\cf2 public\cf3  \cf2 void\cf3  Send (\cf4 Action\cf3 <\cf4 OUT\cf3 > callback, int timeoutSeconds) - As above, with user provided timeout value\cf0 \
+\
+\cf2 public\cf3  \cf2 void\cf3  Send (\cf4 Action\cf3 <\cf4 OUT\cf3 > successCallback, \cf4 Action\cf3 <\cf4 OUT\cf3 > errorCallback) - \cf0 Async send method, the SDK will invoke the correct action based on the HasErrors property of the reponse.\
+\
+\cf2 public\cf3  \cf2 void\cf3  Send (\cf4 Action\cf3 <\cf4 OUT\cf3 > successCallback, \cf4 Action\cf3 <\cf4 OUT\cf3 > errorCallback, int timeoutSeconds) - As above, with user provided timeout value\
+\
+All async methods are null safe, you can pass a null action in if you do not want to do anything on response :\
+\
+\cf2 new\cf3  \cf4 DeviceAuthenticationRequest\cf3  ().Send (\cf2 null\cf3 );\uc0\u8232 \cf0 \
+All responses from the SDK are also strongly type, so you can use your IDE\'92s auto complete to the the available properties.\
+\
+\pard\pardeftab720
+
+\f0\b \cf0 Sending JSON
+\f1\b0 \
+\
+To send a JSON Object as part of a request you can construct a GSRequestData object and add the attributes to it. This is useful for both setting JSON on events, or setting the scriptData attribute on requests.\
+\
+\pard\pardeftab720
+\cf4 GSRequestData\cf3  sd = \cf2 new\cf3  \cf4 GSRequestData\cf3  ().AddNumber (\cf5 "somekey"\cf3 , \cf5 1\cf3 ).AddString (\cf5 "another"\cf3 , \cf5 "data"\cf3 );\uc0\u8232 \u8232 \cf4 AuthenticationResponse\cf3  authResponse = \cf2 new\cf3  \cf4 AuthenticationRequest\cf3  ().SetUserName (\cf5 "gabriel"\cf3 ).SetPassword (\cf5 "password"\cf3 )
+\f0\b .SetScriptData(sd)
+\f1\b0 .Send ();\uc0\u8232 \u8232 \cf2 if\cf3  (authResponse.HasErrors) \{\uc0\u8232 	
+\f2\i \cf6 //It didn't work\uc0\u8232 
+\f1\i0 \cf3 \}  \cf2 else\cf3  \{\uc0\u8232 	
+\f2\i \cf6 //It worked!!\uc0\u8232 
+\f1\i0 \cf3 \}\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\b \cf0 Registering for messages\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f1\b0 \cf0 GameSparks.Api.GSMessageHandler contains public properties that you can set to handle messages when they are delivered to the SDK. Each message type has it\'92s own property, and you can also attach an action to handle all messages using the _AllMessages property. If you have both _AllMessages and a specific message registered, the _Allmessage handler will be invoked first, followed by the specific message handler.\
+\
+\pard\pardeftab720
+\cf4 GSMessageHandler\cf3 ._AllMessages = (\cf4 GSMessage\cf3  e) => \{\uc0\u8232 	\cf4 Console\cf3 .WriteLine (\cf5 "ALL HANDLER "\cf3  + e.MessageId);\uc0\u8232 \};\u8232 \u8232 \cf4 GSMessageHandler\cf3 .ScriptMessage = (message) => \{\uc0\u8232 	\cf4 Console\cf3 .WriteLine (\cf5 "SCRIPT HANDLER "\cf3  + message.MessageId);\uc0\u8232 \};\u8232 \cf0 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+}

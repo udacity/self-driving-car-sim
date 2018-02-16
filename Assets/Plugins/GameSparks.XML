@@ -1,0 +1,509 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameSparks</name>
+    </assembly>
+    <members>
+        <member name="T:SuperSocket.ClientEngine.ConcurrentBatchQueue`1">
+            <summary>
+            Concurrent BatchQueue
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:SuperSocket.ClientEngine.IBatchQueue`1">
+            <summary>
+            A queue interface which can operate in batch
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.IBatchQueue`1.Enqueue(`0)">
+            <summary>
+            Enqueues the specified item.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.IBatchQueue`1.Enqueue(System.Collections.Generic.IList{`0})">
+            <summary>
+            Enqueues the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.IBatchQueue`1.TryDequeue(System.Collections.Generic.IList{`0})">
+            <summary>
+            Tries to dequeue all items in the queue into the output list.
+            </summary>
+            <param name="outputItems">The output items.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.IBatchQueue`1.IsEmpty">
+            <summary>
+            Gets a value indicating whether this instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.IBatchQueue`1.Count">
+            <summary>
+            Gets the count.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.ClientEngine.ConcurrentBatchQueue`1"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.ClientEngine.ConcurrentBatchQueue`1"/> class.
+            </summary>
+            <param name="capacity">The capacity of the queue.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.#ctor(System.Int32,System.Func{`0,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.ClientEngine.ConcurrentBatchQueue`1"/> class.
+            </summary>
+            <param name="capacity">The capacity.</param>
+            <param name="nullValidator">The null validator.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.#ctor(`0[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.ClientEngine.ConcurrentBatchQueue`1"/> class.
+            </summary>
+            <param name="array">The array.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.#ctor(`0[],System.Func{`0,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.ClientEngine.ConcurrentBatchQueue`1"/> class.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="nullValidator">The null validator.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.Enqueue(`0)">
+            <summary>
+            Enqueues the specified item.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.Enqueue(System.Collections.Generic.IList{`0})">
+            <summary>
+            Enqueues the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.TryDequeue(System.Collections.Generic.IList{`0})">
+            <summary>
+            Tries the dequeue.
+            </summary>
+            <param name="outputItems">The output items.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.IsEmpty">
+            <summary>
+            Gets a value indicating whether this instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.ConcurrentBatchQueue`1.Count">
+            <summary>
+            Gets the count.
+            </summary>
+        </member>
+        <member name="T:SuperSocket.ClientEngine.IPosList`1">
+            <summary>
+            The generic list interface with position
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.IPosList`1.Position">
+            <summary>
+            Gets or sets the position of current item.
+            </summary>
+            <value>
+            The position.
+            </value>
+        </member>
+        <member name="T:SuperSocket.ClientEngine.PosList`1">
+            <summary>
+            The generic list with position
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.PosList`1.Position">
+            <summary>
+            Gets or sets the position of current item.
+            </summary>
+            <value>
+            The position.
+            </value>
+        </member>
+        <member name="M:SuperSocket.ClientEngine.SslStreamTcpSession.ValidateRemoteCertificate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Validates the remote certificate.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="certificate">The certificate.</param>
+            <param name="chain">The chain.</param>
+            <param name="sslPolicyErrors">The SSL policy errors.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.Protocol.ArraySegmentEx`1.Array">
+            <summary>
+            Gets the array.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.Protocol.ArraySegmentEx`1.Count">
+            <summary>
+            Gets the count.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.ClientEngine.Protocol.ArraySegmentEx`1.Offset">
+            <summary>
+            Gets the offset.
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.GameSparksTimer">
+            <summary>
+            Threadsafe timer implementation with callback. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.IGameSparksTimer">
+            <summary>
+            Interface for timer with a callback. 
+            It should start automatically when initialized. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksTimer.Initialize(System.Int32,System.Action)">
+            <summary>
+            Initialize this timer. Once initialized timers automatically start. 
+            </summary>
+            <param name="interval">in milliseconds</param>
+            <param name="callback">the function which is called, when the interval is over. </param>
+        </member>
+        <member name="M:GameSparks.IGameSparksTimer.Trigger">
+            <summary>
+            Instantly trigger the registered callback. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksTimer.Stop">
+            <summary>
+            Stop this timer. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksTimer.Initialize(System.Int32,System.Action)">
+            <summary>
+            Initialize the timer with a given interval (milliseconds) and callback. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksTimer.Trigger">
+            <summary>
+            Trigger the timer right now. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksTimer.Stop">
+            <summary>
+            Stop the timer
+            </summary>
+        </member>
+        <member name="T:GameSparks.GameSparksWebSocket">
+            <summary>
+            Default WebSocket implementation used in the sdk. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.IGameSparksWebSocket">
+            <summary>
+            Interface for all WebSocket implementations used with the sdk. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Initialize(System.String,System.Action{System.String},System.Action,System.Action,System.Action{System.String})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Open">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Terminate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.IGameSparksWebSocket.Send(System.String)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:GameSparks.IGameSparksWebSocket.State">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Initialize(System.String,System.Action{System.String},System.Action,System.Action,System.Action{System.String})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Open">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Terminate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameSparks.GameSparksWebSocket.Send(System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GameSparks.GameSparksWebSocket.State">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.GameSparksUtil">
+            <summary>
+            Static utility class. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksUtil.MakeHmac(System.String,System.String)">
+            <summary>
+            Standard implementation of SHA-256 HMac in C#. 
+            This is not working on WebGL and IL2CPP. Custom implementations are needed in this case. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GameSparks.Core.GameSparksUtil.CompleteStream(System.IO.Stream)">
+            <summary>
+            Given Stream will be closed. This is framework specific code. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.Core.GameSparksUtil.LogMessageHandler">
+            <summary>
+            This can be used to register for internal SDK logging. 
+            </summary>
+        </member>
+        <member name="P:GameSparks.Core.GameSparksUtil.ShouldConnect">
+            <summary>
+            Returns true if the SDK can try to connect to the service. This is framework specific code. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.GameSparksWebSocketState">
+            <summary>
+            Describes the current state of a WebSocket. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.None">
+            <summary>
+            WebSocket is not initialized. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Connecting">
+            <summary>
+            WebSocket is currently connecting.
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Open">
+            <summary>
+            WebSocket connection is established and waiting for io.
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Closing">
+            <summary>
+            WebSocket was requested to be closed. 
+            </summary>
+        </member>
+        <member name="F:GameSparks.GameSparksWebSocketState.Closed">
+            <summary>
+            WebSocket connection was successfully closed. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.IQueueReader">
+            
+             Interface for multiplatform file io (read)
+            
+        </member>
+        <member name="M:GameSparks.Core.IQueueReader.ReadFully">
+            <summary>
+            Reads the queue completely and syncronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GameSparks.Core.IQueueReader.Initialize(System.String)">
+            <summary>
+            Initialize the reader for the given filename. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.IQueueWriter">
+            <summary>
+            Interface for multiplatform file io (write)
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.IQueueWriter.WriteLine(System.String)">
+            <summary>
+            Write a single line of content to the file. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.IQueueWriter.Initialize(System.String)">
+            <summary>
+            Initialize write access to the given file
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.QueueReader">
+            <summary>
+            Reads durable events from disc. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueReader.Initialize(System.String)">
+            <summary>
+            Initialize read access to the given file. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueReader.Dispose">
+            <summary>
+            Dispose this instance.
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueReader.ReadFully">
+            <summary>
+            Reads the stream to the end and automatically disposes this instance. Can be used/implemented async. 
+            </summary>
+        </member>
+        <member name="T:GameSparks.Core.QueueWriter">
+            <summary>
+            Writes durable events to disc. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueWriter.Initialize(System.String)">
+            <summary>
+            Initialize the writer for a given file name. 
+            </summary>
+        </member>
+        <member name="M:GameSparks.Core.QueueWriter.WriteLine(System.String)">
+            <summary>
+            Write a single line to the queue. 
+            </summary>
+            <param name="line"></param>
+        </member>
+        <member name="M:GameSparks.Core.QueueWriter.Dispose">
+            <summary>
+            Dispose this instance. 
+            </summary>
+        </member>
+        <member name="M:WebSocket4Net.Protocol.ReaderBase.#ctor(WebSocket4Net.WebSocket)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebSocket4Net.Protocol.ReaderBase"/> class.
+            </summary>
+            <param name="websocket">The websocket.</param>
+        </member>
+        <member name="M:WebSocket4Net.Protocol.ReaderBase.#ctor(WebSocket4Net.Protocol.ReaderBase)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebSocket4Net.Protocol.ReaderBase"/> class.
+            </summary>
+            <param name="previousCommandReader">The previous command reader.</param>
+        </member>
+        <member name="M:WebSocket4Net.Protocol.ReaderBase.AddArraySegment(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Adds the array segment into BufferSegment.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="length">The length.</param>
+        </member>
+        <member name="M:WebSocket4Net.Protocol.ReaderBase.ClearBufferSegments">
+            <summary>
+            Clears the buffer segments.
+            </summary>
+        </member>
+        <member name="P:WebSocket4Net.Protocol.ReaderBase.BufferSegments">
+            <summary>
+            Gets the buffer segments which can help you parse your commands conviniently.
+            </summary>
+        </member>
+        <member name="P:WebSocket4Net.Protocol.ReaderBase.NextCommandReader">
+            <summary>
+            Gets or sets the next command reader.
+            </summary>
+            <value>
+            The next command reader.
+            </value>
+        </member>
+        <member name="T:WebSocket4Net.Protocol.DraftHybi00Processor">
+            <summary>
+            http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-00
+            </summary>
+        </member>
+        <member name="T:WebSocket4Net.Protocol.DraftHybi10Processor">
+            <summary>
+            http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-10
+            </summary>
+        </member>
+        <member name="T:WebSocket4Net.Protocol.Rfc6455Processor">
+            <summary>
+            http://tools.ietf.org/html/rfc6455
+            </summary>
+        </member>
+        <member name="F:WebSocket4Net.WebSocket.m_WebSocketTimer">
+            <summary>
+            It is used for ping/pong and closing handshake checking
+            </summary>
+        </member>
+        <member name="P:WebSocket4Net.WebSocket.Version">
+            <summary>
+            Gets the version of the websocket protocol.
+            </summary>
+        </member>
+        <member name="P:WebSocket4Net.WebSocket.LastActiveTime">
+            <summary>
+            Gets the last active time of the websocket.
+            </summary>
+        </member>
+        <member name="P:WebSocket4Net.WebSocket.EnableAutoSendPing">
+            <summary>
+            Gets or sets a value indicating whether [enable auto send ping].
+            </summary>
+            <value>
+              <c>true</c> if [enable auto send ping]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:WebSocket4Net.WebSocket.AutoSendPingInterval">
+            <summary>
+            Gets or sets the interval of ping auto sending, in seconds.
+            </summary>
+            <value>
+            The auto send ping internal.
+            </value>
+        </member>
+        <member name="P:WebSocket4Net.WebSocket.AllowUnstrustedCertificate">
+            <summary>
+            Gets or sets a value indicating whether [allow unstrusted certificate] when connect a secure websocket uri.
+            </summary>
+            <value>
+            	<c>true</c> if [allow unstrusted certificate]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:WebSocket4Net.WebSocketCommandInfo.#ctor(WebSocket4Net.Protocol.WebSocketDataFrame)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebSocket4Net.WebSocketCommandInfo"/> class.
+            </summary>
+            <param name="frame">The frame.</param>
+            <param name="left">The left.</param>
+        </member>
+    </members>
+</doc>

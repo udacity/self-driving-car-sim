@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.Security.AccessControl;
-//using UnitySocketIO;
-//using UnitySocketIO.Events;
 
 public class CommandServer_icp : MonoBehaviour
 {
@@ -13,8 +11,6 @@ public class CommandServer_icp : MonoBehaviour
 	private slam_controller_icp slam_controller_icp;
 	public GameObject car;
 	private bool init_status;
-
-	//public SocketIOController io;
 
 	// Use this for initialization
 	void Start()
@@ -26,20 +22,19 @@ public class CommandServer_icp : MonoBehaviour
 
 		slam_controller_icp = car.GetComponent<slam_controller_icp> ();
 
-		//io.Connect();
 		init_status = true;
 
-
-		//Application.ExternalCall("mySetupFunction");
+		Debug.Log ("Calling mySetupFunction");
+		Application.ExternalCall("mySetupFunction");
 	}
 
 
 	public void FixedUpdate()
 	{
 		if (slam_controller_icp.getStatus () == 1 && init_status) {
+			
 			init_status = false;
 			EmitTelemetry ();
-			//slam_controller.resetStatus ();
 		}
 
 	}
@@ -51,7 +46,8 @@ public class CommandServer_icp : MonoBehaviour
 
 	void slam_visualizer(JSONObject jsonObject)
 	{
-		
+		slam_controller_icp.setConnection ();
+
 		var scan_x = jsonObject.GetField ("transform_observations_x");
 		var scan_y = jsonObject.GetField ("transform_observations_y");
 
@@ -97,21 +93,30 @@ public class CommandServer_icp : MonoBehaviour
 		var key_x = jsonObject.GetField ("keyframe_x");
 		var key_y = jsonObject.GetField ("keyframe_y");
 		var key_t = jsonObject.GetField ("keyframe_t");
+		var close = jsonObject.GetField ("close_keyframe");
 
 		List<float> my_key_x = new List<float> ();
 		List<float> my_key_y = new List<float> ();
 		List<float> my_key_t = new List<float> ();
+		List<float> my_close = new List<float> ();
 
 		for (int i = 0; i < key_x.Count; i++) {
 			my_key_x.Add (float.Parse ((key_x [i]).ToString ()));
 			my_key_y.Add (float.Parse ((key_y [i]).ToString ()));
 			my_key_t.Add (float.Parse ((key_t [i]).ToString ()));
+			my_close.Add (float.Parse ((close [i]).ToString ()));
 		}
 
 		int ref_keyframe = (int)float.Parse (jsonObject.GetField ("reference_keyframe").ToString ());
 		//Debug.Log (ref_keyframe);
 
-		slam_controller_icp.plot_keyframes(my_key_x, my_key_y, my_key_t,ref_keyframe);
+		slam_controller_icp.plot_keyframes(my_key_x, my_key_y, my_key_t, my_close, ref_keyframe);
+
+		float read_map = float.Parse (jsonObject.GetField ("read_map").ToString ());
+		if (read_map == 1) {
+			slam_controller_icp.resetMapStatus ();
+		}
+			
 
 		EmitTelemetry ();
 	}
@@ -123,14 +128,18 @@ public class CommandServer_icp : MonoBehaviour
 				// Collect Data from the robot
 				Dictionary<string, string> data = new Dictionary<string, string>();
 				data["update"] = slam_controller_icp.getStatus().ToString("N4");
+				data["map_update"] = slam_controller_icp.getMapStatus().ToString("N4");
 
 				data["x_drive"] = slam_controller_icp.getDelta_x().ToString("N4");
 				data["t_drive"] = slam_controller_icp.getDelta_t().ToString("N4");
 				slam_controller_icp.resetStatus();
 
-				data["pos_x"] = slam_controller_icp.get_x().ToString("N4");
-				data["pos_y"] = slam_controller_icp.get_y().ToString("N4");
-				data["pos_t"] = slam_controller_icp.get_t().ToString("N4");
+				//use this information to create ground truth data
+				
+				data ["car_x"] = slam_controller_icp.get_x ().ToString ("N4");
+				data ["car_y"] = slam_controller_icp.get_y ().ToString ("N4");
+				data ["car_t"] = slam_controller_icp.get_t ().ToString ("N4");
+				
 
 				data["sense_observations"] = slam_controller_icp.Sense_Obs();
 				
