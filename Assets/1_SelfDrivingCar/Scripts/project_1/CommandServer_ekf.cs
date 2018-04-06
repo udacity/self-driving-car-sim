@@ -1,57 +1,68 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using SocketIO;
 using System;
 using System.Security.AccessControl;
 
 public class CommandServer_ekf : MonoBehaviour
 {
 
-	private SocketIOComponent _socket;
+	//private SocketIOComponent _socket;
+	private SocketClient client;
 	private ekf_generator kalman_filter;
 	public GameObject car;
+	private bool init_status;
 
 	// Use this for initialization
 	void Start()
 	{
 		Debug.Log ("trying to connect");
-		_socket = GameObject.Find("SocketIO").GetComponent<SocketIOComponent>();
-		_socket.On("open", OnOpen);
-		_socket.On("close", OnClose);
-		_socket.On("manual", onManual);
-		_socket.On("estimate_marker", Estimate);
+		client = GameObject.Find("SocketClient").GetComponent<SocketClient>();
+		//client.On("open", OnOpen);
+		//client.On("close", OnClose);
+		client.On("pass", pass);
+		client.On("bounce", bounce);
 
 		kalman_filter = car.GetComponent<ekf_generator> ();
+		// turned off once the first telemetry message is sent
+		init_status = true;
+
+		// This function is used when connecting webgl to classroom workspace
+		Application.ExternalCall("mySetupFunction");
 	}
 
 	// Update is called once per frame
-	void Update()
+	public void FixedUpdate()
 	{
-	}
 
-	void OnOpen(SocketIOEvent obj)
+		if (client.isReady() && init_status) {
+			init_status = false;
+			EmitTelemetry ();
+
+		}
+	}
+	/*
+	void OnOpen(JSONObject obj)
 	{
 		Debug.Log("Connection Open");
-		kalman_filter.OpenScript ();
-		EmitTelemetry(obj);
+		//kalman_filter.OpenScript ();
 	}
 
-	void OnClose(SocketIOEvent obj)
+	void OnClose(JSONObject obj)
 	{
 		Debug.Log("Connection Closed");
-		kalman_filter.CloseScript ();
+		//kalman_filter.CloseScript ();
+	}
+	*/
+	void pass(JSONObject obj)
+	{
+		EmitTelemetry ();
 	}
 
-	void onManual(SocketIOEvent obj)
+	void bounce(JSONObject jsonObject)
 	{
-		EmitTelemetry (obj);
-	}
-
-	void Estimate(SocketIOEvent obj)
-	{
-		
-		JSONObject jsonObject = obj.data;
+		Debug.Log ("hello");
+		JSONObject obj = jsonObject;
 
 		if (kalman_filter.isRunning ())
 		{
@@ -67,33 +78,38 @@ public class CommandServer_ekf : MonoBehaviour
 			kalman_filter.SetRmse (rmse_x, rmse_y, rmse_vx, rmse_vy);
 		}
 
-		EmitTelemetry(obj);
+		EmitTelemetry();
 	}
 
-	void EmitTelemetry(SocketIOEvent obj)
+	void EmitTelemetry()
 	{
-		//Debug.Log ("call thread");
-		UnityMainThreadDispatcher.Instance().Enqueue(() =>
-		{
+				
 				// Collect Data from the robot
 			
 				//print("Attempting to Send...");
 				// send only if robot is moving
 				if (!kalman_filter.isRunning() || !kalman_filter.isReadyProcess()) {
 					
-					_socket.Emit("telemetry", new JSONObject());
+					Dictionary<string, string> data = new Dictionary<string, string>();
+					data ["process"] = 0.ToString();
+					client.Send("telemetry", new JSONObject(data));
+
 				}
 				else {
 
 					kalman_filter.Processed();
-					
+
 					// Collect Data from the robot's sensors
 					Dictionary<string, string> data = new Dictionary<string, string>();
+					data["process"] = 1.ToString();
 					data["sensor_measurement"] = kalman_filter.sensor_Measure();
 
-					_socket.Emit("telemetry", new JSONObject(data));
+					client.Send("telemetry", new JSONObject(data));
 				}
-		});
+				
+				
+
+
 	}
 
 }

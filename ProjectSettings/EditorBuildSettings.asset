@@ -5,19 +5,27 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/LauncherScene.unity
+    guid: 122bdeaec1483475b8fc97c588c07408
   - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/project_1/EKF_project.unity
-  - enabled: 1
+    guid: 93f69d1f88b333f48b67637bf6a53f62
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_2/UKF_project.unity
-  - enabled: 1
+    guid: fd436258f786d804aa044fe9d8756cce
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_3/particle_filter_v2.unity
-  - enabled: 1
+    guid: dd8141d0fde34034abbeb9582e4ea0d2
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/MenuScene.unity
-  - enabled: 1
+    guid: 4f9ad3000a46342c395e5d94cebb50a8
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
-  - enabled: 1
+    guid: 30ccdbcde5c1b3c4ebee6e6257a9fad9
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_4/LakeTrackAutonomous_pid.unity
-  - enabled: 1
+    guid: fb1178b1833174262a29217c9e7e3997
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_5/LakeTrackAutonomous_mpc.unity
+    guid: f380f0b0d87afc145b8e3663609e19d2
