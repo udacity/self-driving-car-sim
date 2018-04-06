@@ -21,7 +21,7 @@ public class CommandServer_ekf : MonoBehaviour
 		//client.On("open", OnOpen);
 		//client.On("close", OnClose);
 		client.On("pass", pass);
-		client.On("bounce", bounce);
+		client.On("process_ekf", process_ekf);
 
 		kalman_filter = car.GetComponent<ekf_generator> ();
 		// turned off once the first telemetry message is sent
@@ -59,7 +59,7 @@ public class CommandServer_ekf : MonoBehaviour
 		EmitTelemetry ();
 	}
 
-	void bounce(JSONObject jsonObject)
+	void process_ekf(JSONObject jsonObject)
 	{
 		Debug.Log ("hello");
 		JSONObject obj = jsonObject;
