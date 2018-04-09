@@ -16,7 +16,7 @@ public class CommandServer_maze: MonoBehaviour
 	{
 		Debug.Log ("trying to connect");
 		client = GameObject.Find("SocketClient").GetComponent<SocketClient>();
-		client.On("bounce", bounce);
+		client.On("process_ekf", process_ekf);
 		client.On("pass", pass);
 		my_car = car.GetComponent<PlayerScript> ();
 
@@ -39,7 +39,7 @@ public class CommandServer_maze: MonoBehaviour
 	{
 		EmitTelemetry ();
 	}
-	void bounce(JSONObject jsonObject)
+	void process_ekf(JSONObject jsonObject)
 	{
 		
 		float vel_x = float.Parse (jsonObject.GetField ("vel_x").ToString ());
