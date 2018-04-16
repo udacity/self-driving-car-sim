@@ -31,11 +31,11 @@ public class SocketClient : MonoBehaviour {
 				{
 					
 					Debug.Log (obj [1].ToString ());
-					routes ["process_ekf"] (obj [1]);
+					routes ["best_particle"] (obj [1]);
 				} 
 				else 
 				{
-					routes ["pass"] (obj [1]);
+					routes ["manual"] (obj [1]);
 				}
 
 			}

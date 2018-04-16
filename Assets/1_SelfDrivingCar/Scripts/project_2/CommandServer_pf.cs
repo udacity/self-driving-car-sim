@@ -13,6 +13,7 @@ public class CommandServer_pf : MonoBehaviour
 	private SocketClient client;
 	private particle_filter_v2 particle_filter;
 	public GameObject car;
+	private bool init_status;
 
 
 	// Use this for initialization
@@ -20,29 +21,45 @@ public class CommandServer_pf : MonoBehaviour
 	{
 		Debug.Log ("trying to connect");
 		client = GameObject.Find("SocketClient").GetComponent<SocketClient>();
+		
+
 		//_socket = GameObject.Find("SocketIO").GetComponent<SocketIOComponent>();
-		client.On("open", OnOpen);
-		client.On("close", OnClose);
+		// client.On("open", OnOpen);
+		// client.On("close", OnClose);
 		client.On("manual", onManual);
 		client.On("best_particle", BestParticle);
 
 		particle_filter = car.GetComponent<particle_filter_v2> ();
+
+		init_status = true;
+		// This function is used when connecting webgl to classroom workspace
 		Application.ExternalCall("mySetupFunction");
 	}
+
+	 // Update is called once per frame
+  public void FixedUpdate()
+  {
+
+    if (client.isReady() && init_status) {
+      init_status = false;
+      EmitTelemetry ();
+
+    }
+  }
 		
 
-	void OnOpen(JSONObject jsonObject)
-	{
-		Debug.Log("Connection Open");
-		particle_filter.OpenScript ();
-		EmitTelemetry();
-	}
+	// void OnOpen(JSONObject jsonObject)
+	// {
+	// 	Debug.Log("Connection Open");
+	// 	particle_filter.OpenScript ();
+	// 	EmitTelemetry();
+	// }
 
-	void OnClose(JSONObject jsonObject)
-	{
-		Debug.Log("Connection Closed");
-		particle_filter.CloseScript ();
-	}
+	// void OnClose(JSONObject jsonObject)
+	// {
+	// 	Debug.Log("Connection Closed");
+	// 	particle_filter.CloseScript ();
+	// }
 
 	void onManual(JSONObject jsonObject)
 	{
@@ -52,7 +69,8 @@ public class CommandServer_pf : MonoBehaviour
 	void BestParticle(JSONObject jsonObject)
 	{
 
-		//JSONObject obj = jsonObject;
+		Debug.Log ("hello");
+    JSONObject obj = jsonObject;
 
 		if (particle_filter.isRunning ())
 		{
@@ -78,22 +96,25 @@ public class CommandServer_pf : MonoBehaviour
 	void EmitTelemetry()
 	{
 		//Debug.Log ("call thread");
-		UnityMainThreadDispatcher.Instance().Enqueue(() =>
-		{
+		//UnityMainThreadDispatcher.Instance().Enqueue(() =>
+		//{
 				// Collect Data from the robot
 			
 				//print("Attempting to Send...");
 				// send only if robot is moving
 				if (!particle_filter.isRunning() || !particle_filter.isServerProcess()) {
-					
-					client.Send("telemetry", new JSONObject());
+					Dictionary<string, string> data = new Dictionary<string, string>();
+					data ["process"] = 0.ToString();
+					client.Send("telemetry", new JSONObject(data));
 				}
 				else {
 
+					//particle_filter.ServerPause();
 					particle_filter.ServerPause();
-
 					// Collect Data from the robot's sensors
 					Dictionary<string, string> data = new Dictionary<string, string>();
+					data["process"] = 1.ToString();
+
 					data["sense_x"] = particle_filter.Sense_x().ToString("N4");
 					data["sense_y"] = particle_filter.Sense_y().ToString("N4");
 					data["sense_theta"] = particle_filter.Sense_theta().ToString("N4");
@@ -107,7 +128,7 @@ public class CommandServer_pf : MonoBehaviour
 					client.Send("telemetry", new JSONObject(data));
 
 				}
-		});
+		//});
 	}
 
 }

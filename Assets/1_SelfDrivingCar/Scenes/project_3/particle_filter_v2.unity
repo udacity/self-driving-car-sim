@@ -5188,8 +5188,7 @@ GameObject:
 --- !u!114 &857029901
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000011874370104, guid: 1f347eea738f54024b45de3f0811b76a,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 857029900}
   m_Enabled: 1
