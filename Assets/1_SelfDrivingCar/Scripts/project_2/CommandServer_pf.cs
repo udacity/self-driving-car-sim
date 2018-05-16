@@ -24,8 +24,8 @@ public class CommandServer_pf : MonoBehaviour
 		
 
 		//_socket = GameObject.Find("SocketIO").GetComponent<SocketIOComponent>();
-		// client.On("open", OnOpen);
-		// client.On("close", OnClose);
+		client.On("open", OnOpen);
+		client.On("close", OnClose);
 		client.On("manual", onManual);
 		client.On("best_particle", BestParticle);
 
@@ -48,18 +48,18 @@ public class CommandServer_pf : MonoBehaviour
   }
 		
 
-	// void OnOpen(JSONObject jsonObject)
-	// {
-	// 	Debug.Log("Connection Open");
-	// 	particle_filter.OpenScript ();
-	// 	EmitTelemetry();
-	// }
+	void OnOpen(JSONObject jsonObject)
+	{
+		//Debug.Log("Connection Open");
+		particle_filter.OpenScript ();
+		EmitTelemetry();
+	}
 
-	// void OnClose(JSONObject jsonObject)
-	// {
-	// 	Debug.Log("Connection Closed");
-	// 	particle_filter.CloseScript ();
-	// }
+	void OnClose(JSONObject jsonObject)
+	{
+		//Debug.Log("Connection Closed");
+		particle_filter.CloseScript ();
+	}
 
 	void onManual(JSONObject jsonObject)
 	{

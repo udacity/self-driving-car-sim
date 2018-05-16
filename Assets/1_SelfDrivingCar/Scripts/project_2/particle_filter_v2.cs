@@ -147,8 +147,8 @@ public class particle_filter_v2 : MonoBehaviour {
 	void FixedUpdate () {
 
 		//dont run past time interval and dont run until last data was processed
-		// if (running && time_step < x_positions.Count-1 && (simulator_process||!script_running)) 
-		if (running && time_step < x_positions.Count-1 && (simulator_process)) 
+		if (running && time_step < x_positions.Count-1 && (simulator_process||!script_running)) 
+		//if (running && time_step < x_positions.Count-1 && (simulator_process)) 
 
 		{
 
