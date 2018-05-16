@@ -9,11 +9,11 @@ public class SocketClient : MonoBehaviour {
 	private Dictionary<string, Action<JSONObject>> routes = new Dictionary<string, Action<JSONObject>>();
 
 	// If running locally (not from inside workspace) , do this instead, and comment out the other declaration
-	IEnumerator Start () {
-			_socket = new WebSocket(new Uri("ws://127.0.0.1:4567/"));
+	// IEnumerator Start () {
+	// 		_socket = new WebSocket(new Uri("ws://127.0.0.1:4567/"));
 
-	// IEnumerator StartConnection (string myurl) {
-	// 	_socket = new WebSocket(new Uri(myurl));
+	IEnumerator StartConnection (string myurl) {
+		_socket = new WebSocket(new Uri(myurl));
 
 		yield return StartCoroutine(_socket.Connect ());
 

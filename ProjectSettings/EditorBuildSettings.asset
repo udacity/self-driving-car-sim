@@ -29,3 +29,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_5/LakeTrackAutonomous_mpc.unity
     guid: f380f0b0d87afc145b8e3663609e19d2
+  m_configObjects: {}
