@@ -69,8 +69,8 @@ public class CommandServer_pf : MonoBehaviour
 	void BestParticle(JSONObject jsonObject)
 	{
 
-		Debug.Log ("hello");
-    JSONObject obj = jsonObject;
+		Debug.Log ("Best particle");
+    	JSONObject obj = jsonObject;
 
 		if (particle_filter.isRunning ())
 		{
@@ -95,7 +95,7 @@ public class CommandServer_pf : MonoBehaviour
 
 	void EmitTelemetry()
 	{
-		//Debug.Log ("call thread");
+		////Debug.Log ("call thread");
 		//UnityMainThreadDispatcher.Instance().Enqueue(() =>
 		//{
 				// Collect Data from the robot
