@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D9771C9A-73DB-9802-B2BC-E682679CA4E5}</ProjectGuid>
+    <ProjectGuid>{5CC842FB-360A-0469-DD0E-2398AA6E3C91}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -51,6 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\1_SelfDrivingCar\Scenes\project_4\CommandServer_pid.cs" />
+     <Compile Include="Assets\1_SelfDrivingCar\Scenes\project_4\SocketClient_pid.cs" />
+     <Compile Include="Assets\1_SelfDrivingCar\Scenes\project_5\CommandServer.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\CameraHelper.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\LightConditions.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\MenuOptions.cs" />
@@ -63,7 +66,6 @@
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\project_2\particle_filter_v2.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\SplashTimer.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\UISystem.cs" />
-     <Compile Include="Assets\CommandServer.cs" />
      <Compile Include="Assets\JSONObject\JSONObject.cs" />
      <Compile Include="Assets\JSONObject\JSONTemplates.cs" />
      <Compile Include="Assets\JSONObject\VectorTemplates.cs" />
@@ -2536,10 +2538,10 @@
      <None Include="Assets\Resources\observation\observations_002099.txt" />
      <None Include="Assets\Resources\observation\observations_001336.txt" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -2734,7 +2736,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Assets/Plugins/websocket-sharp.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Assets/Plugins/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Users/ggonzalez/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
@@ -2775,7 +2777,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{7D20C5B9-85F5-48FA-442C-0B2219E193E6}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{9FDE982D-2E25-AAD0-8B37-7CB6F00921C9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

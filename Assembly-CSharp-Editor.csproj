@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{70F148C4-70C4-EE0B-840F-6955EF671B4A}</ProjectGuid>
+    <ProjectGuid>{B3588301-00F1-F2A6-C3F8-A20FA00DA7DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -72,13 +72,13 @@
      <Compile Include="Assets\Editor\Water\Water4\WaterEditorUtility.cs" />
      <Compile Include="Assets\JSONObject\Editor\JSONChecker.cs" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -318,7 +318,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Assets/Plugins/websocket-sharp.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Assets/Plugins/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Users/ggonzalez/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -368,11 +368,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{7D20C5B9-85F5-48FA-442C-0B2219E193E6}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{9FDE982D-2E25-AAD0-8B37-7CB6F00921C9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{D9771C9A-73DB-9802-B2BC-E682679CA4E5}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{5CC842FB-360A-0469-DD0E-2398AA6E3C91}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{0BD459D6-9DAA-4939-850F-CFC6FFF73A88}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
+      <Project>{CDC15FE1-8FF9-517A-ECF1-473575DC12DB}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

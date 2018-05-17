@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0BD459D6-9DAA-4939-850F-CFC6FFF73A88}</ProjectGuid>
+    <ProjectGuid>{CDC15FE1-8FF9-517A-ECF1-473575DC12DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor-firstpass</AssemblyName>
@@ -53,10 +53,10 @@
   <ItemGroup>
      <Compile Include="Assets\Plugins\Editor\RiderUnityIntegration.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -296,7 +296,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>/Users/ggonzalez/Documents/Repos/self-driving-car-sim_new/self-driving-car-sim/Assets/Plugins/websocket-sharp.dll</HintPath>
+ <HintPath>/Users/ggonzalez/Documents/self-driving-car-sim_lfs/Assets/Plugins/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Users/ggonzalez/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -346,7 +346,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{7D20C5B9-85F5-48FA-442C-0B2219E193E6}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{9FDE982D-2E25-AAD0-8B37-7CB6F00921C9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
