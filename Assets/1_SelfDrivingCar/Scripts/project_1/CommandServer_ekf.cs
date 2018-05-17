@@ -8,7 +8,7 @@ public class CommandServer_ekf : MonoBehaviour
 {
 
 	//private SocketIOComponent _socket;
-	private SocketClient client;
+	private SocketClient_ekf client;
 	private ekf_generator kalman_filter;
 	public GameObject car;
 	private bool init_status;
@@ -16,10 +16,11 @@ public class CommandServer_ekf : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		Debug.Log ("trying to connect");
-		client = GameObject.Find("SocketClient").GetComponent<SocketClient>();
-		//client.On("open", OnOpen);
-		//client.On("close", OnClose);
+		// Debug.Log ("trying to connect");
+		client = GameObject.Find("SocketClient").GetComponent<SocketClient_ekf>();
+		Debug.Log (client);
+		client.On("open", OnOpen);
+		client.On("close", OnClose);
 		client.On("pass", pass);
 		client.On("process_ekf", process_ekf);
 
@@ -40,20 +41,22 @@ public class CommandServer_ekf : MonoBehaviour
 			EmitTelemetry ();
 
 		}
+
+		
 	}
-	/*
+	
 	void OnOpen(JSONObject obj)
 	{
-		Debug.Log("Connection Open");
-		//kalman_filter.OpenScript ();
+		//Debug.Log("Connection Open");
+		kalman_filter.OpenScript ();
 	}
 
 	void OnClose(JSONObject obj)
 	{
-		Debug.Log("Connection Closed");
-		//kalman_filter.CloseScript ();
+		//Debug.Log("Connection Closed");
+		kalman_filter.CloseScript ();
 	}
-	*/
+
 	void pass(JSONObject obj)
 	{
 		EmitTelemetry ();
@@ -61,7 +64,7 @@ public class CommandServer_ekf : MonoBehaviour
 
 	void process_ekf(JSONObject jsonObject)
 	{
-		Debug.Log ("hello");
+		//Debug.Log ("hello");
 		JSONObject obj = jsonObject;
 
 		if (kalman_filter.isRunning ())
