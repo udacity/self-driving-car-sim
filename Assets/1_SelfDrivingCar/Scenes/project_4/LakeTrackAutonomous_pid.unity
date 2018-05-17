@@ -230,6 +230,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013456575658, guid: c1cb25368752143148dfa12c633a93ce,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1cb25368752143148dfa12c633a93ce, type: 2}
   m_IsPrefabParent: 0
@@ -775,6 +780,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 87403507033f0034eab7ba172e32535d, type: 3}
   m_PrefabInternal: {fileID: 120184294}
+--- !u!20 &126614110 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20000013889425058, guid: 0e7ee4df08df88c4880f43398f9ad2c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 311033518}
 --- !u!1001 &138717158
 Prefab:
   m_ObjectHideFlags: 0
@@ -2104,10 +2114,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &311033519 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100042, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+--- !u!114 &311033520 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011904288016, guid: 0e7ee4df08df88c4880f43398f9ad2c2,
+    type: 2}
   m_PrefabInternal: {fileID: 311033518}
+  m_Script: {fileID: 11500000, guid: c52e315dccff44f30a1038297d33a20a, type: 3}
 --- !u!1001 &315042367
 Prefab:
   m_ObjectHideFlags: 0
@@ -12659,7 +12671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4989de2e488774193870d185ecc85ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 311033519}
+  CarRemoteControl: {fileID: 311033520}
+  FrontFacingCamera: {fileID: 126614110}
 --- !u!4 &2025785852
 Transform:
   m_ObjectHideFlags: 0

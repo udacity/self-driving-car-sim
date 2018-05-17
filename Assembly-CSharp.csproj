@@ -51,8 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\1_SelfDrivingCar\Scenes\project_4\CommandServer_pid.cs" />
-     <Compile Include="Assets\1_SelfDrivingCar\Scenes\project_4\SocketClient_pid.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scenes\project_5\CommandServer.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\CameraHelper.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\LightConditions.cs" />
@@ -64,6 +62,8 @@
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\project_2\camera_follow_pf.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\project_2\CommandServer_pf.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\project_2\particle_filter_v2.cs" />
+     <Compile Include="Assets\1_SelfDrivingCar\Scripts\project_4\CommandServer_pid.cs" />
+     <Compile Include="Assets\1_SelfDrivingCar\Scripts\project_4\SocketClient_pid.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\SplashTimer.cs" />
      <Compile Include="Assets\1_SelfDrivingCar\Scripts\UISystem.cs" />
      <Compile Include="Assets\JSONObject\JSONObject.cs" />
