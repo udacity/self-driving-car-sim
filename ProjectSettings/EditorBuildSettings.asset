@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/LauncherScene.unity
     guid: 122bdeaec1483475b8fc97c588c07408
-  - enabled: 0
+  - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/project_1/EKF_project.unity
     guid: 93f69d1f88b333f48b67637bf6a53f62
   - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_2/UKF_project.unity
     guid: fd436258f786d804aa044fe9d8756cce
-  - enabled: 1
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_3/particle_filter_v2.unity
     guid: dd8141d0fde34034abbeb9582e4ea0d2
   - enabled: 0

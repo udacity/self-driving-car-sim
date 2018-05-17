@@ -78,6 +78,7 @@
      <Compile Include="Assets\scripts\car_maze\CommandServer_maze.cs" />
      <Compile Include="Assets\scripts\car_maze\PlayerScript.cs" />
      <Compile Include="Assets\scripts\SocketClient.cs" />
+     <Compile Include="Assets\scripts\SocketClient_ekf.cs" />
      <Compile Include="Assets\scripts\SocketClient_pf.cs" />
      <Compile Include="Assets\UnityThreading\UnityMainThreadDispatcher.cs" />
      <None Include="Assets\JSONObject\readme.txt" />
