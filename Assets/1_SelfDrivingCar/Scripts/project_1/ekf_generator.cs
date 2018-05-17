@@ -109,7 +109,7 @@ public class ekf_generator : MonoBehaviour {
 
 	public void Estimate(float est_x, float est_y)
 	{
-		Debug.Log("estimate "+est_x+" "+est_y);
+		//Debug.Log("estimate "+est_x+" "+est_y);
 		GameObject get_estimate_marker = (GameObject)Instantiate (estimate_marker);
 		get_estimate_marker.GetComponent<SpriteRenderer>().enabled = true;
 		get_estimate_marker.transform.position = new Vector3 ((float)(est_x*scale), (float)(est_y*scale), 0);

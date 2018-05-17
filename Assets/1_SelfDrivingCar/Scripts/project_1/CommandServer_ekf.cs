@@ -18,7 +18,7 @@ public class CommandServer_ekf : MonoBehaviour
 	{
 		// Debug.Log ("trying to connect");
 		client = GameObject.Find("SocketClient").GetComponent<SocketClient_ekf>();
-		Debug.Log (client);
+		//Debug.Log (client);
 		client.On("open", OnOpen);
 		client.On("close", OnClose);
 		client.On("pass", pass);

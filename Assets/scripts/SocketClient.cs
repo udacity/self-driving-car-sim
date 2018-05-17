@@ -32,10 +32,14 @@ public class SocketClient : MonoBehaviour {
 					
 					//Debug.Log (obj [1].ToString ());
 					routes ["best_particle"] (obj [1]);
+					//routes ["process_ekf"] (obj [1]);
+
 				} 
 				else 
 				{
 					routes ["manual"] (obj [1]);
+					//routes ["pass"] (obj [1]);
+
 				}
 
 			}

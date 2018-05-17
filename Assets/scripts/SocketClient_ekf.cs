@@ -9,11 +9,11 @@ public class SocketClient_ekf : MonoBehaviour {
 	private Dictionary<string, Action<JSONObject>> routes = new Dictionary<string, Action<JSONObject>>();
 
 	// If running locally (not from inside workspace) , do this instead, and comment out the other declaration
-	IEnumerator Start () {
-			_socket = new WebSocket(new Uri("ws://127.0.0.1:4567/"));
+	// IEnumerator Start () {
+	// 		_socket = new WebSocket(new Uri("ws://127.0.0.1:4567/"));
 
-	// IEnumerator StartConnection (string myurl) {
-	// 	_socket = new WebSocket(new Uri(myurl));
+	IEnumerator StartConnection (string myurl) {
+		_socket = new WebSocket(new Uri(myurl));
 
 		yield return StartCoroutine(_socket.Connect ());
 
@@ -30,7 +30,7 @@ public class SocketClient_ekf : MonoBehaviour {
 				if (String.Compare (obj [1].ToString (), "{}") != 0) 
 				{
 					
-					Debug.Log (obj [1].ToString ());
+					//Debug.Log (obj [1].ToString ());
 					routes ["process_ekf"] (obj [1]);
 				} 
 				else 
@@ -41,7 +41,7 @@ public class SocketClient_ekf : MonoBehaviour {
 			}
 			if (_socket.error != null)
 			{
-				Debug.LogError ("Error: "+_socket.error);
+				//Debug.LogError ("Error: "+_socket.error);
 				break;
 			}
 			yield return 0;
