@@ -9,12 +9,12 @@ public class SocketClient_pid : MonoBehaviour {
 	private Dictionary<string, Action<JSONObject>> routes = new Dictionary<string, Action<JSONObject>>();
 
 	// If running locally (not from inside workspace) , do this instead, and comment out the other declaration
-	IEnumerator Start () {
-			_socket = new WebSocket(new Uri("ws://127.0.0.1:4567/"));
-			//Debug.Log("Start");
+	// IEnumerator Start () {
+	// 		_socket = new WebSocket(new Uri("ws://127.0.0.1:4567/"));
+	// 		//Debug.Log("Start");
 
-	// IEnumerator StartConnection (string myurl) {
-	// 	_socket = new WebSocket(new Uri(myurl));
+	IEnumerator StartConnection (string myurl) {
+		_socket = new WebSocket(new Uri(myurl));
 
 		yield return StartCoroutine(_socket.Connect ());
 		//Debug.Log(_socket.Connect ());
@@ -34,7 +34,7 @@ public class SocketClient_pid : MonoBehaviour {
 				{
 					
 					//Debug.Log (obj [1].ToString ());
-					//Debug.Log("steer");
+					Debug.Log("steer");
 					routes ["steer"] (obj [1]);
 				} 
 				else 
@@ -62,11 +62,13 @@ public class SocketClient_pid : MonoBehaviour {
 
 	public bool Send(string topic, JSONObject obj)
 	{
+		Debug.Log("Call send");
 		if (ready) {
 			Dictionary<string, JSONObject> data = new Dictionary<string, JSONObject>();
 			data [topic] = obj;
 			JSONObject toSend = new JSONObject (data);
 			_socket.SendString (toSend.ToString());
+			Debug.Log("Sent");
 			return true;
 		}
 		return false;

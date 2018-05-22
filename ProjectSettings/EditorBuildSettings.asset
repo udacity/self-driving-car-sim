@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/LauncherScene.unity
     guid: 122bdeaec1483475b8fc97c588c07408
-  - enabled: 1
+  - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/project_1/EKF_project.unity
     guid: 93f69d1f88b333f48b67637bf6a53f62
   - enabled: 0
@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
     guid: 30ccdbcde5c1b3c4ebee6e6257a9fad9
-  - enabled: 0
+  - enabled: 1
     path: Assets/1_SelfDrivingCar/Scenes/project_4/LakeTrackAutonomous_pid.unity
     guid: fb1178b1833174262a29217c9e7e3997
   - enabled: 0

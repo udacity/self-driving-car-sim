@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/1_SelfDrivingCar/Scenes/project_1/EKF_project.unity
+- path: Assets/1_SelfDrivingCar/Scenes/project_4/LakeTrackAutonomous_pid.unity
   isLoaded: 1
   isActive: 1

@@ -48,14 +48,14 @@ public class CommandServer_pid : MonoBehaviour
 
 	void OnOpen(JSONObject jsonObject)
 	{
-		Debug.Log("Connection Open");
+		// Debug.Log("Connection Open");
 		EmitTelemetry();
 	}
 
 	// 
 	void onManual(JSONObject jsonObject)
 	{
-        Debug.Log("Manual driving event ...");
+        // Debug.Log("Manual driving event ...");
 		EmitTelemetry ();
 	}
 
@@ -67,10 +67,10 @@ public class CommandServer_pid : MonoBehaviour
 
 	void OnSteer(JSONObject jsonObject)
 	{
-        Debug.Log("Steering data event ...");
+        // Debug.Log("Steering data event ...");
 		//JSONObject jsonObject = obj.data;
 		JSONObject obj = jsonObject;
-
+		Debug.Log(obj);
 		CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").ToString());
 		CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").ToString());
 		var steering_bias = 1.0f * Mathf.Deg2Rad;
@@ -80,9 +80,10 @@ public class CommandServer_pid : MonoBehaviour
 
 	void EmitTelemetry()
 	{
+		Debug.Log("EmitTelemetry");
 		// UnityMainThreadDispatcher.Instance().Enqueue(() =>
 		// {
-			print("Attempting to Send...");
+			// print("Attempting to Send...");
 			// send only if it's not being manually driven
 			if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.S))) {
 				//client.Emit("telemetry", new JSONObject());
@@ -91,8 +92,10 @@ public class CommandServer_pid : MonoBehaviour
 				client.Send("telemetry", new JSONObject(data));
 			} else {
 				// Collect Data from the Car
+				Debug.Log("Collect data from car ...");
 				Dictionary<string, string> data = new Dictionary<string, string>();
 				var cte = wpt.CrossTrackError (_carController);
+				Debug.Log(cte);
 				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
@@ -100,7 +103,9 @@ public class CommandServer_pid : MonoBehaviour
 				data ["process"] = 1.ToString();
 				//data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
 				//client.Emit("telemetry", new JSONObject(data));
+				
 				client.Send("telemetry", new JSONObject(data));
+				Debug.Log("Send");
 			}
 		// });
 				
