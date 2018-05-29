@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011765884210}
-  - 114: {fileID: 114000011334794896}
+  - component: {fileID: 4000011765884210}
+  - component: {fileID: 114000011334794896}
   m_Layer: 0
   m_Name: CommandServer
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 224.32143, y: 41.88526, z: 121.59354}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011334794896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,5 +51,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0227e09400f496f923b16e7d2d1fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarRemoteControl: {fileID: 0}
-  FrontFacingCamera: {fileID: 0}
