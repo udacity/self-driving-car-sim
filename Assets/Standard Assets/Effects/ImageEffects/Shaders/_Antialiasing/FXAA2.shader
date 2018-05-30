@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/FXAA II" {
 Properties {
 	_MainTex ("Base (RGB)", 2D) = "white" {}
@@ -167,7 +169,7 @@ float4 _MainTex_TexelSize;
 v2f vert (appdata_img v)
 {
 	v2f o;
-	o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+	o.pos = UnityObjectToClipPos (v.vertex);
 	o.uv = FxaaVertexShader (v.texcoord.xy*2-1, _MainTex_TexelSize.xy);
 	return o;
 }

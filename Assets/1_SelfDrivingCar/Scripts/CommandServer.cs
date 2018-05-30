@@ -1,94 +1,89 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using SocketIO;
 using UnityStandardAssets.Vehicles.Car;
 using System;
 using System.Security.AccessControl;
+using UnityEngine.SceneManagement;
+
+
 
 public class CommandServer : MonoBehaviour
 {
 	public CarRemoteControl CarRemoteControl;
 	public Camera FrontFacingCamera;
-	private SocketIOComponent _socket;
 	private CarController _carController;
+	private SocketClient client;
+	private bool init_status;
 
 	// Use this for initialization
 	void Start()
 	{
-		_socket = GameObject.Find("SocketIO").GetComponent<SocketIOComponent>();
-		_socket.On("open", OnOpen);
-		_socket.On("steer", OnSteer);
-		_socket.On("manual", onManual);
+		// Debug.Log ("trying to connect");
+		client = GameObject.Find("SocketClient").GetComponent<SocketClient>();
+		client.On("open", OnOpen);
+		client.On("steer", OnSteer);
+		client.On("manual", onManual);
 		_carController = CarRemoteControl.GetComponent<CarController>();
+		init_status = true;
+		// Debug.Log ("Started");
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-	}
+	public void FixedUpdate()
+  	{
 
-	void OnOpen(SocketIOEvent obj)
+		// print(client.isReady());
+		// print(init_status);
+		if (client.isReady() && init_status) {
+		init_status = false;
+		EmitTelemetry ();
+
+    	}
+ 	}
+
+	void OnOpen(JSONObject jsonObject)
 	{
 		Debug.Log("Connection Open");
-		EmitTelemetry(obj);
+		EmitTelemetry();
 	}
 
 	// 
-	void onManual(SocketIOEvent obj)
+	void onManual(JSONObject jsonObject)
 	{
-		EmitTelemetry (obj);
+		EmitTelemetry ();
 	}
 
-	void OnSteer(SocketIOEvent obj)
+	void OnSteer(JSONObject jsonObject)
 	{
-		JSONObject jsonObject = obj.data;
+		// JSONObject jsonObject = obj.data;
 		//    print(float.Parse(jsonObject.GetField("steering_angle").str));
-		CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").str);
-		CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").str);
-		EmitTelemetry(obj);
+		JSONObject obj = jsonObject;
+		CarRemoteControl.SteeringAngle = float.Parse(jsonObject.GetField("steering_angle").ToString());
+		CarRemoteControl.Acceleration = float.Parse(jsonObject.GetField("throttle").ToString());
+		EmitTelemetry();
 	}
 
-	void EmitTelemetry(SocketIOEvent obj)
+	void EmitTelemetry()
 	{
-		UnityMainThreadDispatcher.Instance().Enqueue(() =>
-		{
-			print("Attempting to Send...");
+		// UnityMainThreadDispatcher.Instance().Enqueue(() =>
+		// {
+			// print("Attempting to Send...");
 			// send only if it's not being manually driven
 			if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.S))) {
-				_socket.Emit("telemetry", new JSONObject());
+				client.Send("telemetry", new JSONObject());
 			}
 			else {
 				// Collect Data from the Car
+				// print("Sending...");
 				Dictionary<string, string> data = new Dictionary<string, string>();
 				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
-				data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
-				_socket.Emit("telemetry", new JSONObject(data));
+				// data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
+				// print(data);
+				client.Send("telemetry", new JSONObject(data));
+				
 			}
-		});
-
-		//    UnityMainThreadDispatcher.Instance().Enqueue(() =>
-		//    {
-		//      	
-		//      
-		//
-		//		// send only if it's not being manually driven
-		//		if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.S))) {
-		//			_socket.Emit("telemetry", new JSONObject());
-		//		}
-		//		else {
-		//			// Collect Data from the Car
-		//			Dictionary<string, string> data = new Dictionary<string, string>();
-		//			data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
-		//			data["throttle"] = _carController.AccelInput.ToString("N4");
-		//			data["speed"] = _carController.CurrentSpeed.ToString("N4");
-		//			data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
-		//			_socket.Emit("telemetry", new JSONObject(data));
-		//		}
-		//      
-		////      
-		//    });
+		
 	}
 }
