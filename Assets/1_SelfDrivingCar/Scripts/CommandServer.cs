@@ -27,6 +27,8 @@ public class CommandServer : MonoBehaviour
 		_carController = CarRemoteControl.GetComponent<CarController>();
 		init_status = true;
 		// Debug.Log ("Started");
+		// This function is used when connecting webgl to classroom workspace
+		Application.ExternalCall("mySetupFunction");
 	}
 
 	public void FixedUpdate()
@@ -50,6 +52,7 @@ public class CommandServer : MonoBehaviour
 	// 
 	void onManual(JSONObject jsonObject)
 	{
+		Debug.Log("Manual");
 		EmitTelemetry ();
 	}
 
@@ -79,7 +82,7 @@ public class CommandServer : MonoBehaviour
 				data["steering_angle"] = _carController.CurrentSteerAngle.ToString("N4");
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
-				// data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
+				data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
 				// print(data);
 				client.Send("telemetry", new JSONObject(data));
 				
