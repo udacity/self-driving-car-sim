@@ -73,6 +73,8 @@ public class slam_controller_icp : MonoBehaviour {
 
 	private bool map_diff = false;
 
+	public bool is_hallway;
+
 	private void Awake() {
 	//filePath = Path.Combine(Application.streamingAssetsPath, "my_map.png");
 	filePath = "D:/udacity/slam/isam_dense_lab/src/my_map.png";
@@ -188,11 +190,14 @@ public class slam_controller_icp : MonoBehaviour {
 			mod_sourceTex.Apply ();
 		}
 
-		setGridCenter (-Mathf.Floor(max_width / 80)-1, -Mathf.Floor(max_height / 40)+4);
+		if (is_hallway) {
+			setGridCenter (-Mathf.Floor (max_width / 80) - 1, -Mathf.Floor (max_height / 40) + 4);
+		}
 
 		map_error.text = "Map Error: "+error.ToString("N0");
 		map_error_value = (int) error;
 
+		//return sourceTex;
 		return mod_sourceTex;
 
 	}
