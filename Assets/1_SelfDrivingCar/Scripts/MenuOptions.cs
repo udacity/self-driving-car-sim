@@ -15,7 +15,7 @@ public class MenuOptions : MonoBehaviour
 		if (outlines.Length > 0) 
 		{
 			outlines [0].effectColor = new Color (0, 0, 0);
-		}
+        }
     }
 
 	public void ControlMenu()
@@ -31,20 +31,39 @@ public class MenuOptions : MonoBehaviour
 
     public void StartDrivingMode()
     {
-        if (track == 0) {
-            SceneManager.LoadScene("LakeTrackTraining");
-        } else {
-            SceneManager.LoadScene("JungleTrackTraining");
+        switch (track)
+        {
+            case 0:
+                SceneManager.LoadScene("LakeTrackTraining");
+                break;
+            case 1:
+                SceneManager.LoadScene("JungleTrackTraining");
+                break;
+            case 3:
+                SceneManager.LoadScene("ThirdTrackTraining");
+                break;
+            default:
+                SceneManager.LoadScene("LakeTrackTraining");
+                break;
         }
-
     }
 
     public void StartAutonomousMode()
     {
-        if (track == 0) {
-            SceneManager.LoadScene("LakeTrackAutonomous");
-        } else {
-            SceneManager.LoadScene("JungleTrackAutonomous");
+        switch (track)
+        {
+            case 0:
+                SceneManager.LoadScene("LakeTrackAutonomous");
+                break;
+            case 1:
+                SceneManager.LoadScene("JungleTrackAutonomous");
+                break;
+            case 3:
+                SceneManager.LoadScene("ThirdTrackAutonomous");
+                break;
+            default:
+                SceneManager.LoadScene("LakeTrackAutonomous");
+                break;
         }
     }
 
@@ -52,14 +71,24 @@ public class MenuOptions : MonoBehaviour
     {
         outlines [0].effectColor = new Color (0, 0, 0);
         outlines [1].effectColor = new Color (255, 255, 255);
+        outlines [2].effectColor = new Color(255, 255, 255);
         track = 0;
     }
 
     public void SetMountainTrack()
     {
         track = 1;
+        outlines[0].effectColor = new Color(255, 255, 255);
         outlines [1].effectColor = new Color (0, 0, 0);
-        outlines [0].effectColor = new Color (255, 255, 255);
+        outlines [2].effectColor = new Color (255, 255, 255);
+    }
+
+    public void SetThirdTrack()
+    {
+        track = 2;
+        outlines[0].effectColor = new Color(255, 255, 255);
+        outlines[1].effectColor = new Color(255, 255, 255);
+        outlines[2].effectColor = new Color(0, 0, 0);
     }
 
 }

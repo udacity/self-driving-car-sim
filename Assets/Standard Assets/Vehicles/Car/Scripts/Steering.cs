@@ -59,7 +59,7 @@ namespace UnityStandardAssets.Vehicles.Car
             else if (Input.GetMouseButton(0))
             {
 				// get the mouse position
-				float mousePosition = Input.mousePosition.x;
+				float mousePosition = Input.mousePosition.x / 4;
 
 				// check if its the first time pressing down on mouse button
 				if (!mouse_hold)
