@@ -4,7 +4,9 @@ This simulator was built for [Udacity's Self-Driving Car Nanodegree](https://uda
 
 All the assets in this repository require Unity. Please follow the instructions below for the full setup.
 
-### Avaliable Game Builds (Precompiled builds of the simulator)
+### Available Game Builds (Precompiled builds of the simulator)
+
+#### Term 1
 
 Instructions: Download the zip file, extract it and run the executable file.
 
@@ -20,6 +22,24 @@ Version 1, 12/09/16
 [Mac](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f290_simulator-macos/simulator-macos.zip)
 [Windows 32](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f4b6_simulator-windows-32/simulator-windows-32.zip)
 [Windows 64](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f3a4_simulator-windows-64/simulator-windows-64.zip)
+
+#### Term 2
+
+Please see the [Releases](https://github.com/udacity/self-driving-car-sim/releases) page for the latest version of the Term 2 simulator (v1.45, 6/14/17).
+
+Source code can be obtained therein or also on the [term2_collection branch](https://github.com/udacity/self-driving-car-sim/tree/term2_collection).
+
+#### Term 3
+
+Please see the [Releases](https://github.com/udacity/self-driving-car-sim/releases) page for the latest version of the Term 3 simulator (v1.2, 7/11/17).
+
+Source code can be obtained therein or also on the [term3_collection branch](https://github.com/udacity/self-driving-car-sim/tree/term3_collection).
+
+#### System Integration / Capstone
+
+Please see the [CarND-Capstone Releases](https://github.com/udacity/CarND-Capstone/releases) page for the latest version of the Capstone simulator (v1.3, 12/7/17).
+
+Source code can be obtained therein.
 
 ### Unity Simulator User Instructions
 
