@@ -35,6 +35,10 @@ Please see the [Releases](https://github.com/udacity/self-driving-car-sim/releas
 
 Source code can be obtained therein or also on the [term3_collection branch](https://github.com/udacity/self-driving-car-sim/tree/term3_collection).
 
+Note: For mac devices, to run the simulator change mode using the command:
+sudo chmod -R 777 *
+After changing the mode, please run it and go to security setting to unblock the simulator from running!
+
 #### System Integration / Capstone
 
 Please see the [CarND-Capstone Releases](https://github.com/udacity/CarND-Capstone/releases) page for the latest version of the Capstone simulator (v1.3, 12/7/17).
