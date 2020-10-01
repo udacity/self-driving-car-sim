@@ -39,7 +39,7 @@ Source code can be obtained therein or also on the [term3_collection branch](htt
 
 Please see the [CarND-Capstone Releases](https://github.com/udacity/CarND-Capstone/releases) page for the latest version of the Capstone simulator (v1.3, 12/7/17).
 
-Source code can be obtained therein.
+
 
 ### Unity Simulator User Instructions
 
