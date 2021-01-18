@@ -54,7 +54,7 @@ namespace UnityStandardAssets.Utility
                             {
                                 Instantiate(source, targetGameObject.transform.position,
                                             targetGameObject.transform.rotation);
-                                DestroyObject(targetGameObject);
+                                Object.Destroy(targetGameObject);
                             }
                         }
                         break;
