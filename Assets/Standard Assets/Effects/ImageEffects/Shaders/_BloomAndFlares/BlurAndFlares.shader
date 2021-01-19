@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/BlurAndFlares" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "" {}
@@ -41,14 +43,14 @@ Shader "Hidden/BlurAndFlares" {
 		
 	v2f vert (appdata_img v) {
 		v2f o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv =  v.texcoord.xy;
 		return o;
 	}
 
 	v2f_blur vertWithMultiCoords2 (appdata_img v) {
 		v2f_blur o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv.xy = v.texcoord.xy;
 		o.uv01 =  v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1);
 		o.uv23 =  v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 2.0;
@@ -60,7 +62,7 @@ Shader "Hidden/BlurAndFlares" {
 
 	v2f_opts vertStretch (appdata_img v) {
 		v2f_opts o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		half b = _StretchWidth;		
 		o.uv[0] = v.texcoord.xy;
 		o.uv[1] = v.texcoord.xy + b * 2.0 * _Offsets.xy;
@@ -74,7 +76,7 @@ Shader "Hidden/BlurAndFlares" {
 	
 	v2f_opts vertWithMultiCoords (appdata_img v) {
 		v2f_opts o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv[0] = v.texcoord.xy;
 		o.uv[1] = v.texcoord.xy + 0.5 * _MainTex_TexelSize.xy * _Offsets.xy;
 		o.uv[2] = v.texcoord.xy - 0.5 * _MainTex_TexelSize.xy * _Offsets.xy;

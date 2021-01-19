@@ -45,13 +45,13 @@ Source code can be obtained therein.
 
 1. Clone the repository to your local directory, please make sure to use [Git LFS](https://git-lfs.github.com) to properly pull over large texture and model assets. 
 
-2. Install the free game making engine [Unity](https://unity3d.com), if you dont already have it. Unity is necessary to load all the assets.
+2. Install the free game making engine [Unity](https://unity3d.com), if you dont already have it. Unity is necessary to load all the assets. The project works with Unity 2019.4.18f1 version. If you download a newer version you would need to upgrade the code on your own.
 
 3. Load Unity, Pick load exiting project and choice the `self-driving-car-sim` folder.
 
 4. Load up scenes by going to Project tab in the bottom left, and navigating to the folder Assets/1_SelfDrivingCar/Scenes. To load up one of the scenes, for example the Lake Track, double click the file LakeTrackTraining.unity. Once the scene is loaded up you can fly around it in the scene viewing window by holding mouse right click to turn, and mouse scroll to zoom.
 
-5. Play a scene. Jump into game mode anytime by simply clicking the top play button arrow right above the viewing window.
+5. Play a scene by clicking the play button on top center of the screen. Jump into game mode anytime by simply clicking the top play button arrow right above the viewing window.
 
 6. View Scripts. Scripts are what make all the different mechanics of the simulator work and they are located in two different directories, the first is Assets/1_SelfDrivingCar/Scripts which mostly relate to the UI and socket connections. The second directory for scripts is Assets/Standard Assets/Vehicle/Car/Scripts and they control all the different interactions with the car.
 
