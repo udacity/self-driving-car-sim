@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
  Shader "Hidden/Dof/DepthOfField34" {
 	Properties {
 		_MainTex ("Base", 2D) = "" {}
@@ -46,14 +48,14 @@
 	
 	v2f vert( appdata_img v ) {
 		v2f o;
-		o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos (v.vertex);
 		o.uv1.xy = v.texcoord.xy;
 		return o;
 	} 
 
 	v2fRadius vertWithRadius( appdata_img v ) {
 		v2fRadius o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv.xy = v.texcoord.xy;
 
 		const half2 blurOffsets[4] = {
@@ -78,14 +80,14 @@
 	
 	v2fDofApply vertDofApply( appdata_img v ) {
 		v2fDofApply o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv.xy = v.texcoord.xy;
 		return o;
 	} 	
 		
 	v2fDown vertDownsampleWithCocConserve(appdata_img v) {
 		v2fDown o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);	
+		o.pos = UnityObjectToClipPos(v.vertex);	
 		o.uv0.xy = v.texcoord.xy;
 		o.uv[0].xy = v.texcoord.xy + half2(-1.0,-1.0) * _InvRenderTargetSize;
 		o.uv[1].xy = v.texcoord.xy + half2(1.0,-1.0) * _InvRenderTargetSize;		

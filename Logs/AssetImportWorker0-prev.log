@@ -1,0 +1,499 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.0f1 (c7b5465681fb) revision 13088070'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 18363.1440; Version 1909; 64bit' Language: 'en' Physical Memory: 16122 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+B:\Program Files\Unity\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+B:/Repos/self-driving-car-sim
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+56902
+Successfully changed project path to: B:/Repos/self-driving-car-sim
+B:/Repos/self-driving-car-sim
+Using Asset Import Pipeline V2.
+Platform WindowsStandaloneSupport does not support graphics device type 
+
+Refreshing native plugins compatible for Editor in 40.68 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.0f1 (c7b5465681fb)
+[Subsystems] Discovering subsystems at path B:/Program Files/Unity/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path B:/Repos/self-driving-car-sim/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 Ti with Max-Q Design (ID=0x1f95)
+    Vendor:   
+    VRAM:     3962 MB
+    Driver:   27.21.14.6089
+Initialize mono
+Mono path[0] = 'B:/Program Files/Unity/Editor/Data/Managed'
+Mono path[1] = 'B:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'B:/Program Files/Unity/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56284
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: B:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.000750 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 35.89 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.785 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001388 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.780 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Platform WindowsStandaloneSupport does not support graphics device type 
+
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.56 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1717 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 91.1 MB.
+System memory in use after: 90.8 MB.
+
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 2151.
+Total: 2.956500 ms (FindLiveObjects: 0.177100 ms CreateObjectMapping: 0.059900 ms MarkObjects: 2.223600 ms  DeleteObjects: 0.494500 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/RoadKit
+  artifactKey: Guid(c6fecb11e804f4ca1ab1e78213bfa2d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RoadKit using Guid(c6fecb11e804f4ca1ab1e78213bfa2d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b4dc2bcb83a0f9795ccdaec07dc1e16') in 0.012316 seconds
+  Import took 0.016074 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.497412 seconds.
+  path: Assets/SampleScenes
+  artifactKey: Guid(b86a21c34e2fd244f9e4942d3859a763) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SampleScenes using Guid(b86a21c34e2fd244f9e4942d3859a763) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '171b97b77be37ca22618b46ab1fa1c58') in 0.006998 seconds
+  Import took 0.010156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002477 seconds.
+  path: Assets/SampleScenes
+  artifactKey: Guid(b86a21c34e2fd244f9e4942d3859a763) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SampleScenes using Guid(b86a21c34e2fd244f9e4942d3859a763) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '171b97b77be37ca22618b46ab1fa1c58') in 0.002537 seconds
+  Import took 0.005770 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.869815 seconds.
+  path: Assets/_TerrainAutoUpgrade
+  artifactKey: Guid(949f9e086b9b1ea449575c07a74b24d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_TerrainAutoUpgrade using Guid(949f9e086b9b1ea449575c07a74b24d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '405bca93f1014654fd60f1ad8aee55d9') in 0.007125 seconds
+  Import took 0.011218 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.047757 seconds.
+  path: Assets/Editor
+  artifactKey: Guid(cd3b771e2f9df4f6bb8d4b3e01545173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Editor using Guid(cd3b771e2f9df4f6bb8d4b3e01545173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60de002e1368d5bc892340d8a1611420') in 0.007317 seconds
+  Import took 0.010734 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.276768 seconds.
+  path: Assets/Plugins
+  artifactKey: Guid(a46e9efd4711045c1a0ee9390f220c95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins using Guid(a46e9efd4711045c1a0ee9390f220c95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74f7d6d5b0533a47b00c43e8a3e99172') in 0.006844 seconds
+  Import took 0.009389 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002504 seconds.
+  path: Assets/Plugins
+  artifactKey: Guid(a46e9efd4711045c1a0ee9390f220c95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins using Guid(a46e9efd4711045c1a0ee9390f220c95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74f7d6d5b0533a47b00c43e8a3e99172') in 0.002024 seconds
+  Import took 0.004599 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 144.349393 seconds.
+  path: Assets/race-track-lake
+  artifactKey: Guid(77aad4f5b1f7d0c48ac077e3567862e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake using Guid(77aad4f5b1f7d0c48ac077e3567862e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '449641a354fd80ea6a93b605ccdd5e0d') in 0.007645 seconds
+  Import took 0.011575 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.730538 seconds.
+  path: Assets/1_SelfDrivingCar
+  artifactKey: Guid(2454871ddcdbad246bfb136681340ed9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar using Guid(2454871ddcdbad246bfb136681340ed9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '749e177148eebcd933ca635d1411e487') in 0.006463 seconds
+  Import took 0.009190 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.042989 seconds.
+  path: Assets/1_SelfDrivingCar/Scenes
+  artifactKey: Guid(a199502dbbffa4b00ae7726fb2b700f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Scenes using Guid(a199502dbbffa4b00ae7726fb2b700f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46461422d5e30eb1c916905de4e5b70e') in 0.007494 seconds
+  Import took 0.011395 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004518 seconds.
+  path: Assets/1_SelfDrivingCar/Scenes
+  artifactKey: Guid(a199502dbbffa4b00ae7726fb2b700f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Scenes using Guid(a199502dbbffa4b00ae7726fb2b700f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46461422d5e30eb1c916905de4e5b70e') in 0.002524 seconds
+  Import took 0.005877 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.498785 seconds.
+  path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
+  artifactKey: Guid(30ccdbcde5c1b3c4ebee6e6257a9fad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity using Guid(30ccdbcde5c1b3c4ebee6e6257a9fad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ad01df702fbdbde16c0fffd0121b12a') in 0.019355 seconds
+  Import took 0.022288 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007549 seconds.
+  path: Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity
+  artifactKey: Guid(30ccdbcde5c1b3c4ebee6e6257a9fad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Scenes/ControlMenu.unity using Guid(30ccdbcde5c1b3c4ebee6e6257a9fad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ad01df702fbdbde16c0fffd0121b12a') in 0.002873 seconds
+  Import took 0.006119 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 33.679502 seconds.
+  path: Assets/1_SelfDrivingCar/UI
+  artifactKey: Guid(fad8c129f4f0ccb4eb53fd8386930ef4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/UI using Guid(fad8c129f4f0ccb4eb53fd8386930ef4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '026f6b71469f384e2753c599c4162399') in 0.006217 seconds
+  Import took 0.009243 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002111 seconds.
+  path: Assets/1_SelfDrivingCar/UI
+  artifactKey: Guid(fad8c129f4f0ccb4eb53fd8386930ef4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/UI using Guid(fad8c129f4f0ccb4eb53fd8386930ef4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '026f6b71469f384e2753c599c4162399') in 0.002373 seconds
+  Import took 0.005326 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.558967 seconds.
+  path: Assets/Editor/ImageEffects
+  artifactKey: Guid(225198e07aaae3547a6d1f6e7177555f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Editor/ImageEffects using Guid(225198e07aaae3547a6d1f6e7177555f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40c07d52a98069fa4f7c5a387855980c') in 0.006720 seconds
+  Import took 0.009341 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.055591 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/Car.prefab
+  artifactKey: Guid(0e7ee4df08df88c4880f43398f9ad2c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/Car.prefab using Guid(0e7ee4df08df88c4880f43398f9ad2c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a5e42a3bc1011ea834e4d99408a2b20') in 0.673673 seconds
+  Import took 0.677809 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000257 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/ThreadDispatcher.prefab
+  artifactKey: Guid(c1cb25368752143148dfa12c633a93ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/ThreadDispatcher.prefab using Guid(c1cb25368752143148dfa12c633a93ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c859b55a07f468e98c4cee325497dc59') in 0.010579 seconds
+  Import took 0.013936 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000178 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/CommandServer.prefab
+  artifactKey: Guid(16328d84059a4491da82863ec16eb6a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/CommandServer.prefab using Guid(16328d84059a4491da82863ec16eb6a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '115b7a804d9f679b9fb8a6cbee0f1f2f') in 0.007080 seconds
+  Import took 0.009757 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/SkidTrail.prefab
+  artifactKey: Guid(4b6aa99de5d21424eab6ae279f31475b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/SkidTrail.prefab using Guid(4b6aa99de5d21424eab6ae279f31475b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b69fa460728d2c8a26edf8a21a063fec') in 0.009422 seconds
+  Import took 0.012281 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000345 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/CarWaypointBased.prefab
+  artifactKey: Guid(0fb4610dba67fc24cb2a6674fb155fc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/CarWaypointBased.prefab using Guid(0fb4610dba67fc24cb2a6674fb155fc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52b5408fe7c67ff9c5187cf4c29233f3') in 0.046605 seconds
+  Import took 0.051908 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000392 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/SimulatorUI.prefab
+  artifactKey: Guid(ab47493ccf8e84ed0978d1ff3e1826e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/SimulatorUI.prefab using Guid(ab47493ccf8e84ed0978d1ff3e1826e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c04625e8fd3895bcec17ddd844fd45c0') in 0.026891 seconds
+  Import took 0.029864 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000356 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/CarUI.prefab
+  artifactKey: Guid(96664f82c8df0114a92fe864c83a9a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/CarUI.prefab using Guid(96664f82c8df0114a92fe864c83a9a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b9e570c9a9de68a54cded89ba7aa1a1') in 0.012351 seconds
+  Import took 0.015359 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000311 seconds.
+  path: Assets/1_SelfDrivingCar/Prefabs/SocketIO.prefab
+  artifactKey: Guid(1f347eea738f54024b45de3f0811b76a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Prefabs/SocketIO.prefab using Guid(1f347eea738f54024b45de3f0811b76a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea4b5580dd814df79ea49de0d9fb89fe') in 0.008084 seconds
+  Import took 0.011108 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.556184 seconds.
+  path: Assets/1_SelfDrivingCar/Animation
+  artifactKey: Guid(3d4a7e2180c004c6ab99a4cf4b4f3efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Animation using Guid(3d4a7e2180c004c6ab99a4cf4b4f3efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9a96e97978ad971755e63b8dd6a16e2') in 0.006280 seconds
+  Import took 0.010129 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.841715 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites/Background.png
+  artifactKey: Guid(8780691d0865341caaab45f3bc9008d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites/Background.png using Guid(8780691d0865341caaab45f3bc9008d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f6847d754c091934aeda79bdeea3d4e') in 0.087640 seconds
+  Import took 0.090606 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000592 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites/MenuButton.png
+  artifactKey: Guid(05f7d0b5b2cfb4bd3b168e1c4892c436) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites/MenuButton.png using Guid(05f7d0b5b2cfb4bd3b168e1c4892c436) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36974645c9a9eefa6f4f1c9813a6e3c7') in 0.025462 seconds
+  Import took 0.028750 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000312 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites/MenuBackground.png
+  artifactKey: Guid(8147d608ea24e4a2bb7a003e5ede0cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites/MenuBackground.png using Guid(8147d608ea24e4a2bb7a003e5ede0cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '709aa2cfa5371110a762e702e4a93037') in 0.053821 seconds
+  Import took 0.057445 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000563 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites/Speed.png
+  artifactKey: Guid(98b03492d9b6943c7bcecaf0af23919a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites/Speed.png using Guid(98b03492d9b6943c7bcecaf0af23919a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa2559475a0702824c950a535415660e') in 0.024596 seconds
+  Import took 0.027275 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000375 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites/RecordSprite.png
+  artifactKey: Guid(d233b435626e64b7ca10d43284267eb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites/RecordSprite.png using Guid(d233b435626e64b7ca10d43284267eb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37b9501159c87a904ea80997fcba3508') in 0.020998 seconds
+  Import took 0.024405 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites/SplashSprite.png
+  artifactKey: Guid(cdfab036d1df241ea90c2461e2849c1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites/SplashSprite.png using Guid(cdfab036d1df241ea90c2461e2849c1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '382d82d598a9aee9a5b787c30197f9eb') in 0.030982 seconds
+  Import took 0.033743 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000390 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites/LogoUdacity.png
+  artifactKey: Guid(b46604ddcc4bc43a59810bdb92d60667) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites/LogoUdacity.png using Guid(b46604ddcc4bc43a59810bdb92d60667) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7e5c15aeb81452918eab5e10f574453') in 0.026274 seconds
+  Import took 0.029130 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000514 seconds.
+  path: Assets/1_SelfDrivingCar/Sprites
+  artifactKey: Guid(5fe0efaff049442f19e4fb74ea0d4581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Sprites using Guid(5fe0efaff049442f19e4fb74ea0d4581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d4dfb7970cfb06433dc59fe3e94d408') in 0.008318 seconds
+  Import took 0.011322 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 29.252591 seconds.
+  path: Assets/race-track-lake/Models/electrical-towers.FBX
+  artifactKey: Guid(28076010641c5a64594a63a738cfef62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models/electrical-towers.FBX using Guid(28076010641c5a64594a63a738cfef62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9d6756272f01a5439d93976979a23b1') in 0.450129 seconds
+  Import took 0.453685 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/race-track-lake/Models/rocks-mountain-1.FBX
+  artifactKey: Guid(c573322a16271b742bc446c82a9bded7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models/rocks-mountain-1.FBX using Guid(c573322a16271b742bc446c82a9bded7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c6add8eea568eee76ecb33bc3ab938e') in 0.215671 seconds
+  Import took 0.218575 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000517 seconds.
+  path: Assets/race-track-lake/Models/tire.FBX
+  artifactKey: Guid(c92bea14e5c4591408be760558da7b90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models/tire.FBX using Guid(c92bea14e5c4591408be760558da7b90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9b232aa96da9c913d8e9897be75fdaf') in 0.054761 seconds
+  Import took 0.058381 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000437 seconds.
+  path: Assets/race-track-lake/Models/race-track.FBX
+  artifactKey: Guid(853554035d67ed8458014b199fd7d9d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models/race-track.FBX using Guid(853554035d67ed8458014b199fd7d9d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57dcd356914467ff8b617462dab7ddc4') in 0.248748 seconds
+  Import took 0.253845 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000489 seconds.
+  path: Assets/race-track-lake/Models/road-signs.FBX
+  artifactKey: Guid(87403507033f0034eab7ba172e32535d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models/road-signs.FBX using Guid(87403507033f0034eab7ba172e32535d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '771fea86a691e7ca488687a47a45d4ca') in 0.030736 seconds
+  Import took 0.033862 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000586 seconds.
+  path: Assets/race-track-lake/Models/rocks-mountain-2.FBX
+  artifactKey: Guid(11786ea4822f6214397607504b10357d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models/rocks-mountain-2.FBX using Guid(11786ea4822f6214397607504b10357d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0abfbd5ad8da6133f7c7acbc8868c642') in 0.045043 seconds
+  Import took 0.047766 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000445 seconds.
+  path: Assets/race-track-lake/Models/LakeTerrain.asset
+  artifactKey: Guid(4b8644c26c3eb2f4b99babbc1e5cce0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models/LakeTerrain.asset using Guid(4b8644c26c3eb2f4b99babbc1e5cce0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2888e82b7509bfbd898dcdb5f19f97eb') in 0.161054 seconds
+  Import took 0.165352 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000290 seconds.
+  path: Assets/race-track-lake/Models
+  artifactKey: Guid(9faca9d495e0e5c40a0ac102deafa98b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/race-track-lake/Models using Guid(9faca9d495e0e5c40a0ac102deafa98b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10e0efa2b45d37bb116ec47d2161ea86') in 0.006351 seconds
+  Import took 0.009472 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 29889.086715 seconds.
+  path: Assets/UnityThreading
+  artifactKey: Guid(8cc29edc59cd1474988d9bb6ebcc8770) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UnityThreading using Guid(8cc29edc59cd1474988d9bb6ebcc8770) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3827ac8cbc48efda4fbb9189f7c194f') in 0.020008 seconds
+  Import took 0.048952 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.406170 seconds.
+  path: Assets/UnityThreading/UnityMainThreadDispatcher.cs
+  artifactKey: Guid(058eda0291ab0494aa923ffc132c6dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UnityThreading/UnityMainThreadDispatcher.cs using Guid(058eda0291ab0494aa923ffc132c6dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'feab29842e67a69c9076f9bcbf881531') in 0.095623 seconds
+  Import took 0.098386 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 55.542948 seconds.
+  path: Packages/com.unity.ide.visualstudio
+  artifactKey: Guid(9db636ca49aa246019dd93b7c8b689f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.ide.visualstudio using Guid(9db636ca49aa246019dd93b7c8b689f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40dcf2de4826b4469fdbd1e2ddf0352b') in 0.008229 seconds
+  Import took 0.012326 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.109121 seconds.
+  path: Packages/com.unity.ide.visualstudio/package.json
+  artifactKey: Guid(656f74f6edaa396458412b9e3903d8cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.ide.visualstudio/package.json using Guid(656f74f6edaa396458412b9e3903d8cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5ef23b0a28dcb8e82c68333d8ae17e8') in 0.030331 seconds
+  Import took 0.033148 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.373493 seconds.
+  path: Packages/com.unity.ide.visualstudio/Editor
+  artifactKey: Guid(4a707af59e3522d43afe34dfc4429b86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.ide.visualstudio/Editor using Guid(4a707af59e3522d43afe34dfc4429b86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a440cfef32b08aa9a641c15008f5f56') in 0.002594 seconds
+  Import took 0.005984 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000310 seconds.
+  path: Packages/com.unity.ide.visualstudio/Editor
+  artifactKey: Guid(4a707af59e3522d43afe34dfc4429b86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.ide.visualstudio/Editor using Guid(4a707af59e3522d43afe34dfc4429b86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a440cfef32b08aa9a641c15008f5f56') in 0.001761 seconds
+  Import took 0.005013 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.073041 seconds.
+  path: Packages/com.unity.ide.visualstudio/Editor/com.unity.ide.visualstudio.asmdef
+  artifactKey: Guid(b93f844d45cfcc44fa2b0eed5c9ec6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.ide.visualstudio/Editor/com.unity.ide.visualstudio.asmdef using Guid(b93f844d45cfcc44fa2b0eed5c9ec6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '223517f54585dd5cca5529051b2f68c6') in 0.003344 seconds
+  Import took 0.006763 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 78.832819 seconds.
+  path: Assets/1_SelfDrivingCar/Scenes/LakeTrackAutonomous.unity
+  artifactKey: Guid(fb1178b1833174262a29217c9e7e3997) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1_SelfDrivingCar/Scenes/LakeTrackAutonomous.unity using Guid(fb1178b1833174262a29217c9e7e3997) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2823d88f1039aa468ad087d44e079a9f') in 0.007462 seconds
+  Import took 0.010083 seconds .
+
+========================================================================
+Received Prepare
+Platform WindowsStandaloneSupport does not support graphics device type 
+
+Registering precompiled user dll's ...
+Registered in 0.001307 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.795 seconds
+Platform modules already initialized, skipping
+OnLevelWasLoaded was found on ReturnToMainMenu
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+
+Refreshing native plugins compatible for Editor in 0.51 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1630 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 94.1 MB.
+System memory in use after: 93.3 MB.
+
+Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 2184.
+Total: 2.452700 ms (FindLiveObjects: 0.141600 ms CreateObjectMapping: 0.047300 ms MarkObjects: 1.344700 ms  DeleteObjects: 0.917500 ms)
+
