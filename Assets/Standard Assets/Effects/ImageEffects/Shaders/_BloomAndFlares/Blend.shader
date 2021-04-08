@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/Blend" {
 	Properties {
 		_MainTex ("Screen Blended", 2D) = "" {}
@@ -26,7 +28,7 @@ Shader "Hidden/Blend" {
 		
 	v2f vert( appdata_img v ) {
 		v2f o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv[0] =  v.texcoord.xy;
 		o.uv[1] =  v.texcoord.xy;
 		
@@ -40,7 +42,7 @@ Shader "Hidden/Blend" {
 
 	v2f_mt vertMultiTap( appdata_img v ) {
 		v2f_mt o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv[0] = v.texcoord.xy + _MainTex_TexelSize.xy * 0.5;
 		o.uv[1] = v.texcoord.xy - _MainTex_TexelSize.xy * 0.5;	
 		o.uv[2] = v.texcoord.xy - _MainTex_TexelSize.xy * half2(1,-1) * 0.5;	
