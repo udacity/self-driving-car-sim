@@ -1,6 +1,6 @@
 # Deprecated Repository
 This code in the master branch of this repository is deprecated. Currently enrolled learners, if any, can: 
-- Use the upgraded code [Unity_2020_3](https://github.com/udacity/self-driving-car-sim/tree/Unity_2020_3) or [Unity_2019_4](https://github.com/udacity/self-driving-car-sim/tree/Unity_2019_4) as suiitable per your local Unity version compatibility. Credits: [PR#134](https://github.com/udacity/self-driving-car-sim/pull/134) and  [PR#133](https://github.com/udacity/self-driving-car-sim/pull/133) respectively. 
+- Use the upgraded code [Unity_2020_3](https://github.com/udacity/self-driving-car-sim/tree/Unity_2020_3) or [Unity_2019_4](https://github.com/udacity/self-driving-car-sim/tree/Unity_2019_4) branches as suitable per your local Unity version compatibility. Credits: [PR#134](https://github.com/udacity/self-driving-car-sim/pull/134) and  [PR#133](https://github.com/udacity/self-driving-car-sim/pull/133) respectively. 
 
 
 - Utilize the https://knowledge.udacity.com/ forum to seek help *only* on content-specific issues.
